@@ -1,0 +1,36 @@
+{
+  "name": "adextopa",
+  "version": "0.0.1",
+  "description": "Advanced Extendable Token Parser",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clean": "rm -fr dist/",
+    "build": "npm run clean && ./node_modules/.bin/babel src/ -d dist",
+    "prepublish": "npm run clean && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th317erd/adextopa.git"
+  },
+  "keywords": [
+    "programming",
+    "scripting",
+    "language",
+    "tokenizer",
+    "parser"
+  ],
+  "author": "Wyatt Greenway",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/th317erd/adextopa/issues"
+  },
+  "homepage": "https://github.com/th317erd/adextopa#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-env": "^2.4.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1"
+  }
+}

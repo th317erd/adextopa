@@ -4,6 +4,10 @@ var _position = require('./position');
 
 var _position2 = _interopRequireDefault(_position);
 
+var _token = require('./token');
+
+var _token2 = _interopRequireDefault(_token);
+
 var _tokenStream = require('./token-stream');
 
 var _tokenStream2 = _interopRequireDefault(_tokenStream);
@@ -20,9 +24,15 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* TODO:
+ * Need ASSERT
+ * Need SKIP
+ * Need OPTIONAL
+ */
+
 module.exports = Object.assign(module.exports, parserEngine, {
   Position: _position2.default,
-  Token: _position2.default,
+  Token: _token2.default,
   TokenStream: _tokenStream2.default,
   Tokenizer: _tokenizer2.default
 });

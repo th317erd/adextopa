@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.BODY = exports.AND = exports.OR = exports.NOT = exports.REPEAT = exports.ALIAS = exports.EQ = exports.REGEXP = undefined;
+exports.BLOCK = exports.AND = exports.OR = exports.NOT = exports.REPEAT = exports.ALIAS = exports.EQ = exports.REGEXP = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -420,7 +420,7 @@ var AND = exports.AND = createTokenParser(function () {
   });
 });
 
-var BODY = exports.BODY = createTokenParser(function (boundaryChar, name) {
+var BLOCK = exports.BLOCK = createTokenParser(function (boundaryChar, name) {
   if (!boundaryChar || boundaryChar.length !== 1) throw new Error('Boundary character must be exactly one character');
 
   if (this.eof()) return;
@@ -447,7 +447,7 @@ var BODY = exports.BODY = createTokenParser(function (boundaryChar, name) {
   if (!isValidResult(result)) return;
 
   return new _token2.default({
-    type: name || 'BODY',
+    type: name || 'BLOCK',
     source: this,
     position: result.length,
     value: result.substring(1, result.length - 1),

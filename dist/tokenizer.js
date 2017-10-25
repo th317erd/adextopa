@@ -34,11 +34,15 @@ var Tokenizer = function () {
       var src = new _tokenStream2.default(input),
           ret = this.token.call(src);
 
-      if (ret instanceof Promise) ret.then(function (result) {
-        return cb.call(_this, null, result);
-      }, function (err) {
-        return cb.call(err, null);
-      });else cb.call(this, null, ret);
+      if (ret instanceof Promise) {
+        ret.then(function (result) {
+          cb.call(_this, null, result);
+        }, function (err) {
+          cb.call(_this, err, null);
+        });
+      } else {
+        cb.call(this, null, ret);
+      }
     }
   }]);
 

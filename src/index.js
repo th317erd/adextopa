@@ -1,18 +1,10 @@
-import Position from './position';
-import Token from './token';
-import TokenStream from './token-stream';
-import * as parserEngine from './parser-engine';
-import Tokenizer from './tokenizer';
+const Utils           = require('./utils');
+const SourceRange     = require('./source-range');
+const Token           = require('./token');
+const Parser          = require('./parser');
+const GenericTokens   = require('./generic-tokens');
 
-/* TODO:
- * Need ASSERT
- * Need SKIP
- * Need OPTIONAL
- */
-
-module.exports = Object.assign(module.exports, parserEngine, {
-  Position,
-  Token,
-  TokenStream,
-  Tokenizer
-});
+module.exports = Object.assign({
+  Utils,
+  GenericTokens
+}, SourceRange, Token, Parser);

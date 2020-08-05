@@ -1,57 +1,56 @@
-function defineProperty(writable, parent, name, value) {
-  Object.defineProperty(parent, (name.charAt(0) === '_') ? name.substring(1) : name, {
-    writable: writable,
-    configurable: false,
-    enumerable: (name.charAt(0) !== '_'),
-    value: value
-  });
+function isValidNumber(num) {
+  if (num == null)
+    return false;
+
+  if (!(num instanceof Number || typeof num === 'number'))
+    return false;
+
+  return isFinite(num);
 }
 
-export const definePropertyRO = defineProperty.bind(this, false);
-export const definePropertyRW = defineProperty.bind(this, true);
+function isType(value) {
+  for (var i = 1, il = arguments.length; i < il; i++) {
+    var type      = arguments[i],
+        typeCheck = isType._typeCheckers[type];
 
-export function noe() {
-  function isNOE(value) {
-    if (value === null || value === undefined)
-      return true;
-  
-    if ((typeof value === 'number' || value instanceof Number) && (isNaN(value) || !isFinite(value)))
-      return true;
-  
-    if ((typeof value === 'string' || value instanceof String) && (value.length === 0 || value.trim().length === 0))
-      return true;
-  
-    if (value instanceof Array && value.length === 0)
-      return true;
-  
-    if (value.constructor === Object && Object.keys(value).length === 0)
-      return true;
+    if (typeof typeCheck !== 'function')
+      continue;
 
-    return false;
-  }
-
-  for (var i = 0, il = arguments.length; i < il; i++) {
-    var val = arguments[i];
-    if (isNOE(val))
+    if (typeCheck.call(this, value))
       return true;
   }
 
   return false;
 }
 
-export function isValidNum(num) {
-  if (num === undefined || num === null)
-    return false;
-
-  if (!(num instanceof Number || typeof num === 'number'))
-    return false;
-  
-  return (!isNaN(num) && isFinite(num));
+isType.addType = function addType(typeName, checker) {
+  isType._typeCheckers[typeName] = checker;
 }
 
-export default {
-  definePropertyRO,
-  definePropertyRW,
-  noe,
-  isValidNum
+isType._typeCheckers = {
+  'string':   (val) => (typeof val === 'string' || val instanceof String),
+  'number':   (val) => (typeof val === 'number' || val instanceof Number),
+  'boolean':  (val) => (typeof val === 'boolean' || val instanceof Boolean),
+  'bigint':   (val) => (typeof val === 'bigint'),
+  'array':    (val) => ((typeof Array.isArray === 'function') ? Array.isArray(val) : (val instanceof Array)),
+  'object':   (val) => (val.constructor === Object),
+  'function': (val) => ((typeof val === 'function' || val instanceof Function) && !(/^class\s+/).test(val.toString())),
+  'class':    (val) => ((typeof val === 'function' || val instanceof Function) && (/^class\s+/).test(val.toString())),
+  'RegExp':   (val) => (val instanceof RegExp)
+};
+
+function addRegExpFlags(re, _flags) {
+  var isRE    = (re instanceof RegExp),
+      flags   = (isRE) ? (re.flags + (_flags || '')) : _flags;
+
+  // Ensure flags are unique
+  flags = Object.keys(flags.split('').reduce((obj, flag) => (obj[flag] = obj), {})).join('');
+
+  return new RegExp((isRE) ? re.source : re, flags);
+}
+
+module.exports = {
+  isValidNumber,
+  isType,
+  addRegExpFlags
 };

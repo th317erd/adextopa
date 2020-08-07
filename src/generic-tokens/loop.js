@@ -1,6 +1,17 @@
 const { isType }                                      = require('../utils');
 const { defineTokenMatcher, Token, TokenDefinition }  = require('../token');
 
+class LoopToken extends Token {
+  clone(_props) {
+    var props     = _props || {},
+        children  = props.children || this.children || [];
+
+    return super.clone(Object.assign({}, {
+      _length: children.length
+    }, props));
+  }
+}
+
 const $LOOP = defineTokenMatcher('$LOOP', (ParentClass) => {
   return class LoopTokenMatcher extends ParentClass {
     constructor(..._matchers) {
@@ -33,7 +44,7 @@ const $LOOP = defineTokenMatcher('$LOOP', (ParentClass) => {
 
     respond() {
       var matchers    = this._matchers,
-          captures    = [],
+          children    = [],
           running     = true;
 
       while(running) {
@@ -56,7 +67,7 @@ const $LOOP = defineTokenMatcher('$LOOP', (ParentClass) => {
             return result;
 
           if (result instanceof Token) {
-            captures.push(result);
+            children.push(result);
 
             this.endOffset = result.getSourceRange().end;
             continue;
@@ -65,34 +76,27 @@ const $LOOP = defineTokenMatcher('$LOOP', (ParentClass) => {
           throw new TypeError(`${matcher.getTypeName()}::respond: Returned an invalid value. Matcher results must be defined by a call to one of \`success\`, \`fail\`, \`skip\`, or \`error\``);
         }
 
-        if (captures.length === 0)
+        if (children.length === 0)
           break;
       }
 
-      if (captures.length === 0)
+      if (children.length === 0)
         return fail();
 
-      var token = this.successWithoutFinalize(this.endOffset, undefined);
-      Object.defineProperties(token, {
-        length: {
-          writable: false,
-          enumerable: false,
-          configurable: false,
-          value: captures.length
-        },
-        captures: {
-          writable: false,
-          enumerable: false,
-          configurable: false,
-          value: captures
-        }
-      });
+      var token = this.successWithoutFinalize(this.endOffset, {
+        _length: children.length,
+        children
+      }, LoopToken);
 
+      token.remapParentTokenForAllChildren();
+
+      // Now finally set it to the final resolved token
       return this.finalize(token);
     }
   };
 });
 
 module.exports = {
+  LoopToken,
   $LOOP
 };

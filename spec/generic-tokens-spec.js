@@ -99,9 +99,10 @@ describe("Parser", function() {
     it("should be able to use a finalizer callback", function() {
       var parser  = new Parser('testing token matching'),
           token   = $LOOP($MATCHES(/\w+/, 'Word'), $OPTIONAL($MATCHES(/\s+/, 'WhiteSpace')), ({ token }) => {
-            return new Token(token.getParser(), token.getSourceRange().clone(), {
+            return token.clone({
               typeName: 'Words',
-              words: token.captures.filter((token) => (token.typeName === 'Word')).map((token) => token._raw)
+              words: token.children.filter((token) => (token.typeName === 'Word')).map((token) => token._raw),
+              token
             });
           });
 
@@ -110,12 +111,23 @@ describe("Parser", function() {
       var result = token.exec(parser);
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('testing token matching');
-      expect(result.length).toBe(undefined);
+      expect(result.length).toBe(5);
       expect(result.typeName).toBe('Words');
       expect(result.words.length).toBe(3);
       expect(result.words[0]).toBe('testing');
       expect(result.words[1]).toBe('token');
       expect(result.words[2]).toBe('matching');
+      expect(result.children[0] instanceof Token).toBe(true);
+      expect(result.children[0].parent).toBe(result);
+      expect(result.children[1] instanceof Token).toBe(true);
+      expect(result.children[1].parent).toBe(result);
+      expect(result.children[2] instanceof Token).toBe(true);
+      expect(result.children[2].parent).toBe(result);
+      expect(result.children[3] instanceof Token).toBe(true);
+      expect(result.children[3].parent).toBe(result);
+      expect(result.children[4] instanceof Token).toBe(true);
+      expect(result.children[4].parent).toBe(result);
+      expect(result.children[5] instanceof Token).toBe(false);
     });
   });
 });

@@ -7,25 +7,38 @@ const { SourceRange } = require('./source-range');
 // This will be set on first run, and remain static afterwords
 var RESERVED_WORDS;
 
-function addUserProperties(opts, reservedWords) {
-  var keys = Object.keys(opts);
-  for (var i = 0, il = keys.length; i < il; i++) {
-    var key = keys[i];
+function defineProperties(props) {
+  var keys = Object.keys(props);
 
-    if (reservedWords && reservedWords.indexOf(key) >= 0)
+  for (var i = 0, il = keys.length; i < il; i++) {
+    var key         = keys[i],
+        value       = props[key],
+        enumerable  = true;
+
+    if (value === undefined)
+      continue;
+
+    if (key.charAt(0) === '_') {
+      key = key.substring(1);
+      enumerable = false;
+    }
+
+    if (RESERVED_WORDS && RESERVED_WORDS.indexOf(key) >= 0)
       continue;
 
     Object.defineProperty(this, key, {
-      writable: false,
-      enumerable: true,
-      configurable: false,
-      value: opts[key]
+      writable: true,
+      enumerable,
+      configurable: true,
+      value
     });
   }
+
+  return this;
 }
 
 class Token {
-  constructor(_parser, _sourceRange, opts) {
+  constructor(_parser, _sourceRange, props) {
     var parser      = _parser,
         sourceRange = _sourceRange || null;
 
@@ -52,12 +65,42 @@ class Token {
 
     Object.defineProperties(this, reservedProperties);
 
-    if (opts) {
+    if (props) {
       if (!RESERVED_WORDS)
         RESERVED_WORDS = Object.keys(reservedProperties);
 
-      addUserProperties.call(this, opts, RESERVED_WORDS);
+      this.defineProperties.call(this, props);
     }
+  }
+
+  clone(props, tokenClass) {
+    var token = new (tokenClass || this.constructor)(this.getParser(), this.getSourceRange(), Object.assign({}, this, props));
+
+    token.remapParentTokenForAllChildren();
+
+    return token;
+  }
+
+  remapParentTokenForAllChildren(newParent) {
+    if (!this.children)
+      return this;
+
+    this.children = (this.children || []).map((child) => {
+      Object.defineProperty(child, 'parent', {
+        writable: true,
+        enumerable: false,
+        configurable: true,
+        value: newParent || this
+      });
+
+      return child;
+    });
+
+    return this;
+  }
+
+  defineProperties(props) {
+    return defineProperties.call(this, props);
   }
 
   getParser() {
@@ -142,6 +185,10 @@ class TokenDefinition {
     }
   }
 
+  defineProperties(props) {
+    return defineProperties.call(this, props);
+  }
+
   getParser() {
     return this._parser;
   }
@@ -182,21 +229,21 @@ class TokenDefinition {
     return this.getParser().getSourceRangeAsString(...args);
   }
 
-  createToken(sourceRange, props) {
+  createToken(sourceRange, props, tokenClass) {
     var parser = this.getParser();
-    return new (parser.getTokenClass())(parser, sourceRange, props);
+    return new (tokenClass || parser.getTokenClass())(parser, sourceRange, props);
   }
 
   fail() {
     return false;
   }
 
-  successWithoutFinalize(offset, props) {
+  successWithoutFinalize(offset, props, tokenClass) {
     if (offset instanceof Token) {
       var token = offset;
 
-      if (opts)
-        Object.assign(token, opts);
+      if (props)
+        token.defineProperties.call(token, props);
 
       this.endOffset = token.endOffset;
 
@@ -209,13 +256,13 @@ class TokenDefinition {
     this.endOffset = this.startOffset + (offset || 0);
 
     var opts  = this.getOptions(),
-        token = this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: opts.typeName || this.getTypeName() }, props || {}));
+        token = this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: opts.typeName || this.getTypeName() }, props || {}), tokenClass);
 
     return token;
   }
 
-  success(offset, props) {
-    var token = this.successWithoutFinalize(offset, props);
+  success(offset, props, tokenClass) {
+    var token = this.successWithoutFinalize(offset, props, tokenClass);
     return this.finalize(token);
   }
 

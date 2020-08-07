@@ -1,5 +1,5 @@
-const { isType }                                      = require('../utils');
-const { defineTokenMatcher, Token, TokenDefinition }  = require('../token');
+const { isType }                    = require('../utils');
+const { defineMatcher, Token } = require('../token');
 
 class LoopToken extends Token {
   clone(_props) {
@@ -12,76 +12,65 @@ class LoopToken extends Token {
   }
 }
 
-const $LOOP = defineTokenMatcher('$LOOP', (ParentClass) => {
-  return class LoopTokenMatcher extends ParentClass {
-    constructor(..._matchers) {
-      var matchers  = _matchers,
-          opts      = matchers[matchers.length - 1];
-
-      if (opts instanceof TokenDefinition)
-        opts = {};
-      else
-        matchers = matchers.slice(0, -1);
-
+const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
+  return class LoopMatcher extends ParentClass {
+    constructor(matcher, opts) {
       super(opts);
 
-      this.setMatchers(...matchers);
+      this.setMatcher(matcher);
     }
 
-    setMatchers(...matchers) {
-      for (var i = 0, il = matchers.length; i < il; i++) {
-        if (!isType(matchers[i], 'TokenDefinition'))
-          throw new TypeError(`$LOOP::setMatchers: Matcher at index '${i}' is not a \`TokenDefinition\``);
-      }
+    setMatcher(matcher) {
+      if (!isType(matcher, 'MatcherDefinition'))
+        throw new TypeError(`$LOOP::setMatcher: First argument must be instance of \`MatcherDefinition\``);
 
-      Object.defineProperty(this, '_matchers', {
+      Object.defineProperty(this, '_matcher', {
         writable: true,
         enumerable: false,
         confiugrable: true,
-        value: matchers
+        value: matcher
       });
     }
 
     respond() {
-      var matchers    = this._matchers,
+      var opts        = this.getOptions(),
+          matcher     = this._matcher,
           children    = [],
-          running     = true;
+          min         = opts.min || 1,
+          max         = opts.max || Infinity,
+          count       = 0,
+          parser      = this.getParser(),
+          offset      = this.startOffset;
 
-      while(running) {
-        for (var i = 0, il = matchers.length; i < il; i++) {
-          var matcher = matchers[i],
-              result  = matcher.exec(this.getParser(), this.endOffset);
+      while(count < max) {
+        var result = matcher.exec(parser, offset);
 
-          if (result == null)
-            continue;
+        // We break on skipping... because skipping isn't allowed in a loop
+        if (result == null || result === false)
+          break;
 
-          if (result === false) {
-            running = false;
-            break;
-          }
+        // Here we return the error, instead of calling this.error
+        // because this.error has already been called, so we don't
+        // want to duplicate the error
+        if (result instanceof Error)
+          return result;
 
-          // Here we return the error, instead of calling this.error
-          // because this.error has already been called, so we don't
-          // want to duplicate the error
-          if (result instanceof Error)
-            return result;
+        if (result instanceof Token) {
+          offset = this.endOffset = result.getSourceRange().end;
 
-          if (result instanceof Token) {
+          if (!result.skipOutput())
             children.push(result);
 
-            this.endOffset = result.getSourceRange().end;
-            continue;
-          }
+          count++;
 
-          throw new TypeError(`${matcher.getTypeName()}::respond: Returned an invalid value. Matcher results must be defined by a call to one of \`success\`, \`fail\`, \`skip\`, or \`error\``);
+          continue;
         }
 
-        if (children.length === 0)
-          break;
+        throw new TypeError(`${matcher.getTypeName()}::respond: Returned an invalid value. Matcher results must be defined by a call to one of \`success\`, \`fail\`, \`skip\`, or \`error\``);
       }
 
-      if (children.length === 0)
-        return fail();
+      if (count < min || children.length === 0)
+        return this.fail();
 
       var token = this.successWithoutFinalize(this.endOffset, {
         _length: children.length,

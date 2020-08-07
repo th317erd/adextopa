@@ -2,10 +2,10 @@ const {
   isType,
   addRegExpFlags
 }                             = require('../utils');
-const { defineTokenMatcher }  = require('../token');
+const { defineMatcher }  = require('../token');
 
-const $MATCHES = defineTokenMatcher('$MATCHES', (ParentClass) => {
-  return class MatchesTokenMatcher extends ParentClass {
+const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
+  return class MatchesMatcher extends ParentClass {
     constructor(re, opts) {
       super(opts);
 
@@ -25,12 +25,12 @@ const $MATCHES = defineTokenMatcher('$MATCHES', (ParentClass) => {
     }
 
     respond() {
-      var matcher   = this._matcher,
-          sourceStr = this.getSourceAsString();
+      var regexpMatcher = this._matcher,
+          sourceStr     = this.getSourceAsString();
 
-      matcher.lastIndex = this.startOffset;
+      regexpMatcher.lastIndex = this.startOffset;
 
-      var result = matcher.exec(sourceStr);
+      var result = regexpMatcher.exec(sourceStr);
       if (!result || result.index !== this.startOffset)
         return this.fail();
 
@@ -38,7 +38,7 @@ const $MATCHES = defineTokenMatcher('$MATCHES', (ParentClass) => {
       for (var i = 0, il = result.length; i < il; i++)
         captures[i] = result[i];
 
-      return this.success(result[0].length, captures);
+      return this.success(this.startOffset + result[0].length, captures);
     }
   };
 });

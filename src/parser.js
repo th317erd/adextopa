@@ -50,6 +50,10 @@ class Parser {
     return this._options;
   }
 
+  createSourceRange(...args) {
+    return new (this.getSourceRangeClass())(this, ...args);
+  }
+
   addError(error) {
     this._errors.push(error);
   }

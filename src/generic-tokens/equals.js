@@ -1,8 +1,8 @@
 const { isType }              = require('../utils');
-const { defineTokenMatcher }  = require('../token');
+const { defineMatcher }  = require('../token');
 
-const $EQUALS = defineTokenMatcher('$EQUALS', (ParentClass) => {
-  return class EqualsTokenMatcher extends ParentClass {
+const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
+  return class EqualsMatcher extends ParentClass {
     constructor(str, opts) {
       super(opts);
 
@@ -11,7 +11,7 @@ const $EQUALS = defineTokenMatcher('$EQUALS', (ParentClass) => {
 
     setMatcher(str) {
       if (!isType(str, 'string'))
-        throw new TypeError('$EQ::setMatcher: First argument must be instance of `string`');
+        throw new TypeError('$EQUALS::setMatcher: First argument must be instance of `string`');
 
       Object.defineProperty(this, '_matcher', {
         writable: true,
@@ -34,7 +34,7 @@ const $EQUALS = defineTokenMatcher('$EQUALS', (ParentClass) => {
           return this.fail();
       }
 
-      return this.success(matcher.length, { value: matcher });
+      return this.success(this.startOffset + matcher.length, { value: matcher });
     }
   };
 });

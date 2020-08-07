@@ -114,9 +114,19 @@ class Token {
   getRawValue() {
     return this._raw;
   }
+
+  skipOutput() {
+    return false;
+  }
 }
 
-class TokenDefinition {
+class SkipToken extends Token {
+  skipOutput() {
+    return true;
+  }
+}
+
+class MatcherDefinition {
   constructor(_opts) {
     var opts = _opts || {};
     if (isType(opts, 'string')) {
@@ -149,7 +159,7 @@ class TokenDefinition {
 
   exec(parser, _offset) {
     var offset      = _offset || 0,
-        sourceRange = (offset instanceof SourceRange) ? offset.clone() : new (parser.getSourceRangeClass())(parser, offset, offset);
+        sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
     Object.defineProperties(this, {
       _parser: {
@@ -238,9 +248,9 @@ class TokenDefinition {
     return false;
   }
 
-  successWithoutFinalize(offset, props, tokenClass) {
-    if (offset instanceof Token) {
-      var token = offset;
+  successWithoutFinalize(endOffset, props, tokenClass) {
+    if (endOffset instanceof Token) {
+      var token = endOffset;
 
       if (props)
         token.defineProperties.call(token, props);
@@ -250,10 +260,10 @@ class TokenDefinition {
       return token;
     }
 
-    if (!isValidNumber(offset))
+    if (!isValidNumber(endOffset))
       throw new TypeError(`${this.getTypeName()}::respond::success: First argument must be a valid number (length/offset) an instance of \`Token\``);
 
-    this.endOffset = this.startOffset + (offset || 0);
+    this.endOffset = endOffset || this.endOffset;
 
     var opts  = this.getOptions(),
         token = this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: opts.typeName || this.getTypeName() }, props || {}), tokenClass);
@@ -261,8 +271,8 @@ class TokenDefinition {
     return token;
   }
 
-  success(offset, props, tokenClass) {
-    var token = this.successWithoutFinalize(offset, props, tokenClass);
+  success(endOffset, props, tokenClass) {
+    var token = this.successWithoutFinalize(endOffset, props, tokenClass);
     return this.finalize(token);
   }
 
@@ -302,25 +312,29 @@ class TokenDefinition {
 }
 
 isType.addType('Token', (val) => (val instanceof Token));
-isType.addType('TokenDefinition', (val) => (val instanceof TokenDefinition));
+isType.addType('MatcherDefinition', (val) => (val instanceof MatcherDefinition));
+isType.addType('SkipToken', (val) => (val instanceof SkipToken));
 
-function defineTokenMatcher(typeName, definer, parent = TokenDefinition) {
-  var TokenDefinitionClass = definer(parent);
+function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
+  var parent                  = (_parent && _parent.MatcherDefinitionClass) ? _parent.MatcherDefinitionClass : _parent,
+      MatcherDefinitionClass  = definer(parent);
 
-  TokenDefinitionClass.prototype.getTypeName = () => typeName;
-  TokenDefinitionClass.getTypeName = () => typeName;
+  MatcherDefinitionClass.prototype.getTypeName = () => typeName;
+  MatcherDefinitionClass.getTypeName = () => typeName;
 
   var creator = function(...args) {
-    return new TokenDefinitionClass(...args);
+    return new MatcherDefinitionClass(...args);
   };
 
   creator.name = creator.displayName = typeName;
+  creator.MatcherDefinitionClass = MatcherDefinitionClass;
 
   return creator;
 };
 
 module.exports = {
   Token,
-  TokenDefinition,
-  defineTokenMatcher
+  MatcherDefinition,
+  SkipToken,
+  defineMatcher
 };

@@ -1,8 +1,8 @@
 const { isType }              = require('../utils');
-const { defineTokenMatcher }  = require('../token');
+const { defineMatcher }  = require('../token');
 
-const $OPTIONAL = defineTokenMatcher('$OPTIONAL', (ParentClass) => {
-  return class OptionalTokenMatcher extends ParentClass {
+const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
+  return class OptionalMatcher extends ParentClass {
     constructor(matcher, opts) {
       super(opts);
 
@@ -10,8 +10,8 @@ const $OPTIONAL = defineTokenMatcher('$OPTIONAL', (ParentClass) => {
     }
 
     setMatcher(matcher) {
-      if (!isType(matcher, 'TokenDefinition'))
-        throw new TypeError('$OPTIONAL::setTokenDefinition: First argument must be instance of `TokenDefinition`');
+      if (!isType(matcher, 'MatcherDefinition'))
+        throw new TypeError('$OPTIONAL::setTokenDefinition: First argument must be instance of `MatcherDefinition`');
 
       Object.defineProperty(this, '_matcher', {
         writable: true,
@@ -27,6 +27,12 @@ const $OPTIONAL = defineTokenMatcher('$OPTIONAL', (ParentClass) => {
 
       if (!result || result === false)
         return this.skip();
+
+      if (result instanceof Error)
+        return result;
+
+      if (result.skipOutput())
+        return;
 
       return this.success(result);
     }

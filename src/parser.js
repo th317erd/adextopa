@@ -129,8 +129,8 @@ class Parser {
     };
   }
 
-  tokenize(token) {
-    var token   = token.exec(this),
+  tokenize(matcher) {
+    var token   = matcher.exec(this),
         errors  = this.getErrors();
 
     if (errors.length > 0)

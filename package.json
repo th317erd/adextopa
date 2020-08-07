@@ -15,7 +15,11 @@
     "scripting",
     "language",
     "tokenizer",
-    "parser"
+    "parser",
+    "compiler",
+    "pattern",
+    "patterns",
+    "parsing"
   ],
   "author": "Wyatt Greenway",
   "license": "MIT",

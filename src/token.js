@@ -119,18 +119,37 @@ class Token {
     return false;
   }
 
-  visit(_pattern, callback) {
-    var pattern       = _pattern,
+  visit(_pattern, _callback) {
+    var callback      = _callback,
+        pattern       = _pattern,
         results       = [],
-        finder        = (token) => (pattern.indexOf(token.typeName) >= 0);
+        finder;
 
-    if (!isType(pattern, 'string', 'array', 'function'))
-      throw new TypeError('Token::visit: First argument must be instance of `string`, `array`, or `function`');
+    if (arguments.length < 1) {
+      throw new TypeError('Token::visit: Arguments must be specified');
+    } else if (arguments.length < 2) {
+      callback = pattern;
 
-    if (isType(pattern, 'string'))
-      pattern = [ pattern ];
-    else if (typeof pattern === 'function')
-      finder = pattern;
+      if (!isType(callback, 'function'))
+        throw new TypeError('Token::visit: First argument must be instance of `function`');
+
+      finder = () => true;
+    } else {
+      if (!isType(pattern, 'string', 'array', 'function'))
+        throw new TypeError('Token::visit: First argument must be instance of `string`, `array`, or `function`');
+
+      if (!isType(callback, 'function'))
+        throw new TypeError('Token::visit: Second argument must be instance of `function`');
+
+      if (isType(pattern, 'string', 'array')) {
+        if (!isType(pattern, 'array'))
+          pattern = [ pattern ];
+
+        finder = (token) => (pattern.indexOf(token.typeName) >= 0);
+      } else if (typeof pattern === 'function') {
+        finder = pattern;
+      }
+    }
 
     if (finder(this))
       results.push(callback(this));
@@ -139,7 +158,7 @@ class Token {
       var children = this.children;
       for (var i = 0, il = children.length; i < il; i++) {
         var child = children[i];
-        results = results.concat(child.visit(finder, callback));
+        results.push(child.visit(finder, callback));
       }
     }
 

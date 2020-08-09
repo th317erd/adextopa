@@ -1,6 +1,13 @@
 const { Utils } = require('./lib');
 
 describe("Utils", function() {
+  describe("flattenArray", function() {
+    it("should be able to flatten arrays", function() {
+      var array1 = [ 'test', [ 'something', 'else', [ 'for', [ 'now' ] ], 'for' ], 'sure' ];
+      expect(Utils.flattenArray(array1)).toEqual([ 'test', 'something', 'else', 'for', 'now', 'for', 'sure' ]);
+    });
+  });
+
   describe("isValidNumber", function() {
     it("should be able to check number", function() {
       expect(Utils.isValidNumber(true)).toBe(false);

@@ -1,4 +1,7 @@
-const { isType }      = require('../utils');
+const {
+  isType,
+  flattenArray
+}                     = require('../utils');
 const {
   defineMatcher,
   MatcherDefinition
@@ -93,7 +96,7 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       this.endOffset = result.getSourceRange().end;
 
       var resultBodyToken = result.children[1],
-          bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1]).join(''),
+          bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join(''),
           bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
 
       var token = this.successWithoutFinalize(this.endOffset, {

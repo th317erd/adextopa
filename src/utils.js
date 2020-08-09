@@ -1,3 +1,19 @@
+function flattenArray(array) {
+  var result = [];
+
+  for (var i = 0, il = array.length; i < il; i++) {
+    var item = array[i];
+    if (item instanceof Array) {
+      result = result.concat(flattenArray(item));
+      continue;
+    }
+
+    result.push(item);
+  }
+
+  return result;
+}
+
 function isValidNumber(num) {
   if (num == null)
     return false;
@@ -50,6 +66,7 @@ function addRegExpFlags(re, _flags) {
 }
 
 module.exports = {
+  flattenArray,
   isValidNumber,
   isType,
   addRegExpFlags

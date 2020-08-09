@@ -32,7 +32,7 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
       });
     }
 
-    respond() {
+    respond(context) {
       var opts        = this.getOptions(),
           matcher     = this._matcher,
           children    = [],
@@ -43,7 +43,7 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
           offset      = this.startOffset;
 
       while(count < max) {
-        var result = matcher.exec(parser, offset);
+        var result = matcher.exec(parser, offset, context);
 
         // We break on skipping... because skipping isn't allowed in a loop
         if (result == null || result === false)

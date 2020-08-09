@@ -21,7 +21,7 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
       });
     }
 
-    respond() {
+    respond(context) {
       var matcher   = this._matcher,
           sourceStr = this.getSourceAsString(),
           offset    = this.startOffset;

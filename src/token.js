@@ -118,6 +118,33 @@ class Token {
   skipOutput() {
     return false;
   }
+
+  visit(_pattern, callback) {
+    var pattern       = _pattern,
+        results       = [],
+        finder        = (token) => (pattern.indexOf(token.typeName) >= 0);
+
+    if (!isType(pattern, 'string', 'array', 'function'))
+      throw new TypeError('Token::visit: First argument must be instance of `string`, `array`, or `function`');
+
+    if (isType(pattern, 'string'))
+      pattern = [ pattern ];
+    else if (typeof pattern === 'function')
+      finder = pattern;
+
+    if (finder(this))
+      results.push(callback(this));
+
+    if (this.children) {
+      var children = this.children;
+      for (var i = 0, il = children.length; i < il; i++) {
+        var child = children[i];
+        results = results.concat(child.visit(finder, callback));
+      }
+    }
+
+    return results;
+  }
 }
 
 class SkipToken extends Token {
@@ -157,8 +184,9 @@ class MatcherDefinition {
     });
   }
 
-  exec(parser, _offset) {
-    var offset      = _offset || 0,
+  exec(parser, _offset, _context) {
+    var context     = _context || {},
+        offset      = _offset || 0,
         sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
     Object.defineProperties(this, {
@@ -189,10 +217,28 @@ class MatcherDefinition {
     });
 
     try {
-      return this.respond();
+      var opts      = this.getOptions(),
+          typeName  = opts.typeName || this.getTypeName(),
+          count     = context[typeName] || 0;
+
+      context[typeName] = count + 1;
+
+      return this.respond(context);
     } catch (e) {
       this.error(e);
     }
+  }
+
+  clone() {
+    var matcher = new this.constructor(this.getOptions());
+
+    if (this._parser)
+      matcher._parser = this._parser;
+
+    if (this._sourceRange)
+      matcher._sourceRange = this._sourceRange.clone();
+
+    return matcher;
   }
 
   defineProperties(props) {

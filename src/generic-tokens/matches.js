@@ -24,7 +24,7 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
       });
     }
 
-    respond() {
+    respond(context) {
       var regexpMatcher = this._matcher,
           sourceStr     = this.getSourceAsString();
 

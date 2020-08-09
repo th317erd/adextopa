@@ -21,9 +21,9 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
       });
     }
 
-    respond(exec) {
+    respond(context) {
       var matcher = this._matcher,
-          result  = matcher.exec(this.getParser(), this.getSourceRange());
+          result  = matcher.exec(this.getParser(), this.getSourceRange(), context);
 
       if (!result || result === false)
         return this.skip();
@@ -32,7 +32,7 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
         return result;
 
       if (result.skipOutput())
-        return;
+        return result;
 
       return this.success(result);
     }

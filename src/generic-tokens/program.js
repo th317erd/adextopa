@@ -42,14 +42,14 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       });
     }
 
-    respond() {
+    respond(context) {
       var matchers    = this._matchers,
           children    = [],
           i, il;
 
       for (i = 0, il = matchers.length; i < il; i++) {
         var matcher = matchers[i],
-            result  = matcher.exec(this.getParser(), this.endOffset);
+            result  = matcher.exec(this.getParser(), this.endOffset, context);
 
         if (result == null)
           continue;

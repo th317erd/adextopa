@@ -20,9 +20,9 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
       });
     }
 
-    respond() {
+    respond(context) {
       var matcher   = this._matcher,
-          result    = matcher.exec(this.getParser(), this.startOffset);
+          result    = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false)
         return this.fail();

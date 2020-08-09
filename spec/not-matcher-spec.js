@@ -36,7 +36,6 @@ describe("$NOT", function() {
       expect(program instanceof MatcherDefinition).toBe(true);
 
       var result = program.exec(parser);
-      debugger;
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('"this is a \\"string\\", can you believe it?"');
       expect(result.length).toBe(3);

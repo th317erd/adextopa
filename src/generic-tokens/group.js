@@ -6,6 +6,8 @@ const {
 const { $OPTIONAL }   = require('./optional');
 const { $NOT }        = require('./not');
 const { $MATCHES }    = require('./matches');
+const { $EQUALS }     = require('./equals');
+const { $SEQUENCE }   = require('./sequence');
 const { $LOOP }       = require('./loop');
 const { $PROGRAM }    = require('./program');
 
@@ -17,17 +19,8 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       this.setMatcher(startMatcher, endMatcher, escapeMatcher);
     }
 
-    setMatcher(startMatcher, endMatcher, escapeMatcher) {
-      if (!(startMatcher instanceof MatcherDefinition))
-        throw new TypeError('$GROUP::setMatcher: First argument must be instance of `MatcherDefinition`');
-
-      if (!(endMatcher instanceof MatcherDefinition))
-        throw new TypeError('$GROUP::setMatcher: Second argument must be instance of `MatcherDefinition`');
-
-      if (!(escapeMatcher instanceof MatcherDefinition))
-        throw new TypeError('$GROUP::setMatcher: Third argument must be instance of `MatcherDefinition`');
-
-      var matcher = $PROGRAM(
+    getMatcherDefinitionMatcher(startMatcher, endMatcher, escapeMatcher) {
+      return $PROGRAM(
         startMatcher,
         $LOOP(
           $PROGRAM(
@@ -38,6 +31,38 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
         ),
         endMatcher
       );
+    }
+
+    getStringMatcher(startMatcher, endMatcher, escapeMatcher) {
+      return $PROGRAM(
+        $EQUALS(startMatcher),
+        $SEQUENCE(endMatcher, escapeMatcher),
+        $EQUALS(endMatcher)
+      );
+    }
+
+    setMatcher(startMatcher, endMatcher, escapeMatcher) {
+      if (startMatcher instanceof MatcherDefinition) {
+        if (!(endMatcher instanceof MatcherDefinition))
+          throw new TypeError('$GROUP::setMatcher: Second argument must be instance of `MatcherDefinition`');
+
+        if (!(escapeMatcher instanceof MatcherDefinition))
+          throw new TypeError('$GROUP::setMatcher: Third argument must be instance of `MatcherDefinition`');
+      } else if (isType(startMatcher, 'string')) {
+        if (!isType(endMatcher, 'string'))
+          throw new TypeError('$GROUP::setMatcher: Second argument must be instance of `string`');
+
+        if (!isType(escapeMatcher, 'string'))
+          throw new TypeError('$GROUP::setMatcher: Third argument must be instance of `MatcherDefinition`');
+      } else {
+        throw new TypeError('$GROUP::setMatcher: First argument must be instance of `string`, or `MatcherDefinition`');
+      }
+
+      var matcher;
+      if (startMatcher instanceof MatcherDefinition)
+        matcher = this.getMatcherDefinitionMatcher(startMatcher, endMatcher, escapeMatcher);
+      else
+        matcher = this.getStringMatcher(startMatcher, endMatcher, escapeMatcher);
 
       Object.defineProperties(this, {
         _matcher: {
@@ -67,8 +92,9 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
 
       this.endOffset = result.getSourceRange().end;
 
-      var bodyValue = result.children[1].visit((token) => token.typeName !== '$PROGRAM', (token) => token[1]).join(''),
-          bodyToken = this.createToken(result.children[1].getSourceRange().clone(), { value: bodyValue });
+      var resultBodyToken = result.children[1],
+          bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1]).join(''),
+          bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
 
       var token = this.successWithoutFinalize(this.endOffset, {
         start:  result.children[0],

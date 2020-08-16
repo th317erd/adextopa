@@ -70,17 +70,15 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
       }
 
       if (count < min || children.length === 0)
-        return this.fail();
+        return this.fail(context);
 
-      var token = this.successWithoutFinalize(this.endOffset, {
+      var token = this.successWithoutFinalize(context, this.endOffset, {
         _length: children.length,
         children
       }, LoopToken);
 
-      token.remapParentTokenForAllChildren();
-
       // Now finally set it to the final resolved token
-      return this.finalize(token);
+      return this.finalize(context, token);
     }
   };
 });

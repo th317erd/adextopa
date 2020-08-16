@@ -25,13 +25,13 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
           result    = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false || result == null)
-        return this.skip();
+        return this.skip(context);
 
       if (result instanceof Error)
         return result;
 
       // fail on valid match
-      return this.fail();
+      return this.fail(context);
     }
   };
 });

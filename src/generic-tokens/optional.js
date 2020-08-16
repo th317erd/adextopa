@@ -26,7 +26,7 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
           result  = matcher.exec(this.getParser(), this.getSourceRange(), context);
 
       if (!result || result === false)
-        return this.skip();
+        return this.skip(context);
 
       if (result instanceof Error)
         return result;
@@ -34,7 +34,7 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
       if (result.skipOutput())
         return result;
 
-      return this.success(result);
+      return this.success(context, result);
     }
   };
 });

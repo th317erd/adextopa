@@ -76,20 +76,18 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       }
 
       if (i < matchers.length)
-        return this.fail();
+        return this.fail(context);
 
       if (children.length === 0)
         return;
 
-      var token = this.successWithoutFinalize(this.endOffset, {
+      var token = this.successWithoutFinalize(context, this.endOffset, {
         _length: children.length,
         children
       }, ProgramToken);
 
-      token.remapParentTokenForAllChildren();
-
       // Now finally set it to the final resolved token
-      return this.finalize(token);
+      return this.finalize(context, token);
     }
   };
 });

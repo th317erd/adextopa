@@ -92,7 +92,7 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
         offset++;
       }
 
-      return this.success(offset, { value: value.join('') });
+      return this.success(context, offset, { value: value.join('') });
     }
   };
 });

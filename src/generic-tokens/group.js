@@ -82,10 +82,10 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
           result  = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false)
-        return this.fail();
+        return this.fail(context);
 
       if (result == null)
-        return this.skip();
+        return this.skip(context);
 
       if (result instanceof Error)
         return result;
@@ -99,13 +99,13 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
           bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join(''),
           bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
 
-      var token = this.successWithoutFinalize(this.endOffset, {
+      var token = this.successWithoutFinalize(context, this.endOffset, {
         start:  result.children[0],
         end:    result.children[2],
         body:   bodyToken
       });
 
-      return this.success(token);
+      return this.success(context, token);
     }
   };
 });

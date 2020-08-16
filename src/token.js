@@ -76,22 +76,50 @@ class Token {
   clone(props, tokenClass) {
     var token = new (tokenClass || this.constructor)(this.getParser(), this.getSourceRange(), Object.assign({}, this, props));
 
-    token.remapParentTokenForAllChildren();
+    token.remapTokenLinks();
 
     return token;
   }
 
-  remapParentTokenForAllChildren(newParent) {
+  remapTokenLinks(newParent) {
     if (!this.children)
       return this;
 
+    var previousSibling = null;
     this.children = (this.children || []).map((child) => {
-      Object.defineProperty(child, 'parent', {
-        writable: true,
-        enumerable: false,
-        configurable: true,
-        value: newParent || this
+      if (previousSibling) {
+        Object.defineProperties(previousSibling, {
+          'nextSibling': {
+            writable: true,
+            enumerable: false,
+            configurable: true,
+            value: child
+          }
+        });
+      }
+
+      Object.defineProperties(child, {
+        'parent': {
+          writable: true,
+          enumerable: false,
+          configurable: true,
+          value: newParent || this
+        },
+        'previousSibling': {
+          writable: true,
+          enumerable: false,
+          configurable: true,
+          value: previousSibling
+        },
+        'nextSibling': {
+          writable: true,
+          enumerable: false,
+          configurable: true,
+          value: null
+        }
       });
+
+      previousSibling = child;
 
       return child;
     });
@@ -244,7 +272,7 @@ class MatcherDefinition {
 
       return this.respond(context);
     } catch (e) {
-      this.error(e);
+      this.error(context, e);
     }
   }
 
@@ -309,11 +337,11 @@ class MatcherDefinition {
     return new (tokenClass || parser.getTokenClass())(parser, sourceRange, props);
   }
 
-  fail() {
+  fail(context) {
     return false;
   }
 
-  successWithoutFinalize(endOffset, props, tokenClass) {
+  successWithoutFinalize(context, endOffset, props, tokenClass) {
     if (endOffset instanceof Token) {
       var token = endOffset;
 
@@ -336,34 +364,33 @@ class MatcherDefinition {
     return token;
   }
 
-  success(endOffset, props, tokenClass) {
-    var token = this.successWithoutFinalize(endOffset, props, tokenClass);
-    return this.finalize(token);
+  success(context, endOffset, props, tokenClass) {
+    var token = this.successWithoutFinalize(context, endOffset, props, tokenClass);
+    return this.finalize(context, token);
   }
 
-  finalize(token) {
+  finalize(context, _token) {
     var opts      = this.getOptions(),
+        token     = _token,
         finalize  = opts._finalize;
 
-    if (typeof finalize === 'function') {
-      var result = finalize.call(this, { context: this, token });
-      if (!(result instanceof Token))
-        throw new TypeError(`${this.getTypeName()}::respond::finalize: Returned an invalid value. Must return an instance of \`Token\``);
+    if (typeof finalize === 'function')
+      token = finalize.call(this, { matcher: this, context, token });
 
-      return result;
-    }
+    if (token instanceof Token)
+      token.remapTokenLinks();
 
     return token;
   }
 
-  skip() {
+  skip(context) {
   }
 
-  warning(message) {
+  warning(context, message) {
     // TODO: implement warning
   }
 
-  error(message, offset) {
+  error(context, message, offset) {
     var errorResult = (message instanceof Error) ? message: new Error(message);
 
     if (isValidNumber(offset))

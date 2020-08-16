@@ -25,7 +25,7 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
           result    = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false)
-        return this.fail();
+        return this.fail(context);
 
       if (result instanceof Error)
         return result;
@@ -35,7 +35,7 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
 
       // "discard" by creating special "skip" token
       var token = this.createToken(this.getParser().createSourceRange(this.startOffset, result.getSourceRange().end), undefined, SkipToken);
-      return this.success(token);
+      return this.success(context, token);
     }
   };
 });

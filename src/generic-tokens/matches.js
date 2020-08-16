@@ -32,13 +32,13 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
 
       var result = regexpMatcher.exec(sourceStr);
       if (!result || result.index !== this.startOffset)
-        return this.fail();
+        return this.fail(context);
 
       var captures = {};
       for (var i = 0, il = result.length; i < il; i++)
         captures[i] = result[i];
 
-      return this.success(this.startOffset + result[0].length, captures);
+      return this.success(context, this.startOffset + result[0].length, captures);
     }
   };
 });

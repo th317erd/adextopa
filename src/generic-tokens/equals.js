@@ -31,10 +31,10 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
             char2 = matcher.charAt(i);
 
         if (char1 !== char2)
-          return this.fail();
+          return this.fail(context);
       }
 
-      return this.success(this.startOffset + matcher.length, { value: matcher });
+      return this.success(context, this.startOffset + matcher.length, { value: matcher });
     }
   };
 });

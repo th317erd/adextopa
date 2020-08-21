@@ -1,4 +1,4 @@
-const { isType }                    = require('../utils');
+const { isType }               = require('../utils');
 const { defineMatcher, Token } = require('../token');
 
 class LoopToken extends Token {
@@ -34,13 +34,16 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
 
     respond(context) {
       var opts        = this.getOptions(),
-          matcher     = this._matcher,
+          matcher     = this.getMatchers(this._matcher),
           children    = [],
           min         = opts.min || 1,
           max         = opts.max || Infinity,
           count       = 0,
           parser      = this.getParser(),
           offset      = this.startOffset;
+
+      if (opts.debugInspect)
+        debugger;
 
       while(count < max) {
         var result = matcher.exec(parser, offset, context);

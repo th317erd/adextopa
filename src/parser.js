@@ -1,6 +1,6 @@
-const { isType }      = require('./utils');
-const { SourceRange } = require('./source-range');
-const { Token }       = require('./token');
+const { isType }              = require('./utils');
+const { SourceRange }         = require('./source-range');
+const { Token, getMatchers }  = require('./token');
 
 const VERSION = '0.1.0';
 
@@ -129,9 +129,11 @@ class Parser {
     };
   }
 
-  tokenize(matcher) {
-    var token   = matcher.exec(this),
-        errors  = this.getErrors();
+  tokenize(matcher, context) {
+    var opts          = this.getOptions(),
+        startContext  = Object.assign({ _debugLogs: [] }, opts.context || {}, context || {}, (opts.debug) ? { debug: true, debugLevel: 0 } : {}),
+        token         = getMatchers(matcher).exec(this, 0, startContext),
+        errors        = this.getErrors();
 
     if (errors.length > 0)
       throw new Error('Parsing Error');

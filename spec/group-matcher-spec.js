@@ -1,4 +1,4 @@
-const { Parser, Token, MatcherDefinition, GenericTokens } = require('./lib');
+const { Parser, Token, GenericTokens } = require('./lib');
 const { $GROUP, $MATCHES } = GenericTokens;
 
 describe("$GROUP", function() {
@@ -7,8 +7,6 @@ describe("$GROUP", function() {
       var parser  = new Parser('"testing \\"token\\" matching"'),
           quote   = $MATCHES(/"/),
           matcher = $GROUP(quote, quote, $MATCHES(/\\(.)/));
-
-      expect(matcher instanceof MatcherDefinition).toBe(true);
 
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);
@@ -22,8 +20,6 @@ describe("$GROUP", function() {
     it("should be able to match against input using strings", function() {
       var parser  = new Parser('"testing \\"token\\" matching"'),
           matcher = $GROUP('"', '"', '\\');
-
-      expect(matcher instanceof MatcherDefinition).toBe(true);
 
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);

@@ -200,6 +200,20 @@ class SkipToken extends Token {
   }
 }
 
+function getMatchers(values) {
+  var toMatcher = (value) => {
+    if (value.MatcherDefinitionClass)
+      return value();
+
+    return value;
+  };
+
+  if (!(values instanceof Array))
+    return toMatcher(values);
+  else
+    return values.map(toMatcher);
+}
+
 class MatcherDefinition {
   constructor(_opts) {
     var opts = _opts || {};
@@ -227,12 +241,18 @@ class MatcherDefinition {
         enumerable: false,
         configurable: true,
         value: opts
+      },
+      _matcherCache: {
+        writable: true,
+        enumerable: false,
+        configurable: true,
+        value: null
       }
     });
   }
 
   exec(parser, _offset, _context) {
-    var context     = _context || {},
+    var context     = Object.create(_context || {}),
         offset      = _offset || 0,
         sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
@@ -268,12 +288,72 @@ class MatcherDefinition {
           typeName  = opts.typeName || this.getTypeName(),
           count     = context[typeName] || 0;
 
+      if (opts.debug)
+        context.debug = true;
+
       context[typeName] = count + 1;
 
-      return this.respond(context);
+      if (context.debug && context.debugLevel > 0)
+        console.log(`Adextopa Tracing: -> Entering matcher ${typeName}`);
+
+      var result = this.respond(context),
+          logKey,
+          skipLogging = false;
+
+      if (context.debug) {
+        if (context.debugLevel > 0)
+          console.log(`Adextopa Tracing: -> Exited matcher ${typeName}`);
+
+        var status, range = '';
+
+        if (result == null || result instanceof SkipToken) {
+          if (result == null)
+            status = 'SKIPPED';
+          else
+            status = 'SKIPPED+';
+        } else if (result === false) {
+          status = 'FAILED';
+        } else if (result instanceof Error) {
+          status = 'ERROR';
+        } else if (result instanceof Token) {
+          var source        = this.getSourceAsString(),
+              sourceRange   = result.getSourceRange(),
+              value         = result._raw;
+
+          // do we have colors?
+          if (typeof ''.bgYellow !== 'undefined')
+            value = ('' + value).bgYellow.black;
+          else
+            value = `[${value}]`;
+
+          logKey = `[${sourceRange.start}-${sourceRange.end}]`;
+
+          range = `: ${logKey}{${source.substring(sourceRange.start - 10, sourceRange.start)}${value.bgYellow}${source.substring(sourceRange.end, sourceRange.end + 10)}}`;
+          status = 'SUCCESS';
+        }
+
+        if (!context.debugVerbose && logKey && (context._debugLogs || []).indexOf(logKey) >= 0)
+          skipLogging = true;
+
+        if (logKey && context._debugLogs)
+          context._debugLogs.push(logKey);
+
+        if (!skipLogging)
+          console.log(`Adextopa Tracing: -> ${typeName}[${status}]${range}`);
+      }
+
+      return result;
     } catch (e) {
       this.error(context, e);
     }
+  }
+
+  getMatchers(values) {
+    if (this._matcherCache)
+      return this._matcherCache;
+
+    this._matcherCache = getMatchers(values);
+    return this._matcherCache;
   }
 
   clone() {
@@ -404,7 +484,7 @@ class MatcherDefinition {
 }
 
 isType.addType('Token', (val) => (val instanceof Token));
-isType.addType('MatcherDefinition', (val) => (val instanceof MatcherDefinition));
+isType.addType('MatcherDefinition', (val) => (val instanceof MatcherDefinition || (val && !!val.MatcherDefinitionClass)));
 isType.addType('SkipToken', (val) => (val instanceof SkipToken));
 
 function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
@@ -415,7 +495,18 @@ function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
   MatcherDefinitionClass.getTypeName = () => typeName;
 
   var creator = function(...args) {
-    return new MatcherDefinitionClass(...args);
+    var creatorScope = function() {
+      return new MatcherDefinitionClass(...args);
+    };
+
+    creatorScope.name = creatorScope.displayName = typeName;
+    creatorScope.MatcherDefinitionClass = MatcherDefinitionClass;
+    creatorScope.exec = function(...args) {
+      var instance = creatorScope();
+      return instance.exec(...args);
+    };
+
+    return creatorScope;
   };
 
   creator.name = creator.displayName = typeName;
@@ -428,5 +519,6 @@ module.exports = {
   Token,
   MatcherDefinition,
   SkipToken,
-  defineMatcher
+  defineMatcher,
+  getMatchers
 };

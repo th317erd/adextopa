@@ -60,12 +60,16 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
         return true;
       };
 
-      var endMatcher  = this._endMatcher,
+      var opts        = this.getOptions(),
+          endMatcher  = this._endMatcher,
           escapeChar  = this._escapeChar,
           sourceStr   = this.getSourceAsString(),
           offset      = this.startOffset,
           escaped     = false,
           value       = [];
+
+      if (opts.debugInspect)
+        debugger;
 
       for (var len = sourceStr.length; offset < len;) {
         var char = sourceStr.charAt(offset);

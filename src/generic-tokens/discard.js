@@ -1,4 +1,9 @@
-const { defineMatcher, MatcherDefinition, SkipToken } = require('../token');
+
+const { isType } = require('../utils');
+const {
+  defineMatcher,
+  SkipToken
+} = require('../token');
 
 const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
   return class DiscardMatcher extends ParentClass {
@@ -9,7 +14,7 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
     }
 
     setMatcher(matcher) {
-      if (!(matcher instanceof MatcherDefinition))
+      if (!isType(matcher, 'MatcherDefinition'))
         throw new TypeError('$DISCARD::setMatcher: First argument must be instance of `MatcherDefinition`');
 
       Object.defineProperty(this, '_matcher', {
@@ -21,8 +26,12 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
     }
 
     respond(context) {
-      var matcher   = this._matcher,
+      var opts      = this.getOptions(),
+          matcher   = this.getMatchers(this._matcher),
           result    = matcher.exec(this.getParser(), this.startOffset, context);
+
+      if (opts.debugInspect)
+        debugger;
 
       if (result === false)
         return this.fail(context);

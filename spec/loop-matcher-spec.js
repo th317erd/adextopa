@@ -1,4 +1,4 @@
-const { Parser, Token, MatcherDefinition, GenericTokens } = require('./lib');
+const { Parser, Token, GenericTokens } = require('./lib');
 const { $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
 
 describe("$LOOP", function() {
@@ -11,8 +11,6 @@ describe("$LOOP", function() {
               $OPTIONAL($MATCHES(/\s+/))
             )
           );
-
-      expect(matcher instanceof MatcherDefinition).toBe(true);
 
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);
@@ -34,8 +32,6 @@ describe("$LOOP", function() {
             { typeName: 'TestLoop' }
           );
 
-      expect(matcher instanceof MatcherDefinition).toBe(true);
-
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('testing token matching');
@@ -51,9 +47,6 @@ describe("$LOOP", function() {
           matcher1  = $LOOP(program, { typeName: 'TestType', min: 45 }),
           matcher2  = $LOOP(program, { typeName: 'TestType', min: 5 });
 
-      expect(matcher1 instanceof MatcherDefinition).toBe(true);
-      expect(matcher2 instanceof MatcherDefinition).toBe(true);
-
       var result1 = matcher1.exec(parser),
           result2 = matcher2.exec(parser);
 
@@ -66,8 +59,6 @@ describe("$LOOP", function() {
       var parser  = new Parser('a b c d e f g h i j k l m n o p q r s t u v w x y z'),
           program = $PROGRAM($MATCHES(/\w+/), $OPTIONAL($MATCHES(/\s+/))),
           matcher = $LOOP(program, { typeName: 'TestType', max: 8 });
-
-      expect(matcher instanceof MatcherDefinition).toBe(true);
 
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);
@@ -84,8 +75,6 @@ describe("$LOOP", function() {
               token
             });
           });
-
-      expect(matcher instanceof MatcherDefinition).toBe(true);
 
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);

@@ -1,4 +1,4 @@
-const { Parser, Token, MatcherDefinition, GenericTokens } = require('./lib');
+const { Parser, Token, GenericTokens } = require('./lib');
 const { $NOT, $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
 
 describe("$NOT", function() {
@@ -7,9 +7,6 @@ describe("$NOT", function() {
       var parser  = new Parser('word'),
           matcher1 = $NOT($MATCHES(/\w+/)),
           matcher2 = $NOT($MATCHES(/\W+/));
-
-      expect(matcher1 instanceof MatcherDefinition).toBe(true);
-      expect(matcher2 instanceof MatcherDefinition).toBe(true);
 
       var result = matcher1.exec(parser);
       expect(result).toBe(false);
@@ -32,8 +29,6 @@ describe("$NOT", function() {
                       ),
                       quote
                     );
-
-      expect(program instanceof MatcherDefinition).toBe(true);
 
       var result = program.exec(parser);
       expect(result instanceof Token).toBe(true);

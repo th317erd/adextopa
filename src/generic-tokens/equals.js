@@ -22,9 +22,13 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
     }
 
     respond(context) {
-      var matcher   = this._matcher,
+      var opts      = this.getOptions(),
+          matcher   = this._matcher,
           sourceStr = this.getSourceAsString(),
           offset    = this.startOffset;
+
+      if (opts.debugInspect)
+        debugger;
 
       for (var i = 0, il = matcher.length; i < il; i++) {
         var char1 = sourceStr.charAt(offset + i),

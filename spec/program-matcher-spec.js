@@ -1,4 +1,4 @@
-const { Parser, Token, MatcherDefinition, GenericTokens } = require('./lib');
+const { Parser, Token, GenericTokens } = require('./lib');
 const { $PROGRAM, $LOOP, $OPTIONAL, $MATCHES } = GenericTokens;
 
 describe("$PROGRAM", function() {
@@ -12,9 +12,6 @@ describe("$PROGRAM", function() {
             });
           }),
           $L      = $LOOP($PROGRAM());
-
-      expect($KV instanceof MatcherDefinition).toBe(true);
-      expect($L instanceof MatcherDefinition).toBe(true);
 
       var result1 = $KV.exec(parser);
       expect(result1 instanceof Token).toBe(true);

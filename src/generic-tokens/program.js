@@ -1,5 +1,9 @@
-const { isType }                                      = require('../utils');
-const { defineMatcher, Token, MatcherDefinition }  = require('../token');
+const { isType }      = require('../utils');
+const {
+  defineMatcher,
+  Token,
+  MatcherDefinition
+}                     = require('../token');
 
 class ProgramToken extends Token {
   clone(_props) {
@@ -18,7 +22,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       var matchers  = _matchers,
           opts      = matchers[matchers.length - 1];
 
-      if (opts instanceof MatcherDefinition)
+      if (isType(opts, 'MatcherDefinition'))
         opts = {};
       else
         matchers = matchers.slice(0, -1);
@@ -43,9 +47,13 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
     }
 
     respond(context) {
-      var matchers    = this._matchers,
+      var opts        = this.getOptions(),
+          matchers    = this.getMatchers(this._matchers),
           children    = [],
           i, il;
+
+      if (opts.debugInspect)
+        debugger;
 
       for (i = 0, il = matchers.length; i < il; i++) {
         var matcher = matchers[i],

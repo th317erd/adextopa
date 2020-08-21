@@ -25,10 +25,14 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
     }
 
     respond(context) {
-      var regexpMatcher = this._matcher,
+      var opts          = this.getOptions(),
+          regexpMatcher = this._matcher,
           sourceStr     = this.getSourceAsString();
 
       regexpMatcher.lastIndex = this.startOffset;
+
+      if (opts.debugInspect)
+        debugger;
 
       var result = regexpMatcher.exec(sourceStr);
       if (!result || result.index !== this.startOffset)

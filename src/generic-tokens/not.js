@@ -1,4 +1,5 @@
-const { defineMatcher, MatcherDefinition } = require('../token');
+const { isType }        = require('../utils');
+const { defineMatcher } = require('../token');
 
 const $NOT = defineMatcher('$NOT', (ParentClass) => {
   return class NotMatcher extends ParentClass {
@@ -9,7 +10,7 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
     }
 
     setMatcher(matcher) {
-      if (!(matcher instanceof MatcherDefinition))
+      if (!isType(matcher, 'MatcherDefinition'))
         throw new TypeError('$NOT::setMatcher: First argument must be instance of `MatcherDefinition`');
 
       Object.defineProperty(this, '_matcher', {
@@ -21,8 +22,12 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
     }
 
     respond(context) {
-      var matcher   = this._matcher,
+      var opts      = this.getOptions(),
+          matcher   = this.getMatchers(this._matcher),
           result    = matcher.exec(this.getParser(), this.startOffset, context);
+
+      if (opts.debugInspect)
+        debugger;
 
       if (result === false || result == null)
         return this.skip(context);

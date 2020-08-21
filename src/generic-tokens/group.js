@@ -45,11 +45,11 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
     }
 
     setMatcher(startMatcher, endMatcher, escapeMatcher) {
-      if (startMatcher instanceof MatcherDefinition) {
-        if (!(endMatcher instanceof MatcherDefinition))
+      if (isType(startMatcher, 'MatcherDefinition')) {
+        if (!isType(endMatcher, 'MatcherDefinition'))
           throw new TypeError('$GROUP::setMatcher: Second argument must be instance of `MatcherDefinition`');
 
-        if (!(escapeMatcher instanceof MatcherDefinition))
+        if (!isType(escapeMatcher, 'MatcherDefinition'))
           throw new TypeError('$GROUP::setMatcher: Third argument must be instance of `MatcherDefinition`');
       } else if (isType(startMatcher, 'string')) {
         if (!isType(endMatcher, 'string'))
@@ -62,7 +62,7 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       }
 
       var matcher;
-      if (startMatcher instanceof MatcherDefinition)
+      if (isType(startMatcher, 'MatcherDefinition'))
         matcher = this.getMatcherDefinitionMatcher(startMatcher, endMatcher, escapeMatcher);
       else
         matcher = this.getStringMatcher(startMatcher, endMatcher, escapeMatcher);
@@ -78,7 +78,8 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
     }
 
     respond(context) {
-      var matcher = this._matcher,
+      var opts    = this.getOptions(),
+          matcher = this.getMatchers(this._matcher),
           result  = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false)
@@ -98,6 +99,9 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       var resultBodyToken = result.children[1],
           bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join(''),
           bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
+
+      if (opts.debugInspect)
+        debugger;
 
       var token = this.successWithoutFinalize(context, this.endOffset, {
         start:  result.children[0],

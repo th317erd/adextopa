@@ -22,8 +22,12 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
     }
 
     respond(context) {
-      var matcher = this._matcher,
+      var opts    = this.getOptions(),
+          matcher = this.getMatchers(this._matcher),
           result  = matcher.exec(this.getParser(), this.getSourceRange(), context);
+
+      if (opts.debugInspect)
+        debugger;
 
       if (!result || result === false)
         return this.skip(context);

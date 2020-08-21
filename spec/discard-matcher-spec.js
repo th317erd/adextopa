@@ -1,4 +1,4 @@
-const { Parser, Token, MatcherDefinition, GenericTokens } = require('./lib');
+const { Parser, Token, GenericTokens } = require('./lib');
 const { $DISCARD, $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
 
 describe("$DISCARD", function() {
@@ -12,8 +12,6 @@ describe("$DISCARD", function() {
                       )
                     ),
           matcher = $LOOP(program);
-
-      expect(matcher instanceof MatcherDefinition).toBe(true);
 
       var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);

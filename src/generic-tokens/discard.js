@@ -40,7 +40,10 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
         return result;
 
       if (result == null)
-        return;
+        return this.skip(context);
+
+      if (result.skipOutput())
+        return result;
 
       // "discard" by creating special "skip" token
       var token = this.createToken(this.getParser().createSourceRange(this.startOffset, result.getSourceRange().end), undefined, SkipToken);

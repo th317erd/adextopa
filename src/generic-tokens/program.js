@@ -1,8 +1,7 @@
 const { isType }      = require('../utils');
 const {
   defineMatcher,
-  Token,
-  MatcherDefinition
+  Token
 }                     = require('../token');
 
 class ProgramToken extends Token {
@@ -77,13 +76,16 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           if (!result.skipOutput())
             children.push(result);
 
+          if (opts.stopOnFirstMatch)
+            break;
+
           continue;
         }
 
         throw new TypeError(`${matcher.getTypeName()}::respond: Returned an invalid value. Matcher results must be defined by a call to one of \`success\`, \`fail\`, \`skip\`, or \`error\``);
       }
 
-      if (i < matchers.length)
+      if (!opts.stopOnFirstMatch && i < matchers.length)
         return this.fail(context);
 
       if (children.length === 0)

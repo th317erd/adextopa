@@ -223,17 +223,10 @@ class MatcherDefinition {
       };
     } else if (typeof opts === 'function') {
       var finalizeMethod = opts;
-
-      opts = {};
-      Object.defineProperties(opts, {
-        _finalize: {
-          writable: false,
-          enumerable: false,
-          configurable: true,
-          value: finalizeMethod
-        }
-      });
+      opts = { finalize: finalizeMethod };
     }
+
+    opts = Object.assign({ typeName: this._getTypeName() }, opts);
 
     Object.defineProperties(this, {
       _options: {
@@ -285,7 +278,7 @@ class MatcherDefinition {
 
     try {
       var opts      = this.getOptions(),
-          typeName  = opts.typeName || this.getTypeName(),
+          typeName  = this.getTypeName(),
           count     = context[typeName] || 0;
 
       if (opts.debug)
@@ -400,8 +393,13 @@ class MatcherDefinition {
     return false;
   }
 
-  getTypeName() {
+  _getTypeName() {
     return '<none>';
+  }
+
+  getTypeName() {
+    var opts = this.getOptions();
+    return (opts.typeName || this._getTypeName());
   }
 
   getSourceAsString() {
@@ -439,7 +437,7 @@ class MatcherDefinition {
     this.endOffset = endOffset || this.endOffset;
 
     var opts  = this.getOptions(),
-        token = this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: opts.typeName || this.getTypeName() }, props || {}), tokenClass);
+        token = this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: this.getTypeName() }, props || {}), tokenClass);
 
     return token;
   }
@@ -452,7 +450,7 @@ class MatcherDefinition {
   finalize(context, _token) {
     var opts      = this.getOptions(),
         token     = _token,
-        finalize  = opts._finalize;
+        finalize  = opts.finalize;
 
     if (typeof finalize === 'function')
       token = finalize.call(this, { matcher: this, context, token });
@@ -491,8 +489,8 @@ function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
   var parent                  = (_parent && _parent.MatcherDefinitionClass) ? _parent.MatcherDefinitionClass : _parent,
       MatcherDefinitionClass  = definer(parent);
 
-  MatcherDefinitionClass.prototype.getTypeName = () => typeName;
-  MatcherDefinitionClass.getTypeName = () => typeName;
+  MatcherDefinitionClass.prototype._getTypeName = () => typeName;
+  MatcherDefinitionClass._getTypeName = () => typeName;
 
   var creator = function(...args) {
     var creatorScope = function() {

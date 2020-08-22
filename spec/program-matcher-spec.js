@@ -1,4 +1,5 @@
 const { Parser, Token, GenericTokens } = require('./lib');
+const { $EQUALS } = require('../src/generic-tokens/equals');
 const { $PROGRAM, $LOOP, $OPTIONAL, $MATCHES } = GenericTokens;
 
 describe("$PROGRAM", function() {
@@ -17,6 +18,25 @@ describe("$PROGRAM", function() {
       expect(result1 instanceof Token).toBe(true);
       expect(result1._raw).toBe('KEY1 =VALUE1');
       expect(result1.length).toBe(4);
+    });
+
+    it("should be able to match against input, stopping on first match", function() {
+      var parser  = new Parser('one two three'),
+          program = $PROGRAM(
+            $MATCHES(/\w+/),
+            $MATCHES(/\s+/),
+            $MATCHES(/\w+/),
+            $MATCHES(/\s+/),
+            $MATCHES(/\w+/),
+            { stopOnFirstMatch: true }
+          );
+
+      var result1 = program.exec(parser);
+      expect(result1 instanceof Token).toBe(true);
+      expect(result1._raw).toBe('one');
+      expect(result1.length).toBe(1);
+      expect(result1.children.length).toBe(1);
+      expect(result1.children[0]._raw).toBe('one');
     });
   });
 });

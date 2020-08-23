@@ -15,16 +15,25 @@ class ProgramToken extends Token {
   }
 }
 
+function getMatchersAndOptionsFromArguments(..._matchers) {
+  var matchers  = _matchers,
+      opts      = matchers[matchers.length - 1];
+
+  if (isType(opts, 'MatcherDefinition'))
+    opts = {};
+  else
+    matchers = matchers.slice(0, -1);
+
+  return {
+    opts,
+    matchers
+  };
+}
+
 const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
   return class ProgramMatcher extends ParentClass {
-    constructor(..._matchers) {
-      var matchers  = _matchers,
-          opts      = matchers[matchers.length - 1];
-
-      if (isType(opts, 'MatcherDefinition'))
-        opts = {};
-      else
-        matchers = matchers.slice(0, -1);
+    constructor(...args) {
+      var { matchers, opts } = getMatchersAndOptionsFromArguments(...args);
 
       super(opts);
 
@@ -45,11 +54,23 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       });
     }
 
+    clone(offset) {
+      return super.clone(offset, this._matchers);
+    }
+
     respond(context) {
       var opts        = this.getOptions(),
           matchers    = this.getMatchers(this._matchers),
-          children    = [],
+          thisToken   = this.createToken(this.getSourceRange(), {
+            typeName: this.getTypeName(),
+            _length:  0,
+            children: []
+          }, ProgramToken),
           i, il;
+
+      context.parent = thisToken;
+
+      thisToken = this.callHook('before', context, thisToken);
 
       if (opts.debugInspect)
         debugger;
@@ -73,8 +94,15 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         if (result instanceof Token) {
           this.endOffset = result.getSourceRange().end;
 
-          if (!result.skipOutput())
-            children.push(result);
+          if (!result.skipOutput()) {
+            if (!thisToken.children)
+              thisToken.children = [];
+
+            thisToken.children.push(result);
+          }
+
+          thisToken.setSourceRange(this.getSourceRange());
+          thisToken.length = (thisToken.children || []).length;
 
           if (opts.stopOnFirstMatch)
             break;
@@ -85,22 +113,23 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         throw new TypeError(`${matcher.getTypeName()}::respond: Returned an invalid value. Matcher results must be defined by a call to one of \`success\`, \`fail\`, \`skip\`, or \`error\``);
       }
 
+      thisToken = this.callHook('after', context, thisToken);
+
       if (!opts.stopOnFirstMatch && i < matchers.length)
         return this.fail(context);
 
-      if (children.length === 0)
-        return;
+      if (this.startOffset === this.endOffset)
+        return this.fail(context);
 
-      var token = this.successWithoutFinalize(context, this.endOffset, {
-        _length: children.length,
-        children
-      }, ProgramToken);
+      if ((thisToken.children || []).length === 0)
+        return this.skip(context, this.endOffset);
 
-      // Now finally set it to the final resolved token
-      return this.finalize(context, token);
+      return this.success(context, thisToken.remapTokenLinks());
     }
   };
 });
+
+$PROGRAM.getMatchersAndOptionsFromArguments = getMatchersAndOptionsFromArguments;
 
 module.exports = {
   ProgramToken,

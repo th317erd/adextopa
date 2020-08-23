@@ -21,6 +21,10 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
       });
     }
 
+    clone(offset) {
+      return super.clone(offset, [ this._matcher ]);
+    }
+
     respond(context) {
       var opts      = this.getOptions(),
           matcher   = this._matcher,

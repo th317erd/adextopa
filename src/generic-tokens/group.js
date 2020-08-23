@@ -73,8 +73,30 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
           enumerable: false,
           confiugrable: true,
           value: matcher
+        },
+        _startMatcher: {
+          writable: true,
+          enumerable: false,
+          confiugrable: true,
+          value: startMatcher
+        },
+        _endMatcher: {
+          writable: true,
+          enumerable: false,
+          confiugrable: true,
+          value: endMatcher
+        },
+        _escapeMatcher: {
+          writable: true,
+          enumerable: false,
+          confiugrable: true,
+          value: escapeMatcher
         }
       });
+    }
+
+    clone(offset) {
+      return super.clone(offset, [ this._startMatcher, this._endMatcher, this._escapeMatcher ]);
     }
 
     respond(context) {

@@ -1,9 +1,6 @@
 
-const { isType } = require('../utils');
-const {
-  defineMatcher,
-  SkipToken
-} = require('../token');
+const { isType }        = require('../utils');
+const { defineMatcher } = require('../token');
 
 const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
   return class DiscardMatcher extends ParentClass {
@@ -23,6 +20,10 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
         confiugrable: true,
         value: matcher
       });
+    }
+
+    clone(offset) {
+      return super.clone(offset, [ this._matcher ]);
     }
 
     respond(context) {
@@ -45,9 +46,8 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
       if (result.skipOutput())
         return result;
 
-      // "discard" by creating special "skip" token
-      var token = this.createToken(this.getParser().createSourceRange(this.startOffset, result.getSourceRange().end), undefined, SkipToken);
-      return this.success(context, token);
+      // "discard" by skipping this range
+      return this.skip(context, result.getSourceRange().end);
     }
   };
 });

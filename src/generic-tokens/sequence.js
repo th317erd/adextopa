@@ -47,6 +47,10 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
       });
     }
 
+    clone(offset) {
+      return super.clone(offset, [ this._endMatcher, this._escapeChar ]);
+    }
+
     respond(context) {
       const matchStr = (sourceStr, offset, matcher) => {
         for (var i = 0, il = matcher.length; i < il; i++) {

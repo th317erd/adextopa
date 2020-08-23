@@ -139,6 +139,12 @@ class Token {
     return this._sourceRange;
   }
 
+  setSourceRange(sourceRange) {
+    this._sourceRange.start = sourceRange.start;
+    this._sourceRange.end = sourceRange.end;
+    return this;
+  }
+
   getRawValue() {
     return this._raw;
   }
@@ -249,6 +255,8 @@ class MatcherDefinition {
         offset      = _offset || 0,
         sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
+    context._super = _context;
+
     Object.defineProperties(this, {
       _parser: {
         writable: true,
@@ -349,14 +357,21 @@ class MatcherDefinition {
     return this._matcherCache;
   }
 
-  clone() {
-    var matcher = new this.constructor(this.getOptions());
+  clone(offset, _constructorArgs) {
+    var constructorArgs = (_constructorArgs || []).concat(this.getOptions()),
+        matcher         = new this.constructor(...constructorArgs);
 
     if (this._parser)
       matcher._parser = this._parser;
 
-    if (this._sourceRange)
+    if (offset != null) {
+      if (offset instanceof SourceRange)
+        matcher._sourceRange = offset.clone();
+      else
+        matcher._sourceRange = this._parser.createSourceRange(offset, offset);
+    } else if (this._sourceRange) {
       matcher._sourceRange = this._sourceRange.clone();
+    }
 
     return matcher;
   }
@@ -426,8 +441,6 @@ class MatcherDefinition {
       if (props)
         token.defineProperties.call(token, props);
 
-      this.endOffset = token.endOffset;
-
       return token;
     }
 
@@ -436,10 +449,7 @@ class MatcherDefinition {
 
     this.endOffset = endOffset || this.endOffset;
 
-    var opts  = this.getOptions(),
-        token = this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: this.getTypeName() }, props || {}), tokenClass);
-
-    return token;
+    return this.createToken(this.getSourceRange().clone(), Object.assign({ typeName: this.getTypeName() }, props || {}), tokenClass);
   }
 
   success(context, endOffset, props, tokenClass) {
@@ -448,33 +458,61 @@ class MatcherDefinition {
   }
 
   finalize(context, _token) {
-    var opts      = this.getOptions(),
-        token     = _token,
-        finalize  = opts.finalize;
-
-    if (typeof finalize === 'function')
-      token = finalize.call(this, { matcher: this, context, token });
-
-    if (token instanceof Token)
-      token.remapTokenLinks();
-
-    return token;
+    return this.callHook('finalize', context, _token);
   }
 
-  skip(context) {
+  callHook(name, context, _token) {
+    var opts  = this.getOptions(),
+        token = _token,
+        hook  = opts[name];
+
+    if (typeof hook !== 'function')
+      return token;
+
+    try {
+      token = hook.call(this, { matcher: this, context, token });
+
+      if (token instanceof Token)
+        token.remapTokenLinks();
+
+      return token;
+    } catch (e) {
+      return this.error(context, e);
+    }
   }
 
-  warning(context, message) {
-    // TODO: implement warning
+  skip(context, offset) {
+    if (!isValidNumber(offset))
+      return;
+
+    return this.createToken(this.getParser().createSourceRange(this.startOffset, offset), undefined, SkipToken);
+  }
+
+  warning(context, message, offset) {
+    var result = { message };
+
+    if (isValidNumber(offset))
+      this.endOffset = offset;
+
+    result.parser = this.getParser();
+    result.sourceRange = this.getSourceRange().clone();
+    result.context = context;
+
+    this.getParser().addWarning(result);
+
+    return result;
   }
 
   error(context, message, offset) {
-    var errorResult = (message instanceof Error) ? message: new Error(message);
+    var errorResult = (message instanceof Error) ? message : new Error(message);
 
     if (isValidNumber(offset))
-      this.endOffset = this.startOffset + offset;
+      this.endOffset = offset;
 
+    errorResult.parser = this.getParser();
     errorResult.sourceRange = this.getSourceRange().clone();
+    errorResult.context = context;
+
     this.getParser().addError(errorResult);
 
     return errorResult;

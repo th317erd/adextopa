@@ -32,15 +32,27 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
       });
     }
 
+    clone(offset) {
+      return super.clone(offset, [ this._matcher ]);
+    }
+
     respond(context) {
       var opts        = this.getOptions(),
           matcher     = this.getMatchers(this._matcher),
-          children    = [],
           min         = opts.min || 1,
           max         = opts.max || Infinity,
           count       = 0,
           parser      = this.getParser(),
-          offset      = this.startOffset;
+          offset      = this.startOffset,
+          thisToken   = this.createToken(this.getSourceRange(), {
+            typeName: this.getTypeName(),
+            _length:  0,
+            children: []
+          }, LoopToken);
+
+      context.parent = thisToken;
+
+      thisToken = this.callHook('before', context, thisToken);
 
       if (opts.debugInspect)
         debugger;
@@ -61,8 +73,15 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
         if (result instanceof Token) {
           offset = this.endOffset = result.getSourceRange().end;
 
-          if (!result.skipOutput())
-            children.push(result);
+          if (!result.skipOutput()) {
+            if (!thisToken.children)
+              thisToken.children = [];
+
+            thisToken.children.push(result);
+          }
+
+          thisToken.setSourceRange(this.getSourceRange());
+          thisToken.length = (thisToken.children || []).length;
 
           count++;
 
@@ -72,16 +91,12 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
         throw new TypeError(`${matcher.getTypeName()}::respond: Returned an invalid value. Matcher results must be defined by a call to one of \`success\`, \`fail\`, \`skip\`, or \`error\``);
       }
 
-      if (count < min || children.length === 0)
+      thisToken = this.callHook('after', context, thisToken);
+
+      if (count < min || (thisToken.children || []).length === 0)
         return this.fail(context);
 
-      var token = this.successWithoutFinalize(context, this.endOffset, {
-        _length: children.length,
-        children
-      }, LoopToken);
-
-      // Now finally set it to the final resolved token
-      return this.finalize(context, token);
+      return this.success(context, thisToken.remapTokenLinks());
     }
   };
 });

@@ -24,6 +24,10 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
       });
     }
 
+    clone(offset) {
+      return super.clone(offset, [ this._matcher ]);
+    }
+
     respond(context) {
       var opts          = this.getOptions(),
           regexpMatcher = this._matcher,

@@ -21,6 +21,10 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
       });
     }
 
+    clone(offset) {
+      return super.clone(offset, [ this._matcher ]);
+    }
+
     respond(context) {
       var opts    = this.getOptions(),
           matcher = this.getMatchers(this._matcher),

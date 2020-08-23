@@ -7,7 +7,7 @@ const VERSION = '0.1.0';
 class Parser {
   constructor(_source, _opts) {
     var source  = _source,
-        opts    = Object.assign({}, _opts || {});
+        opts    = Object.assign({ fileName: '<none>' }, _opts || {});
 
     if (!isType(source, 'string'))
       throw new TypeError('Parser::constructor: first argument must be instance of `string`');
@@ -26,6 +26,12 @@ class Parser {
         value: opts
       },
       _errors: {
+        writable: true,
+        enumerable: false,
+        configurable: true,
+        value: []
+      },
+      _warnings: {
         writable: true,
         enumerable: false,
         configurable: true,
@@ -58,8 +64,16 @@ class Parser {
     this._errors.push(error);
   }
 
+  addWarning(warning) {
+    this._warnings.push(warning);
+  }
+
   getErrors() {
     return this._errors;
+  }
+
+  getWarnings() {
+    return this._warnings;
   }
 
   clone() {

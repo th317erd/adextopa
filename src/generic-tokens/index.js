@@ -7,5 +7,6 @@ module.exports = Object.assign({},
   require('./discard'),
   require('./group'),
   require('./loop'),
-  require('./program')
+  require('./program'),
+  require('./select')
 );

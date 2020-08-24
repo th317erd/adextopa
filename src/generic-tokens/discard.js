@@ -4,7 +4,11 @@ const { defineMatcher } = require('../matcher-definition');
 
 const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
   return class DiscardMatcher extends ParentClass {
-    constructor(matcher, opts) {
+    constructor(matcher, _opts) {
+      var opts = _opts || {};
+      if (isType(_opts, 'string'))
+        opts = { typeName: opts };
+
       super(Object.assign({ debugSkip: true }, opts || {}));
 
       this.setMatcher(matcher);

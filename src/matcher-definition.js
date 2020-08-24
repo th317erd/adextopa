@@ -115,11 +115,8 @@ class MatcherDefinition {
       if (debug) {
         var status, range = '';
 
-        if (result == null || result instanceof SkipToken) {
-          if (result == null)
-            status = 'SKIPPED';
-          else
-            status = 'SKIPPED+';
+        if (result == null) {
+          status = 'SKIPPED';
         } else if (result === false) {
           status = 'FAILED';
         } else if (result instanceof Error) {
@@ -138,7 +135,7 @@ class MatcherDefinition {
           logKey = `[${sourceRange.start}-${sourceRange.end}]`;
 
           range = `: ${logKey}{${source.substring(sourceRange.start - 10, sourceRange.start)}${value.bgYellow}${source.substring(sourceRange.end, sourceRange.end + 10)}}`;
-          status = 'SUCCESS';
+          status = (result instanceof SkipToken) ? 'SKIPPED+' : 'SUCCESS';
         }
 
         console.log(`${getLevelIndent(context._level)}Exited matcher ${typeName}[${status}]${range}`);
@@ -211,6 +208,14 @@ class MatcherDefinition {
       return true;
 
     return false;
+  }
+
+  isToken(value) {
+    return (value instanceof Token);
+  }
+
+  isSkipToken(value) {
+    return (value instanceof SkipToken);
   }
 
   _getTypeName() {

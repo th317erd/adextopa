@@ -3,7 +3,11 @@ const { defineMatcher } = require('../matcher-definition');
 
 const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
   return class OptionalMatcher extends ParentClass {
-    constructor(matcher, opts) {
+    constructor(matcher, _opts) {
+      var opts = _opts || {};
+      if (isType(_opts, 'string'))
+        opts = { typeName: opts };
+
       super(Object.assign({ debugSkip: true }, opts || {}));
 
       this.setMatcher(matcher);

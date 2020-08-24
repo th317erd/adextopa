@@ -61,7 +61,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           matchers    = this.getMatchers(this._matchers),
           source      = this.getSourceAsString(),
           offset      = this.startOffset,
-          optimizeRan = false,
+          count       = 0,
           thisToken   = this.createToken(this.getSourceRange(), {
             typeName: this.getTypeName(),
             _length:  0,
@@ -77,10 +77,8 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         debugger;
 
       for (i = 0, il = matchers.length; i < il; i++) {
-        if (!optimizeRan && typeof opts.optimize === 'function') {
-          optimizeRan = true;
-
-          var result = this.callHook('optimize', context, thisToken, { source, offset });
+        if (typeof opts.optimize === 'function') {
+          var result = this.callHook('optimize', context, thisToken, { source, offset, count, index: i });
           if (result === false)
             break;
 
@@ -117,6 +115,8 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           thisToken.setSourceRange(this.getSourceRange());
           thisToken.length = (thisToken.children || []).length;
 
+          count++;
+
           if (!skipResult && opts.stopOnFirstMatch)
             break;
 
@@ -131,7 +131,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       if (!opts.stopOnFirstMatch && i < matchers.length)
         return this.fail(context);
 
-      if (this.startOffset === this.endOffset)
+      if (this.startOffset === this.endOffset || count === 0)
         return this.fail(context);
 
       if ((thisToken.children || []).length === 0)

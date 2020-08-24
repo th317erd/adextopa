@@ -40,12 +40,12 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
     respond(context) {
       var opts        = this.getOptions(),
           matcher     = this.getMatchers(this._matcher),
+          source      = this.getSourceAsString(),
           min         = opts.min || 1,
           max         = opts.max || Infinity,
           count       = 0,
           parser      = this.getParser(),
           offset      = this.startOffset,
-          optimizeRan = false,
           thisToken   = this.createToken(this.getSourceRange(), {
             typeName: this.getTypeName(),
             _length:  0,
@@ -60,10 +60,8 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
         debugger;
 
       while(count < max) {
-        if (!optimizeRan && typeof opts.optimize === 'function') {
-          optimizeRan = true;
-
-          if (this.callHook('optimize', context, thisToken, { source, offset }) === false)
+        if (typeof opts.optimize === 'function') {
+          if (this.callHook('optimize', context, thisToken, { source, offset, count }) === false)
             break;
         }
 
@@ -102,8 +100,11 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
 
       thisToken = this.callHook('after', context, thisToken);
 
-      if (count < min || (thisToken.children || []).length === 0)
+      if (count < min)
         return this.fail(context);
+
+      if ((thisToken.children || []).length === 0)
+        return this.skip(context, this.endOffset);
 
       return this.success(context, thisToken.remapTokenLinks());
     }

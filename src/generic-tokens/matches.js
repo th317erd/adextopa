@@ -1,8 +1,8 @@
 const {
   isType,
   addRegExpFlags
-}                             = require('../utils');
-const { defineMatcher }  = require('../token');
+}                       = require('../utils');
+const { defineMatcher } = require('../matcher-definition');
 
 const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
   return class MatchesMatcher extends ParentClass {

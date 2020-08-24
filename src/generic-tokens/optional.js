@@ -1,10 +1,10 @@
-const { isType }              = require('../utils');
-const { defineMatcher }  = require('../token');
+const { isType }        = require('../utils');
+const { defineMatcher } = require('../matcher-definition');
 
 const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
   return class OptionalMatcher extends ParentClass {
     constructor(matcher, opts) {
-      super(opts);
+      super(Object.assign({ debugSkip: true }, opts || {}));
 
       this.setMatcher(matcher);
     }

@@ -1,5 +1,5 @@
-const { isType }         = require('../utils');
-const { defineMatcher }  = require('../token');
+const { isType }        = require('../utils');
+const { defineMatcher } = require('../matcher-definition');
 
 const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
   return class SequenceMatcher extends ParentClass {

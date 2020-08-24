@@ -1,18 +1,15 @@
 const {
   isType,
   flattenArray
-}                     = require('../utils');
-const {
-  defineMatcher,
-  MatcherDefinition
-}                     = require('../token');
-const { $OPTIONAL }   = require('./optional');
-const { $NOT }        = require('./not');
-const { $MATCHES }    = require('./matches');
-const { $EQUALS }     = require('./equals');
-const { $SEQUENCE }   = require('./sequence');
-const { $LOOP }       = require('./loop');
-const { $PROGRAM }    = require('./program');
+}                       = require('../utils');
+const { defineMatcher } = require('../matcher-definition');
+const { $OPTIONAL }     = require('./optional');
+const { $NOT }          = require('./not');
+const { $MATCHES }      = require('./matches');
+const { $EQUALS }       = require('./equals');
+const { $SEQUENCE }     = require('./sequence');
+const { $LOOP }         = require('./loop');
+const { $PROGRAM }      = require('./program');
 
 const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
   return class GroupMatcher extends ParentClass {
@@ -32,7 +29,10 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
             $MATCHES(/(.)/, 'Content')
           )
         ),
-        endMatcher
+        endMatcher,
+        {
+          debugSkip: 'all'
+        }
       );
     }
 
@@ -40,7 +40,10 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       return $PROGRAM(
         $EQUALS(startMatcher),
         $SEQUENCE(endMatcher, escapeMatcher),
-        $EQUALS(endMatcher)
+        $EQUALS(endMatcher),
+        {
+          debugSkip: 'all'
+        }
       );
     }
 

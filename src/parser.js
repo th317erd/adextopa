@@ -1,6 +1,7 @@
-const { isType }              = require('./utils');
-const { SourceRange }         = require('./source-range');
-const { Token, getMatchers }  = require('./token');
+const { isType }      = require('./utils');
+const { SourceRange } = require('./source-range');
+const { Token }       = require('./token');
+const { getMatchers } = require('./matcher-definition');
 
 const VERSION = '0.1.0';
 

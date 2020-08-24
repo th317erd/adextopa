@@ -1,5 +1,6 @@
-const { isType }               = require('../utils');
-const { defineMatcher, Token } = require('../token');
+const { isType }        = require('../utils');
+const { Token }         = require('../token');
+const { defineMatcher } = require('../matcher-definition');
 
 class LoopToken extends Token {
   clone(_props) {
@@ -44,6 +45,7 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
           count       = 0,
           parser      = this.getParser(),
           offset      = this.startOffset,
+          optimizeRan = false,
           thisToken   = this.createToken(this.getSourceRange(), {
             typeName: this.getTypeName(),
             _length:  0,
@@ -58,6 +60,13 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
         debugger;
 
       while(count < max) {
+        if (!optimizeRan && typeof opts.optimize === 'function') {
+          optimizeRan = true;
+
+          if (this.callHook('optimize', context, thisToken, { source, offset }) === false)
+            break;
+        }
+
         var result = matcher.exec(parser, offset, context);
 
         // We break on skipping... because skipping isn't allowed in a loop

@@ -1,11 +1,11 @@
 
 const { isType }        = require('../utils');
-const { defineMatcher } = require('../token');
+const { defineMatcher } = require('../matcher-definition');
 
 const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
   return class DiscardMatcher extends ParentClass {
     constructor(matcher, opts) {
-      super(opts);
+      super(Object.assign({ debugSkip: true }, opts || {}));
 
       this.setMatcher(matcher);
     }

@@ -1,8 +1,6 @@
-const { isType }      = require('../utils');
-const {
-  defineMatcher,
-  Token
-}                     = require('../token');
+const { isType, isValidNumber } = require('../utils');
+const { Token }                 = require('../token');
+const { defineMatcher }         = require('../matcher-definition');
 
 class ProgramToken extends Token {
   clone(_props) {
@@ -61,6 +59,9 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
     respond(context) {
       var opts        = this.getOptions(),
           matchers    = this.getMatchers(this._matchers),
+          source      = this.getSourceAsString(),
+          offset      = this.startOffset,
+          optimizeRan = false,
           thisToken   = this.createToken(this.getSourceRange(), {
             typeName: this.getTypeName(),
             _length:  0,
@@ -76,6 +77,17 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         debugger;
 
       for (i = 0, il = matchers.length; i < il; i++) {
+        if (!optimizeRan && typeof opts.optimize === 'function') {
+          optimizeRan = true;
+
+          var result = this.callHook('optimize', context, thisToken, { source, offset });
+          if (result === false)
+            break;
+
+          if (isValidNumber(result) && result < matchers.length)
+            i = result;
+        }
+
         var matcher = matchers[i],
             result  = matcher.exec(this.getParser(), this.endOffset, context);
 
@@ -92,9 +104,10 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           return result;
 
         if (result instanceof Token) {
-          this.endOffset = result.getSourceRange().end;
+          offset = this.endOffset = result.getSourceRange().end;
 
-          if (!result.skipOutput()) {
+          var skipResult = result.skipOutput();
+          if (!skipResult) {
             if (!thisToken.children)
               thisToken.children = [];
 
@@ -104,7 +117,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           thisToken.setSourceRange(this.getSourceRange());
           thisToken.length = (thisToken.children || []).length;
 
-          if (opts.stopOnFirstMatch)
+          if (!skipResult && opts.stopOnFirstMatch)
             break;
 
           continue;

@@ -1,5 +1,5 @@
-const { isType }              = require('../utils');
-const { defineMatcher }  = require('../token');
+const { isType }        = require('../utils');
+const { defineMatcher } = require('../matcher-definition');
 
 const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
   return class EqualsMatcher extends ParentClass {

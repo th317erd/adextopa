@@ -1,5 +1,5 @@
 const { isType }        = require('../utils');
-const { defineMatcher } = require('../token');
+const { defineMatcher } = require('../matcher-definition');
 
 const $NOT = defineMatcher('$NOT', (ParentClass) => {
   return class NotMatcher extends ParentClass {

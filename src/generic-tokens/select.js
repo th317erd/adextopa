@@ -7,15 +7,14 @@ const $SELECT = defineMatcher('$SELECT', (ParentClass) => {
   return class SelectMatcher extends ParentClass {
     constructor(...args) {
       var { matchers, opts }  = $PROGRAM.getMatchersAndOptionsFromArguments(...args);
-      var superArgs           = matchers
-                                  .map($OPTIONAL)
-                                  .concat(
-                                    Object.assign(
-                                      { typeName: '$SELECT' },
-                                      opts || {},
-                                      { stopOnFirstMatch: true }
-                                    )
-                                  );
+      var superArgs           = matchers.map($OPTIONAL).concat(
+        Object.assign(
+          { typeName: '$SELECT' },
+          opts || {},
+          { stopOnFirstMatch: true },
+        )
+      );
+
       super(...superArgs);
     }
 

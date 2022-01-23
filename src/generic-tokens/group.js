@@ -30,9 +30,6 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
           ),
         ),
         endMatcher,
-        {
-          debugSkip: 'all',
-        }
       );
     }
 
@@ -41,9 +38,6 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
         $EQUALS(startMatcher),
         $UNTIL(endMatcher, escapeMatcher),
         $EQUALS(endMatcher),
-        {
-          debugSkip: 'all',
-        }
       );
     }
 

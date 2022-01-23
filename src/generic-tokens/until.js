@@ -2,7 +2,7 @@ const { isType }        = require('../utils');
 const { defineMatcher } = require('../matcher-definition');
 
 const $UNTIL = defineMatcher('$UNTIL', (ParentClass) => {
-  return class SequenceMatcher extends ParentClass {
+  return class UntilMatcher extends ParentClass {
     constructor(endMatcher, _escapeChar, _opts) {
       var escapeChar  = _escapeChar;
       var opts        = (arguments.length === 3) ? _opts : escapeChar;

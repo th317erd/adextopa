@@ -7,7 +7,7 @@ const { $OPTIONAL }     = require('./optional');
 const { $NOT }          = require('./not');
 const { $MATCHES }      = require('./matches');
 const { $EQUALS }       = require('./equals');
-const { $UNTIL }     = require('./sequence');
+const { $UNTIL }        = require('./until');
 const { $LOOP }         = require('./loop');
 const { $PROGRAM }      = require('./program');
 

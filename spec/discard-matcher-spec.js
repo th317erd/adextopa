@@ -4,16 +4,17 @@ const { $DISCARD, $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
 describe("$DISCARD", function() {
   describe("$DISCARD Matcher", function() {
     it("should be able to match against input", function() {
-      var parser  = new Parser('testing token matching'),
-          program = $PROGRAM(
-                      $MATCHES(/\w+/, 'Word'),
-                      $DISCARD(
-                        $OPTIONAL($MATCHES(/\s+/))
-                      )
-                    ),
-          matcher = $LOOP(program);
+      var parser  = new Parser('testing token matching');
+      var program = $PROGRAM(
+        $MATCHES(/\w+/, 'Word'),
+        $DISCARD(
+          $OPTIONAL($MATCHES(/\s+/))
+        )
+      );
 
-      var result = matcher.exec(parser);
+      var matcher = $LOOP(program);
+      var result  = matcher.exec(parser);
+
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('testing token matching');
       expect(result.length).toBe(3);

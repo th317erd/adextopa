@@ -146,7 +146,16 @@ class Parser {
 
   tokenize(matcher, context) {
     var opts          = this.getOptions();
-    var startContext  = Object.assign({ _debugLogs: [], debugLevel: opts.debugLevel || 0, debug: opts.debug || false }, opts.context || {}, context || {});
+    var startContext  = Object.assign(
+      {
+        '_debugLogs': [],
+        'debugLevel': opts.debugLevel || 0,
+        'debug':      opts.debug || false,
+      },
+      opts.context || {},
+      context || {},
+    );
+
     var token         = getMatchers(matcher).exec(this, 0, startContext);
     var errors        = this.getErrors();
 

@@ -4,15 +4,15 @@ const { $SELECT, $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
 describe("$SELECT", function() {
   describe("$SELECT Matcher", function() {
     it("should be able to match against input", function() {
-      var parser  = new Parser('testing 10 matching -22.45'),
-          program = $SELECT(
-                      $MATCHES(/[a-zA-Z]+/, 'Word'),
-                      $MATCHES(/[\d.-]+/, 'Number'),
-                      $MATCHES(/\s+/, 'WhiteSpace')
-                    ),
-          matcher = $LOOP(program);
+      var parser  = new Parser('testing 10 matching -22.45');
+      var program = $SELECT(
+        $MATCHES(/[a-zA-Z]+/, 'Word'),
+        $MATCHES(/[\d.-]+/, 'Number'),
+        $MATCHES(/\s+/, 'WhiteSpace')
+      );
+      var matcher = $LOOP(program);
+      var result  = matcher.exec(parser);
 
-      var result = matcher.exec(parser);
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('testing 10 matching -22.45');
       expect(result.length).toBe(7);

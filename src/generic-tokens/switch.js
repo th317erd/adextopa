@@ -3,13 +3,13 @@ const { defineMatcher } = require('../matcher-definition');
 const { $PROGRAM }      = require('./program');
 const { $OPTIONAL }     = require('./optional');
 
-const $SELECT = defineMatcher('$SELECT', (ParentClass) => {
+const $SWITCH = defineMatcher('$SWITCH', (ParentClass) => {
   return class SelectMatcher extends ParentClass {
     constructor(...args) {
       var { matchers, opts }  = $PROGRAM.getMatchersAndOptionsFromArguments(...args);
       var superArgs           = matchers.map($OPTIONAL).concat(
         Object.assign(
-          { typeName: '$SELECT' },
+          { typeName: '$SWITCH' },
           opts || {},
           { stopOnFirstMatch: true },
         )
@@ -34,5 +34,5 @@ const $SELECT = defineMatcher('$SELECT', (ParentClass) => {
 }, $PROGRAM);
 
 module.exports = {
-  $SELECT,
+  $SWITCH,
 };

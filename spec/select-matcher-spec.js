@@ -1,11 +1,11 @@
 const { Parser, Token, GenericTokens } = require('./lib');
-const { $SELECT, $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
+const { $SWITCH, $LOOP, $MATCHES } = GenericTokens;
 
-describe("$SELECT", function() {
-  describe("$SELECT Matcher", function() {
+describe("$SWITCH", function() {
+  describe("$SWITCH Matcher", function() {
     it("should be able to match against input", function() {
       var parser  = new Parser('testing 10 matching -22.45');
-      var program = $SELECT(
+      var program = $SWITCH(
         $MATCHES(/[a-zA-Z]+/, 'Word'),
         $MATCHES(/[\d.-]+/, 'Number'),
         $MATCHES(/\s+/, 'WhiteSpace')

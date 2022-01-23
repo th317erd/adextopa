@@ -4,7 +4,7 @@ const { $GROUP }                  = require('./group');
 const { $MATCHES }                = require('./matches');
 const { $NOT }                    = require('./not');
 const { $OPTIONAL }               = require('./optional');
-const { $SELECT }                 = require('./switch');
+const { $SWITCH }                 = require('./switch');
 const { $UNTIL }                  = require('./until');
 const { $WS }                     = require('./whitespace');
 const { LoopToken, $LOOP }        = require('./loop');
@@ -19,7 +19,7 @@ module.exports = {
   $NOT,
   $OPTIONAL,
   $PROGRAM,
-  $SELECT,
+  $SWITCH,
   $UNTIL,
   $WS,
   LoopToken,

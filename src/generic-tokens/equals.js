@@ -14,10 +14,10 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
         throw new TypeError('$EQUALS::setMatcher: First argument must be instance of `string`');
 
       Object.defineProperty(this, '_matcher', {
-        writable: true,
-        enumerable: false,
+        writable:     true,
+        enumerable:   false,
         confiugrable: true,
-        value: str
+        value:        str,
       });
     }
 
@@ -26,17 +26,17 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
     }
 
     respond(context) {
-      var opts      = this.getOptions(),
-          matcher   = this._matcher,
-          sourceStr = this.getSourceAsString(),
-          offset    = this.startOffset;
+      var opts      = this.getOptions();
+      var matcher   = this._matcher;
+      var sourceStr = this.getSourceAsString();
+      var offset    = this.startOffset;
 
       if (opts.debugInspect)
         debugger;
 
       for (var i = 0, il = matcher.length; i < il; i++) {
-        var char1 = sourceStr.charAt(offset + i),
-            char2 = matcher.charAt(i);
+        var char1 = sourceStr.charAt(offset + i);
+        var char2 = matcher.charAt(i);
 
         if (char1 !== char2)
           return this.fail(context);
@@ -48,5 +48,5 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
 });
 
 module.exports = {
-  $EQUALS
+  $EQUALS,
 };

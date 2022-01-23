@@ -7,5 +7,5 @@ const GenericTokens     = require('./generic-tokens');
 
 module.exports = Object.assign({
   Utils,
-  GenericTokens
+  GenericTokens,
 }, SourceRange, Token, MatcherDefinition, Parser);

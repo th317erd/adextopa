@@ -18,7 +18,7 @@ function isValidNumber(num) {
   if (num == null)
     return false;
 
-  if (!(num instanceof Number || typeof num === 'number'))
+  if (!(typeof num === 'number' || num instanceof Number))
     return false;
 
   return isFinite(num);
@@ -69,5 +69,5 @@ module.exports = {
   flattenArray,
   isValidNumber,
   isType,
-  addRegExpFlags
+  addRegExpFlags,
 };

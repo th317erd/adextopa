@@ -7,9 +7,9 @@ function defineProperties(props) {
   var keys = Object.keys(props);
 
   for (var i = 0, il = keys.length; i < il; i++) {
-    var key         = keys[i],
-        value       = props[key],
-        enumerable  = true;
+    var key         = keys[i];
+    var value       = props[key];
+    var enumerable  = true;
 
     if (value === undefined)
       continue;
@@ -23,10 +23,10 @@ function defineProperties(props) {
       continue;
 
     Object.defineProperty(this, key, {
-      writable: true,
-      enumerable,
+      writable:     true,
       configurable: true,
-      value
+      enumerable,
+      value,
     });
   }
 
@@ -35,27 +35,27 @@ function defineProperties(props) {
 
 class Token {
   constructor(_parser, _sourceRange, props) {
-    var parser      = _parser,
-        sourceRange = _sourceRange || null;
+    var parser      = _parser;
+    var sourceRange = _sourceRange || null;
 
     var reservedProperties = {
-      _parser: {
-        writable: false,
-        enumerable: false,
+      '_parser': {
+        writable:     false,
+        enumerable:   false,
         configurable: true,
-        value: parser
+        value:        parser,
       },
-      _sourceRange: {
-        enumerable: false,
+      '_sourceRange': {
+        enumerable:   false,
         configurable: true,
-        get: () => sourceRange,
-        set: () => {} // noop
+        get: () =>    sourceRange,
+        set: () =>    {}, // noop
       },
-      _raw: {
-        enumerable: false,
+      '_raw': {
+        enumerable:   false,
         configurable: true,
-        get: () => (sourceRange && sourceRange.value),
-        set: () => {} // noop
+        get: () =>    (sourceRange && sourceRange.value),
+        set: () =>    {}, // noop
       }
     };
 
@@ -70,7 +70,11 @@ class Token {
   }
 
   clone(props, tokenClass) {
-    var token = new (tokenClass || this.constructor)(this.getParser(), this.getSourceRange(), Object.assign({}, this, props));
+    var token = new (tokenClass || this.constructor)(
+      this.getParser(),
+      this.getSourceRange(),
+      Object.assign({}, this, props),
+    );
 
     token.remapTokenLinks();
 
@@ -86,32 +90,32 @@ class Token {
       if (previousSibling) {
         Object.defineProperties(previousSibling, {
           'nextSibling': {
-            writable: true,
-            enumerable: false,
+            writable:     true,
+            enumerable:   false,
             configurable: true,
-            value: child
+            value:        child,
           }
         });
       }
 
       Object.defineProperties(child, {
         'parent': {
-          writable: true,
-          enumerable: false,
+          writable:     true,
+          enumerable:   false,
           configurable: true,
-          value: newParent || this
+          value:        newParent || this,
         },
         'previousSibling': {
-          writable: true,
-          enumerable: false,
+          writable:     true,
+          enumerable:   false,
           configurable: true,
-          value: previousSibling
+          value:        previousSibling,
         },
         'nextSibling': {
-          writable: true,
-          enumerable: false,
+          writable:     true,
+          enumerable:   false,
           configurable: true,
-          value: null
+          value:        null,
         }
       });
 
@@ -150,10 +154,7 @@ class Token {
   }
 
   getFirstChild() {
-    if (!this.children)
-      return;
-
-    if (!this.children.length)
+    if (!this.children || !this.children.length)
       return;
 
     return this.children[0];
@@ -171,10 +172,7 @@ class Token {
   }
 
   getLastChild() {
-    if (!this.children)
-      return;
-
-    if (!this.children.length)
+    if (!this.children || !this.children.length)
       return;
 
     return this.children[this.children.length - 1];
@@ -192,10 +190,10 @@ class Token {
   }
 
   visit(_pattern, _callback) {
-    var callback      = _callback,
-        pattern       = _pattern,
-        results       = [],
-        finder;
+    var callback  = _callback;
+    var pattern   = _pattern;
+    var results   = [];
+    var finder;
 
     if (arguments.length < 1) {
       throw new TypeError('Token::visit: Arguments must be specified');
@@ -249,5 +247,5 @@ isType.addType('SkipToken', (val) => (val instanceof SkipToken));
 
 module.exports = {
   Token,
-  SkipToken
+  SkipToken,
 };

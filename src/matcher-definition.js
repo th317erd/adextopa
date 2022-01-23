@@ -24,7 +24,7 @@ class MatcherDefinition {
     var opts = _opts || {};
     if (isType(opts, 'string')) {
       opts = {
-        typeName: opts
+        typeName: opts,
       };
     } else if (typeof opts === 'function') {
       var finalizeMethod = opts;
@@ -34,18 +34,18 @@ class MatcherDefinition {
     opts = Object.assign({ typeName: this._getTypeName() }, opts);
 
     Object.defineProperties(this, {
-      _options: {
-        writable: false,
-        enumerable: false,
+      '_options': {
+        writable:     false,
+        enumerable:   false,
         configurable: true,
-        value: opts
+        value:        opts,
       },
-      _matcherCache: {
-        writable: true,
-        enumerable: false,
+      '_matcherCache': {
+        writable:     true,
+        enumerable:   false,
         configurable: true,
-        value: null
-      }
+        value:        null,
+      },
     });
   }
 
@@ -54,43 +54,43 @@ class MatcherDefinition {
       return (new Array(level + 1)).join('  ');
     };
 
-    var context     = Object.create(_context || {}),
-        offset      = _offset || 0,
-        sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
+    var context     = Object.create(_context || {});
+    var offset      = _offset || 0;
+    var sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
     Object.defineProperties(this, {
-      _parser: {
-        writable: true,
-        enumerable: false,
+      '_parser': {
+        writable:     true,
+        enumerable:   false,
         configurable: true,
-        value: parser
+        value:        parser,
       },
-      _sourceRange: {
-        writable: true,
-        enumerable: false,
+      '_sourceRange': {
+        writable:     true,
+        enumerable:   false,
         configurable: true,
-        value: sourceRange
+        value:        sourceRange,
       },
-      startOffset: {
-        enumerable: false,
+      'startOffset': {
+        enumerable:   false,
         configurable: true,
-        get: () => this._sourceRange.start,
-        set: (val) => (this._sourceRange.start = val),
+        get:          () => this._sourceRange.start,
+        set:          (val) => (this._sourceRange.start = val),
       },
-      endOffset: {
-        enumerable: false,
+      'endOffset': {
+        enumerable:   false,
         configurable: true,
-        get: () => this._sourceRange.end,
-        set: (val) => (this._sourceRange.end = val),
+        get:          () => this._sourceRange.end,
+        set:          (val) => (this._sourceRange.end = val),
       }
     });
 
     try {
-      var opts      = this.getOptions(),
-          typeName  = this.getTypeName(),
-          count     = context[typeName] || 0,
-          debugSkip = opts.debugSkip || context.debugSkip,
-          debug     = (!debugSkip && (opts.debug || context.debug));
+      var opts      = this.getOptions();
+      var typeName  = this.getTypeName();
+      var count     = context[typeName] || 0;
+      var debugSkip = opts.debugSkip || context.debugSkip;
+      var debug     = (!debugSkip && (opts.debug || context.debug));
 
       context._super = _context;
 
@@ -109,8 +109,8 @@ class MatcherDefinition {
       if (debug && context.debugLevel > 0)
         console.log(`${getLevelIndent(context._level)}Entering matcher ${typeName}`);
 
-      var result = this.respond(context),
-          logKey;
+      var result = this.respond(context);
+      var logKey;
 
       if (debug) {
         var status, range = '';
@@ -122,9 +122,9 @@ class MatcherDefinition {
         } else if (result instanceof Error) {
           status = 'ERROR';
         } else if (result instanceof Token) {
-          var source        = this.getSourceAsString(),
-              sourceRange   = result.getSourceRange(),
-              value         = result._raw;
+          var source        = this.getSourceAsString();
+          var sourceRange   = result.getSourceRange();
+          var value         = result._raw;
 
           // do we have colors?
           if (typeof ''.bgYellow !== 'undefined')
@@ -156,12 +156,13 @@ class MatcherDefinition {
       return this._matcherCache;
 
     this._matcherCache = this._getMatchers(values);
+
     return this._matcherCache;
   }
 
   clone(offset, _constructorArgs) {
-    var constructorArgs = (_constructorArgs || []).concat(this.getOptions()),
-        matcher         = new this.constructor(...constructorArgs);
+    var constructorArgs = (_constructorArgs || []).concat(this.getOptions());
+    var matcher         = new this.constructor(...constructorArgs);
 
     if (this._parser)
       matcher._parser = this._parser;
@@ -272,9 +273,9 @@ class MatcherDefinition {
   }
 
   callHook(name, context, _token, extraArgs) {
-    var opts  = this.getOptions(),
-        token = _token,
-        hook  = opts[name];
+    var opts  = this.getOptions();
+    var token = _token;
+    var hook  = opts[name];
 
     if (typeof hook !== 'function')
       return token;
@@ -333,14 +334,14 @@ class MatcherDefinition {
 isType.addType('MatcherDefinition', (val) => (val instanceof MatcherDefinition || (val && !!val.MatcherDefinitionClass)));
 
 function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
-  var parent                  = (_parent && _parent.MatcherDefinitionClass) ? _parent.MatcherDefinitionClass : _parent,
-      MatcherDefinitionClass  = definer(parent);
+  var parent                  = (_parent && _parent.MatcherDefinitionClass) ? _parent.MatcherDefinitionClass : _parent;
+  var MatcherDefinitionClass  = definer(parent);
 
   MatcherDefinitionClass.prototype._getTypeName = () => typeName;
   MatcherDefinitionClass._getTypeName = () => typeName;
 
-  var creator = function(...args) {
-    var creatorScope = function() {
+  const creator = function(...args) {
+    const creatorScope = function() {
       return new MatcherDefinitionClass(...args);
     };
 
@@ -363,5 +364,5 @@ function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
 module.exports = {
   getMatchers,
   defineMatcher,
-  MatcherDefinition
+  MatcherDefinition,
 };

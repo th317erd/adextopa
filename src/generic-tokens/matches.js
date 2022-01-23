@@ -17,10 +17,10 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
         throw new TypeError('$RE::setMatcher: First argument must be instance of `string` or `RegExp`');
 
       Object.defineProperty(this, '_matcher', {
-        writable: true,
-        enumerable: false,
+        writable:     true,
+        enumerable:   false,
         confiugrable: true,
-        value: addRegExpFlags(re, 'g')
+        value:        addRegExpFlags(re, 'g'),
       });
     }
 
@@ -29,9 +29,9 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
     }
 
     respond(context) {
-      var opts          = this.getOptions(),
-          regexpMatcher = this._matcher,
-          sourceStr     = this.getSourceAsString();
+      var opts          = this.getOptions();
+      var regexpMatcher = this._matcher;
+      var sourceStr     = this.getSourceAsString();
 
       regexpMatcher.lastIndex = this.startOffset;
 

@@ -14,10 +14,10 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
         throw new TypeError('$NOT::setMatcher: First argument must be instance of `MatcherDefinition`');
 
       Object.defineProperty(this, '_matcher', {
-        writable: true,
-        enumerable: false,
+        writable:     true,
+        enumerable:   false,
         confiugrable: true,
-        value: matcher
+        value:        matcher,
       });
     }
 
@@ -26,9 +26,9 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
     }
 
     respond(context) {
-      var opts      = this.getOptions(),
-          matcher   = this.getMatchers(this._matcher),
-          result    = matcher.exec(this.getParser(), this.startOffset, context);
+      var opts      = this.getOptions();
+      var matcher   = this.getMatchers(this._matcher);
+      var result    = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (opts.debugInspect)
         debugger;
@@ -46,5 +46,5 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
 });
 
 module.exports = {
-  $NOT
+  $NOT,
 };

@@ -2,43 +2,43 @@ const { isType } = require('./utils');
 
 class SourceRange {
   constructor(_parser, _start, _end) {
-    var parser  = _parser,
-        start   = _start,
-        end     = _end;
+    var parser  = _parser;
+    var start   = _start;
+    var end     = _end;
 
     if (!isType(parser, 'Parser'))
       throw new TypeError('SourceRange::constructor: First argument must a instance of `Parser`');
 
     if (isType(start, 'SourceRange')) {
-      end = start.end;
+      end   = start.end;
       start = start.start;
     }
 
     Object.defineProperties(this, {
-      _parser: {
-        writable: false,
-        enumerable: false,
+      '_parser': {
+        writable:     false,
+        enumerable:   false,
         configurable: true,
-        value: parser
+        value:        parser,
       },
-      start: {
-        enumerable: false,
+      'start': {
+        enumerable:   false,
         configurable: true,
-        get: () => start,
-        set: (val) => (start = val)
+        get: () =>    start,
+        set: (val) => (start = val),
       },
-      end: {
-        enumerable: false,
+      'end': {
+        enumerable:   false,
         configurable: true,
-        get: () => end,
-        set: (val) => (end = val)
+        get: () =>    end,
+        set: (val) => (end = val),
       },
-      value: {
-        enumerable: false,
+      'value': {
+        enumerable:   false,
         configurable: true,
-        get: () => (this._parser.getSourceRangeAsString(this)),
-        set: () => {} // noop
-      }
+        get: () =>    (this._parser.getSourceRangeAsString(this)),
+        set: () =>    {}, // noop
+      },
     });
   }
 

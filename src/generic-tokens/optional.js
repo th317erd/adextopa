@@ -18,10 +18,10 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
         throw new TypeError('$OPTIONAL::setTokenDefinition: First argument must be instance of `MatcherDefinition`');
 
       Object.defineProperty(this, '_matcher', {
-        writable: true,
-        enumerable: false,
+        writable:     true,
+        enumerable:   false,
         confiugrable: true,
-        value: matcher
+        value:        matcher,
       });
     }
 
@@ -30,9 +30,9 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
     }
 
     respond(context) {
-      var opts    = this.getOptions(),
-          matcher = this.getMatchers(this._matcher),
-          result  = matcher.exec(this.getParser(), this.getSourceRange(), context);
+      var opts    = this.getOptions();
+      var matcher = this.getMatchers(this._matcher);
+      var result  = matcher.exec(this.getParser(), this.getSourceRange(), context);
 
       if (opts.debugInspect)
         debugger;
@@ -52,5 +52,5 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
 });
 
 module.exports = {
-  $OPTIONAL
+  $OPTIONAL,
 };

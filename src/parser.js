@@ -7,36 +7,36 @@ const VERSION = '0.1.0';
 
 class Parser {
   constructor(_source, _opts) {
-    var source  = _source,
-        opts    = Object.assign({ fileName: '<none>' }, _opts || {});
+    var source  = _source;
+    var opts    = Object.assign({ fileName: '<none>' }, _opts || {});
 
     if (!isType(source, 'string'))
       throw new TypeError('Parser::constructor: first argument must be instance of `string`');
 
     Object.defineProperties(this, {
-      _source: {
-        writable: false,
-        enumerable: false,
+      '_source': {
+        writable:     false,
+        enumerable:   false,
         configurable: true,
-        value: source.valueOf()
+        value:        source.valueOf(),
       },
-      _options: {
-        writable: false,
-        enumerable: false,
+      '_options': {
+        writable:     false,
+        enumerable:   false,
         configurable: true,
-        value: opts
+        value:        opts,
       },
-      _errors: {
-        writable: true,
-        enumerable: false,
+      '_errors': {
+        writable:     true,
+        enumerable:   false,
         configurable: true,
-        value: []
+        value:        [],
       },
-      _warnings: {
-        writable: true,
-        enumerable: false,
+      '_warnings': {
+        writable:     true,
+        enumerable:   false,
         configurable: true,
-        value: []
+        value:        [],
       }
     });
   }
@@ -97,8 +97,8 @@ class Parser {
   }
 
   getLineNumber(input, offset) {
-    var chunk = input.substring(0, offset),
-        parts = chunk.split(/\n/);
+    var chunk = input.substring(0, offset);
+    var parts = chunk.split(/\n/);
 
     return parts.length;
   }
@@ -128,11 +128,11 @@ class Parser {
   }
 
   getLinesAndColumnsFromRange(input, _start, _end) {
-    var start = _start || 1,
-        end   = _end || input.length;
+    var start = _start || 1;
+    var end   = _end || input.length;
 
     if (start instanceof SourceRange) {
-      end = start.end;
+      end   = start.end;
       start = start.start;
     }
 
@@ -140,15 +140,15 @@ class Parser {
       startLine:    this.getLineNumber(input, start),
       endLine:      this.getLineNumber(input, end),
       startColumn:  this.getColumnNumber(input, start),
-      endColumn:    this.getColumnNumber(input, end)
+      endColumn:    this.getColumnNumber(input, end),
     };
   }
 
   tokenize(matcher, context) {
-    var opts          = this.getOptions(),
-        startContext  = Object.assign({ _debugLogs: [], debugLevel: opts.debugLevel || 0, debug: opts.debug || false }, opts.context || {}, context || {}),
-        token         = getMatchers(matcher).exec(this, 0, startContext),
-        errors        = this.getErrors();
+    var opts          = this.getOptions();
+    var startContext  = Object.assign({ _debugLogs: [], debugLevel: opts.debugLevel || 0, debug: opts.debug || false }, opts.context || {}, context || {});
+    var token         = getMatchers(matcher).exec(this, 0, startContext);
+    var errors        = this.getErrors();
 
     if (errors.length > 0)
       throw new Error('Parsing Error');
@@ -162,5 +162,5 @@ Parser.VERSION = VERSION;
 isType.addType('Parser', (val) => (val instanceof Parser));
 
 module.exports = {
-  Parser
+  Parser,
 };

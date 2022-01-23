@@ -4,18 +4,18 @@ const { defineMatcher }         = require('../matcher-definition');
 
 class ProgramToken extends Token {
   clone(_props) {
-    var props     = _props || {},
-        children  = props.children || this.children || [];
+    var props     = _props || {};
+    var children  = props.children || this.children || [];
 
     return super.clone(Object.assign({}, {
-      _length: children.length
+      '_length': children.length,
     }, props));
   }
 }
 
 function getMatchersAndOptionsFromArguments(..._matchers) {
-  var matchers  = _matchers,
-      opts      = matchers[matchers.length - 1];
+  var matchers  = _matchers;
+  var opts      = matchers[matchers.length - 1];
 
   if (isType(opts, 'MatcherDefinition'))
     opts = {};
@@ -24,7 +24,7 @@ function getMatchersAndOptionsFromArguments(..._matchers) {
 
   return {
     opts,
-    matchers
+    matchers,
   };
 }
 
@@ -45,10 +45,10 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       }
 
       Object.defineProperty(this, '_matchers', {
-        writable: true,
-        enumerable: false,
+        writable:     true,
+        enumerable:   false,
         confiugrable: true,
-        value: matchers
+        value:        matchers,
       });
     }
 
@@ -57,17 +57,22 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
     }
 
     respond(context) {
-      var opts        = this.getOptions(),
-          matchers    = this.getMatchers(this._matchers),
-          source      = this.getSourceAsString(),
-          offset      = this.startOffset,
-          count       = 0,
-          thisToken   = this.createToken(this.getSourceRange(), {
-            typeName: this.getTypeName(),
-            _length:  0,
-            children: []
-          }, ProgramToken),
-          i, il;
+      var opts        = this.getOptions();
+      var matchers    = this.getMatchers(this._matchers);
+      var source      = this.getSourceAsString();
+      var offset      = this.startOffset;
+      var count       = 0;
+      var thisToken   = this.createToken(
+        this.getSourceRange(),
+        {
+          typeName: this.getTypeName(),
+          _length:  0,
+          children: []
+        },
+        ProgramToken
+      );
+      var i;
+      var il;
 
       context.parent = thisToken;
 
@@ -86,8 +91,8 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
             i = result;
         }
 
-        var matcher = matchers[i],
-            result  = matcher.exec(this.getParser(), this.endOffset, context);
+        var matcher = matchers[i];
+        var result  = matcher.exec(this.getParser(), this.endOffset, context);
 
         if (result == null)
           continue;
@@ -146,5 +151,5 @@ $PROGRAM.getMatchersAndOptionsFromArguments = getMatchersAndOptionsFromArguments
 
 module.exports = {
   ProgramToken,
-  $PROGRAM
+  $PROGRAM,
 };

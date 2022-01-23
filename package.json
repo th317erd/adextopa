@@ -19,7 +19,11 @@
     "compiler",
     "pattern",
     "patterns",
-    "parsing"
+    "parsing",
+    "ast",
+    "syntax",
+    "tree",
+    "regexp"
   ],
   "author": "Wyatt Greenway",
   "license": "MIT",
@@ -28,6 +32,6 @@
   },
   "homepage": "https://github.com/th317erd/adextopa#readme",
   "devDependencies": {
-    "jasmine": "^3.6.1"
+    "jasmine": "^4.0.2"
   }
 }

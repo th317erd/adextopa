@@ -4,11 +4,11 @@ const { defineMatcher } = require('../matcher-definition');
 
 class LoopToken extends Token {
   clone(_props) {
-    var props     = _props || {},
-        children  = props.children || this.children || [];
+    var props     = _props || {};
+    var children  = props.children || this.children || [];
 
     return super.clone(Object.assign({}, {
-      _length: children.length
+      '_length': children.length,
     }, props));
   }
 }
@@ -26,10 +26,10 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
         throw new TypeError(`$LOOP::setMatcher: First argument must be instance of \`MatcherDefinition\``);
 
       Object.defineProperty(this, '_matcher', {
-        writable: true,
-        enumerable: false,
+        writable:     true,
+        enumerable:   false,
         confiugrable: true,
-        value: matcher
+        value:        matcher,
       });
     }
 
@@ -38,19 +38,23 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
     }
 
     respond(context) {
-      var opts        = this.getOptions(),
-          matcher     = this.getMatchers(this._matcher),
-          source      = this.getSourceAsString(),
-          min         = opts.min || 1,
-          max         = opts.max || Infinity,
-          count       = 0,
-          parser      = this.getParser(),
-          offset      = this.startOffset,
-          thisToken   = this.createToken(this.getSourceRange(), {
-            typeName: this.getTypeName(),
-            _length:  0,
-            children: []
-          }, LoopToken);
+      var opts        = this.getOptions();
+      var matcher     = this.getMatchers(this._matcher);
+      var source      = this.getSourceAsString();
+      var min         = opts.min || 1;
+      var max         = opts.max || Infinity;
+      var count       = 0;
+      var parser      = this.getParser();
+      var offset      = this.startOffset;
+      var thisToken   = this.createToken(
+        this.getSourceRange(),
+        {
+          'typeName': this.getTypeName(),
+          '_length':  0,
+          'children': [],
+        },
+        LoopToken
+      );
 
       context.parent = thisToken;
 
@@ -113,5 +117,5 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
 
 module.exports = {
   LoopToken,
-  $LOOP
+  $LOOP,
 };

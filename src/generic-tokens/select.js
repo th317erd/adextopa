@@ -6,9 +6,16 @@ const { $OPTIONAL }     = require('./optional');
 const $SELECT = defineMatcher('$SELECT', (ParentClass) => {
   return class SelectMatcher extends ParentClass {
     constructor(...args) {
-      var { matchers, opts } = $PROGRAM.getMatchersAndOptionsFromArguments(...args);
-
-      var superArgs = matchers.map($OPTIONAL).concat(Object.assign({ typeName: '$SELECT' }, opts || {}, { stopOnFirstMatch: true }));
+      var { matchers, opts }  = $PROGRAM.getMatchersAndOptionsFromArguments(...args);
+      var superArgs           = matchers
+                                  .map($OPTIONAL)
+                                  .concat(
+                                    Object.assign(
+                                      { typeName: '$SELECT' },
+                                      opts || {},
+                                      { stopOnFirstMatch: true }
+                                    )
+                                  );
       super(...superArgs);
     }
 
@@ -28,5 +35,5 @@ const $SELECT = defineMatcher('$SELECT', (ParentClass) => {
 }, $PROGRAM);
 
 module.exports = {
-  $SELECT
+  $SELECT,
 };

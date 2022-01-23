@@ -4,8 +4,8 @@ const { defineMatcher } = require('../matcher-definition');
 const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
   return class SequenceMatcher extends ParentClass {
     constructor(endMatcher, _escapeChar, _opts) {
-      var escapeChar  = _escapeChar,
-          opts        = (arguments.length === 3) ? _opts : escapeChar;
+      var escapeChar  = _escapeChar;
+      var opts        = (arguments.length === 3) ? _opts : escapeChar;
 
       if (arguments.length < 3) {
         if (isType(opts, 'object'))
@@ -33,16 +33,16 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
 
       Object.defineProperties(this, {
         '_endMatcher': {
-          writable: true,
-          enumerable: false,
+          writable:     true,
+          enumerable:   false,
           confiugrable: true,
-          value: endMatcher
+          value:        endMatcher,
         },
         '_escapeChar': {
-          writable: true,
-          enumerable: false,
+          writable:     true,
+          enumerable:   false,
           confiugrable: true,
-          value: escapeChar
+          value:        escapeChar,
         }
       });
     }
@@ -54,8 +54,8 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
     respond(context) {
       const matchStr = (sourceStr, offset, matcher) => {
         for (var i = 0, il = matcher.length; i < il; i++) {
-          var char1 = sourceStr.charAt(offset + i),
-              char2 = matcher.charAt(i);
+          var char1 = sourceStr.charAt(offset + i);
+          var char2 = matcher.charAt(i);
 
           if (char1 !== char2)
             return false;
@@ -64,13 +64,13 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
         return true;
       };
 
-      var opts        = this.getOptions(),
-          endMatcher  = this._endMatcher,
-          escapeChar  = this._escapeChar,
-          sourceStr   = this.getSourceAsString(),
-          offset      = this.startOffset,
-          escaped     = false,
-          value       = [];
+      var opts        = this.getOptions();
+      var endMatcher  = this._endMatcher;
+      var escapeChar  = this._escapeChar;
+      var sourceStr   = this.getSourceAsString();
+      var offset      = this.startOffset;
+      var escaped     = false;
+      var value       = [];
 
       if (opts.debugInspect)
         debugger;
@@ -83,12 +83,14 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
             value.push(char);
             escaped = false;
             offset++;
+
             continue;
           }
 
           if (char === escapeChar) {
             escaped = true;
             offset++;
+
             continue;
           }
         }
@@ -106,5 +108,5 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
 });
 
 module.exports = {
-  $SEQUENCE
+  $SEQUENCE,
 };

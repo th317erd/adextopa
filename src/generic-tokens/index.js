@@ -8,5 +8,5 @@ module.exports = Object.assign({},
   require('./group'),
   require('./loop'),
   require('./program'),
-  require('./select')
+  require('./select'),
 );

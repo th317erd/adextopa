@@ -1,6 +1,6 @@
 const {
   isType,
-  flattenArray
+  flattenArray,
 }                       = require('../utils');
 const { defineMatcher } = require('../matcher-definition');
 const { $OPTIONAL }     = require('./optional');
@@ -26,12 +26,12 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
           $PROGRAM(
             $OPTIONAL(escapeMatcher, 'Escape'),
             $NOT(endMatcher),
-            $MATCHES(/(.)/, 'Content')
-          )
+            $MATCHES(/(.)/, 'Content'),
+          ),
         ),
         endMatcher,
         {
-          debugSkip: 'all'
+          debugSkip: 'all',
         }
       );
     }
@@ -42,7 +42,7 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
         $SEQUENCE(endMatcher, escapeMatcher),
         $EQUALS(endMatcher),
         {
-          debugSkip: 'all'
+          debugSkip: 'all',
         }
       );
     }
@@ -71,29 +71,29 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
         matcher = this.getStringMatcher(startMatcher, endMatcher, escapeMatcher);
 
       Object.defineProperties(this, {
-        _matcher: {
-          writable: true,
-          enumerable: false,
+        '_matcher': {
+          writable:     true,
+          enumerable:   false,
           confiugrable: true,
-          value: matcher
+          value:        matcher,
         },
-        _startMatcher: {
-          writable: true,
-          enumerable: false,
+        '_startMatcher': {
+          writable:     true,
+          enumerable:   false,
           confiugrable: true,
-          value: startMatcher
+          value:        startMatcher,
         },
-        _endMatcher: {
-          writable: true,
-          enumerable: false,
+        '_endMatcher': {
+          writable:     true,
+          enumerable:   false,
           confiugrable: true,
-          value: endMatcher
+          value:        endMatcher,
         },
-        _escapeMatcher: {
-          writable: true,
-          enumerable: false,
+        '_escapeMatcher': {
+          writable:     true,
+          enumerable:   false,
           confiugrable: true,
-          value: escapeMatcher
+          value:        escapeMatcher,
         }
       });
     }
@@ -103,9 +103,9 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
     }
 
     respond(context) {
-      var opts    = this.getOptions(),
-          matcher = this.getMatchers(this._matcher),
-          result  = matcher.exec(this.getParser(), this.startOffset, context);
+      var opts    = this.getOptions();
+      var matcher = this.getMatchers(this._matcher);
+      var result  = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false)
         return this.fail(context);
@@ -121,18 +121,22 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
 
       this.endOffset = result.getSourceRange().end;
 
-      var resultBodyToken = result.children[1],
-          bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join(''),
-          bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
+      var resultBodyToken = result.children[1];
+      var bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join('');
+      var bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
 
       if (opts.debugInspect)
         debugger;
 
-      var token = this.successWithoutFinalize(context, this.endOffset, {
-        start:  result.children[0],
-        end:    result.children[2],
-        body:   bodyToken
-      });
+      var token = this.successWithoutFinalize(
+        context,
+        this.endOffset,
+        {
+          start:  result.children[0],
+          end:    result.children[2],
+          body:   bodyToken,
+        }
+      );
 
       return this.success(context, token);
     }
@@ -140,5 +144,5 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
 });
 
 module.exports = {
-  $GROUP
+  $GROUP,
 };

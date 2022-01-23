@@ -52,5 +52,5 @@ const $MATCHES = defineMatcher('$MATCHES', (ParentClass) => {
 });
 
 module.exports = {
-  $MATCHES
+  $MATCHES,
 };

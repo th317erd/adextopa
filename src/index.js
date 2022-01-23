@@ -1,11 +1,22 @@
-const Utils             = require('./utils');
-const SourceRange       = require('./source-range');
-const Token             = require('./token');
-const MatcherDefinition = require('./matcher-definition');
-const Parser            = require('./parser');
-const GenericTokens     = require('./generic-tokens');
+const Utils                 = require('./utils');
+const { SourceRange }       = require('./source-range');
+const { Token, SkipToken }  = require('./token');
+const {
+  getMatchers,
+  defineMatcher,
+  MatcherDefinition,
+}                           = require('./matcher-definition');
+const { Parser }            = require('./parser');
+const GenericTokens         = require('./generic-tokens');
 
-module.exports = Object.assign({
-  Utils,
+module.exports = {
+  defineMatcher,
   GenericTokens,
-}, SourceRange, Token, MatcherDefinition, Parser);
+  getMatchers,
+  MatcherDefinition,
+  Parser,
+  SkipToken,
+  SourceRange,
+  Token,
+  Utils,
+};

@@ -4,7 +4,7 @@
   "description": "Advanced Extensible Token Parser",
   "main": "src/index.js",
   "scripts": {
-    "test": "./node_modules/.bin/jasmine"
+    "test": "node ./node_modules/.bin/jasmine"
   },
   "repository": {
     "type": "git",

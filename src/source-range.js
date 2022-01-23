@@ -58,5 +58,5 @@ class SourceRange {
 isType.addType('SourceRange', (val) => (val instanceof SourceRange));
 
 module.exports = {
-  SourceRange
+  SourceRange,
 };

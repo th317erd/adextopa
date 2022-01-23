@@ -53,14 +53,11 @@ const $WS = defineMatcher('$WS', (ParentClass) => {
       if (opts.debugInspect)
         debugger;
 
-      for (var i = 0;; i++, offset++) {
+      for (var i = 0, len = sourceStr.length; offset < len; i++, offset++) {
         if (max && i >= max)
           break;
 
         var char = sourceStr.charAt(offset);
-        if (!char)
-          break;
-
         if (char === ' ' || char === '\t')
           continue;
 

@@ -7,7 +7,7 @@ const { $OPTIONAL }     = require('./optional');
 const { $NOT }          = require('./not');
 const { $MATCHES }      = require('./matches');
 const { $EQUALS }       = require('./equals');
-const { $SEQUENCE }     = require('./sequence');
+const { $UNTIL }     = require('./sequence');
 const { $LOOP }         = require('./loop');
 const { $PROGRAM }      = require('./program');
 
@@ -39,7 +39,7 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
     getStringMatcher(startMatcher, endMatcher, escapeMatcher) {
       return $PROGRAM(
         $EQUALS(startMatcher),
-        $SEQUENCE(endMatcher, escapeMatcher),
+        $UNTIL(endMatcher, escapeMatcher),
         $EQUALS(endMatcher),
         {
           debugSkip: 'all',
@@ -122,7 +122,7 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       this.endOffset = result.getSourceRange().end;
 
       var resultBodyToken = result.children[1];
-      var bodyValue       = (resultBodyToken.typeName === '$SEQUENCE') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join('');
+      var bodyValue       = (resultBodyToken.typeName === '$UNTIL') ? resultBodyToken.value : flattenArray(resultBodyToken.visit((token) => token.typeName !== '$PROGRAM', (token) => token[1])).join('');
       var bodyToken       = this.createToken(resultBodyToken.getSourceRange().clone(), { value: bodyValue });
 
       if (opts.debugInspect)

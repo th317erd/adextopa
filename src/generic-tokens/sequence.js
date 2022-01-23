@@ -1,7 +1,7 @@
 const { isType }        = require('../utils');
 const { defineMatcher } = require('../matcher-definition');
 
-const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
+const $UNTIL = defineMatcher('$UNTIL', (ParentClass) => {
   return class SequenceMatcher extends ParentClass {
     constructor(endMatcher, _escapeChar, _opts) {
       var escapeChar  = _escapeChar;
@@ -20,15 +20,15 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
     }
 
     setMatchers(endMatcher, escapeChar) {
-      if (!isType(endMatcher, 'string'))
-        throw new TypeError('$SEQUENCE::setMatcher: First argument must be instance of `string`');
+      if (!isType(endMatcher, 'string') && !isType(endMatcher, RegExp) && !isType(endMatcher, 'array'))
+        throw new TypeError('$UNTIL::setMatcher: First argument must be instance of `string`, `RegExp`, or `Array`');
 
       if (escapeChar) {
         if (!isType(escapeChar, 'string'))
-          throw new TypeError('$SEQUENCE::setMatcher: Second argument must be instance of `string`');
+          throw new TypeError('$UNTIL::setMatcher: Second argument must be instance of `string`');
 
         if (escapeChar.length !== 1)
-          throw new Error('$SEQUENCE::setMatcher: Second argument must be a string with length of 1');
+          throw new Error('$UNTIL::setMatcher: Second argument must be a string with length of 1');
       }
 
       Object.defineProperties(this, {
@@ -52,18 +52,6 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
     }
 
     respond(context) {
-      const matchStr = (sourceStr, offset, matcher) => {
-        for (var i = 0, il = matcher.length; i < il; i++) {
-          var char1 = sourceStr.charAt(offset + i);
-          var char2 = matcher.charAt(i);
-
-          if (char1 !== char2)
-            return false;
-        }
-
-        return true;
-      };
-
       var opts        = this.getOptions();
       var endMatcher  = this._endMatcher;
       var escapeChar  = this._escapeChar;
@@ -95,7 +83,7 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
           }
         }
 
-        if (matchStr(sourceStr, offset, endMatcher))
+        if (this.matches(sourceStr, offset, endMatcher))
           break;
 
         value.push(char);
@@ -108,5 +96,5 @@ const $SEQUENCE = defineMatcher('$SEQUENCE', (ParentClass) => {
 });
 
 module.exports = {
-  $SEQUENCE,
+  $UNTIL,
 };

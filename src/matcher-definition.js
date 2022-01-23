@@ -329,6 +329,37 @@ class MatcherDefinition {
 
     return errorResult;
   }
+
+  matches(sourceStr, offset, matcher) {
+    if (isType(matcher, 'string')) {
+      for (var i = 0, il = matcher.length; i < il; i++) {
+        var char1 = sourceStr.charAt(offset + i);
+        var char2 = matcher.charAt(i);
+
+        if (char1 !== char2)
+          return false;
+      }
+
+      return true;
+    } else if (isType(matcher, RegExp)) {
+      var result = matcher.lastIndex = offset;
+      if (!result || result.index !== offset)
+        return false;
+
+      return true;
+    } else if (isType(matcher, array)) {
+      for (var i = 0, il = matcher.length; i < il; i++) {
+        var item    = matcher[i];
+        var result  = this.matches(sourceStr, offset, item);
+        if (!result)
+          continue;
+
+        return item;
+      }
+
+      return false;
+    }
+  }
 }
 
 isType.addType('MatcherDefinition', (val) => (val instanceof MatcherDefinition || (val && !!val.MatcherDefinitionClass)));

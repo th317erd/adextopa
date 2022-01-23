@@ -5,7 +5,7 @@ const { $MATCHES }                = require('./matches');
 const { $NOT }                    = require('./not');
 const { $OPTIONAL }               = require('./optional');
 const { $SELECT }                 = require('./select');
-const { $SEQUENCE }               = require('./sequence');
+const { $UNTIL }               = require('./sequence');
 const { $WS }                     = require('./whitespace');
 const { LoopToken, $LOOP }        = require('./loop');
 const { ProgramToken, $PROGRAM }  = require('./program');
@@ -20,7 +20,7 @@ module.exports = {
   $OPTIONAL,
   $PROGRAM,
   $SELECT,
-  $SEQUENCE,
+  $UNTIL,
   $WS,
   LoopToken,
   ProgramToken,

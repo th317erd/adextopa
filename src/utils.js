@@ -1,3 +1,16 @@
+function clamp(value, _min = 0, _max = Infinity) {
+  var min = (min < max) ? min : max;
+  var max = (max < min) ? min : max;
+
+  if (value < min)
+    return min;
+
+  if (value > max)
+    return max;
+
+  return value;
+}
+
 function flattenArray(array) {
   var result = [];
 
@@ -66,6 +79,7 @@ function addRegExpFlags(re, _flags) {
 }
 
 module.exports = {
+  clamp,
   flattenArray,
   isValidNumber,
   isType,

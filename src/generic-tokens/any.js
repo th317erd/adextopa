@@ -64,7 +64,7 @@ const $ANY = defineMatcher('$ANY', (ParentClass) => {
     }
 
     clone(offset) {
-      return super.clone(offset);
+      return super.clone(offset, []);
     }
 
     respond(context) {

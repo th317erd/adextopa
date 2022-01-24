@@ -15,6 +15,7 @@ class LoopToken extends Token {
         },
         props
       ),
+      undefined,
       LoopToken
     );
   }
@@ -94,13 +95,14 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
           return result;
 
         if (result instanceof Token) {
-          offset = this.endOffset = result.getSourceRange().end;
+          var outputToken = result.getOutputToken();
+          offset = this.endOffset = outputToken.getSourceRange().end;
 
           if (!result.skipOutput()) {
             if (!thisToken.children)
               thisToken.children = [];
 
-            thisToken.children.push(result.getOutputToken());
+            thisToken.children.push(outputToken);
           } else {
             if (previousOffset === offset)
               break;
@@ -108,7 +110,6 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
 
           previousOffset = offset;
           thisToken.setSourceRange(this.getSourceRange());
-          thisToken.length = (thisToken.children || []).length;
 
           count++;
 

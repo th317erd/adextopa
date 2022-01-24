@@ -1,4 +1,5 @@
 const {
+  clamp,
   isType,
   isValidNumber
 }                           = require('./utils');
@@ -18,6 +19,10 @@ function getMatchers(values) {
   else
     return values.map(toMatcher);
 }
+
+function getLevelIndent(level) {
+  return (new Array(level + 1)).join('  ');
+};
 
 class MatcherDefinition {
   constructor(_opts) {
@@ -49,12 +54,109 @@ class MatcherDefinition {
     });
   }
 
-  exec(parser, _offset, _context) {
-    const getLevelIndent = (level) => {
-      return (new Array(level + 1)).join('  ');
+  logDebugInfo(context, result) {
+    const colorString = (color, _str) => {
+      var str = _str;
+      if (!str)
+        str = '<empty>';
+
+      return `\x1b[43m${str}\x1b[0m`;
+    }
+
+    var typeName  = this.getTypeName();
+    var source    = this.getSourceAsString();
+    var range     = '';
+    var logKey;
+    var status;
+    var sourceRange;
+
+    if (result instanceof Token) {
+      sourceRange = result.getSourceRange();
+      status      = (result instanceof SkipToken) ? 'SKIPPED+' : 'SUCCESS';
+    } else {
+      sourceRange = new SourceRange(this.getParser(), this.startOffset, this.endOffset);
+      if (result == null) {
+        status = 'SKIPPED';
+      } else if (result === false) {
+        status = 'FAILED';
+      } else if (result instanceof Error) {
+        status = 'ERROR';
+      }
+    }
+
+    var sourcePart    = colorString('bgYellow', source.substring(sourceRange.start, sourceRange.end));
+    var before        = source.substring(clamp(sourceRange.start - 10, 0, source.length), sourceRange.start);
+    var after         = source.substring(sourceRange.end, clamp(sourceRange.end + 10, 0, source.length));
+
+    logKey  = `[${sourceRange.start}-${sourceRange.end}]`;
+    range   = `: ${logKey}{${before}${sourcePart}${after}}`;
+
+    console.log(`${getLevelIndent(context._level)}Exited matcher ${typeName}[${status}]${range}`);
+  }
+
+  createNewContext(_context, opts) {
+    var context   = Object.create(_context || null);
+    var typeName  = this.getTypeName();
+    var count     = context[typeName] || 0;
+    var debugSkip = opts.debugSkip || context.debugSkip;
+    var debug     = (!debugSkip && (opts.debug || context.debug));
+
+    if (opts.context)
+      context = Object.assign(context, opts.context);
+
+    context._super = _context || null;
+
+    if (debugSkip === 'all' && context.debugSkip !== 'all')
+      context.debugSkip = 'all';
+
+    if (debug) {
+      context._level = (_context) ? ((_context._level || 0) + 1) : 0;
+
+      if (!context.debug)
+        context.debug = true;
+    }
+
+    const findParentContext = (_typeNames, _currentContext) => {
+      var typeNames = _typeNames;
+      if (!(typeNames instanceof Array))
+        typeNames = [ typeNames ];
+
+      var context = _currentContext;
+      if (!context)
+        context = _context;
+
+      if (typeNames.indexOf(context.typeName) >= 0)
+        return context;
+
+      if (typeNames.indexOf(context.rawTypeName) >= 0)
+        return context;
+
+      if (context._super)
+        return findParentContext(typeNames, context._super);
     };
 
-    var context     = Object.create(_context || null);
+    context[typeName]         = count + 1;
+    context.rawTypeName       = this._getTypeName();
+    context.typeName          = typeName;
+    context.findParentContext = findParentContext;
+    context.stop              = (typeName) => {
+      var context = context;
+      if (typeName)
+        context = findParentContext(typeName, context);
+
+      if (!context)
+        throw new Error(`Attempting to stop process, but no context found for ${JSON.stringify(typeName || null)}`);
+
+      if (debug)
+        console.log(`${getLevelIndent(context._level)}Parent command ${typeName} stopping as requested...`);
+
+      context.isStopped = true;
+    };
+
+    return context;
+  }
+
+  defineMatcherProperties(parser, _offset) {
     var offset      = _offset || 0;
     var sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
@@ -84,97 +186,25 @@ class MatcherDefinition {
         set:          (val) => (this._sourceRange.end = val),
       }
     });
+  }
+
+  exec(parser, offset, _context) {
+    this.defineMatcherProperties(parser, offset);
 
     try {
       var opts      = this.getOptions();
+      var context   = this.createNewContext(_context, opts);
       var typeName  = this.getTypeName();
-      var count     = context[typeName] || 0;
       var debugSkip = opts.debugSkip || context.debugSkip;
       var debug     = (!debugSkip && (opts.debug || context.debug));
-
-      context._super = _context;
-
-      if (debugSkip === 'all' && context.debugSkip !== 'all')
-        context.debugSkip = 'all';
-
-      if (debug) {
-        context._level = (_context) ? ((_context._level || 0) + 1) : 0;
-
-        if (!context.debug)
-          context.debug = true;
-      }
-
-      const findParentContext = (typeName, _currentContext) => {
-        var context = _currentContext;
-        if (!context)
-          context = _context;
-
-        if (context.typeName === typeName)
-          return context;
-
-        if (context._super)
-          return findParentContext(typeName, context._super);
-      };
-
-      context[typeName]         = count + 1;
-      context.typeName          = typeName;
-      context.findParentContext = findParentContext;
-      context.stop              = (typeName) => {
-        var context = context;
-        if (typeName)
-          context = findParentContext(typeName, context);
-
-        if (!context)
-          throw new Error('Attempting to stop process, but no context found');
-
-        if (debug)
-          console.log(`${getLevelIndent(context._level)}Parent command ${typeName} stopping as requested...`);
-
-        context.isStopped = true;
-      };
 
       if (debug && context.debugLevel > 0)
         console.log(`${getLevelIndent(context._level)}Entering matcher ${typeName}`);
 
       var result = this.respond(context);
-      var logKey;
 
-      if (debug) {
-        const colorString = (color, _str) => {
-          var str = _str;
-          if (!str)
-            str = '<empty>';
-
-          return `\x1b[43m${str}\x1b[0m`;
-        }
-
-        var status, range = '';
-
-        if (result == null) {
-          status = 'SKIPPED';
-        } else if (result === false) {
-          status = 'FAILED';
-        } else if (result instanceof Error) {
-          status = 'ERROR';
-        } else if (result instanceof Token) {
-          var source        = this.getSourceAsString();
-          var sourceRange   = result.getSourceRange();
-          var value         = result._raw;
-
-          // do we have colors?
-          if (typeof ''.bgYellow !== 'undefined')
-            value = ('' + value).bgYellow.black;
-          else
-            value = `[${value}]`;
-
-          logKey = `[${sourceRange.start}-${sourceRange.end}]`;
-
-          range = `: ${logKey}{${source.substring(sourceRange.start - 10, sourceRange.start)}${colorString('bgYellow', source.substring(sourceRange.start, sourceRange.end))}${source.substring(sourceRange.end, sourceRange.end + 10)}}`;
-          status = (result instanceof SkipToken) ? 'SKIPPED+' : 'SUCCESS';
-        }
-
-        console.log(`${getLevelIndent(context._level)}Exited matcher ${typeName}[${status}]${range}`);
-      }
+      if (debug)
+        this.logDebugInfo(context, result);
 
       return result;
     } catch (error) {
@@ -341,8 +371,8 @@ class MatcherDefinition {
       var args      = { matcher: this, context, token: argsToken, options: this.getOptions() };
       var newToken  = hook.call(this, (!extraArgs) ? args : Object.assign(args, extraArgs));
 
-      if (newToken && newToken !== token)
-        token.setOutputToken(newToken);
+      if (newToken && newToken instanceof Token && newToken !== token)
+        token.setOutputToken(newToken.clone({}, token.getSourceRange()));
 
       return token;
     } catch (e) {

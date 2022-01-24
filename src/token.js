@@ -75,10 +75,10 @@ class Token {
     }
   }
 
-  clone(props, tokenClass) {
+  clone(props, sourceRange, tokenClass) {
     var token = new (tokenClass || this.constructor)(
       this.getParser(),
-      this.getSourceRange(),
+      sourceRange || this.getSourceRange(),
       Object.assign({}, this, props),
     );
 
@@ -131,6 +131,8 @@ class Token {
 
       return child;
     });
+
+    this.length = this.children.length;
 
     return this;
   }

@@ -20,13 +20,26 @@ const $SWITCH = defineMatcher('$SWITCH', (ParentClass) => {
 
     respond(context, ...args) {
       var newContext  = Object.assign(Object.create(context), { switch: true });
-      var result      = super.respond(newContext, ...args);
+      var result      = super.respond(newContext, false, ...args);
 
       if (result instanceof Token) {
         if (result.skipOutput())
           return result;
 
-        return result.children[0];
+        if (!result.children)
+          return result;
+
+        var firstChild = result.children[0];
+        if (firstChild === false)
+          return this.fail(context, this.endOffset);
+
+        if (firstChild instanceof Error)
+          return firstChild;
+
+        if (firstChild == null)
+          return this.skip(context, this.endOffset);
+
+        return firstChild;
       }
 
       return result;

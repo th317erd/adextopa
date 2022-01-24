@@ -35,7 +35,7 @@ describe("$NOT", function() {
 
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('"this is a \\"string\\", can you believe it?"');
-      expect(result.length).toBe(3);
+      expect(result.children.length).toBe(3);
       expect(result.children[0]._raw).toBe('"');
       expect(result.children[1].length).toBe(37);
       expect(result.children[1]._raw).toBe('this is a \\"string\\", can you believe it?');

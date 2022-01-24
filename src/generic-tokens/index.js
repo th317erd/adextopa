@@ -1,8 +1,10 @@
 const { $ANY }                    = require('./any');
+const { $BREAK }                  = require('./break');
 const { $DISCARD }                = require('./discard');
 const { $ENFORCE }                = require('./enforce');
 const { $EQUALS }                 = require('./equals');
 const { $GROUP }                  = require('./group');
+const { $HALT }                   = require('./halt');
 const { $MATCHES }                = require('./matches');
 const { $NOT }                    = require('./not');
 const { $OPTIONAL }               = require('./optional');
@@ -14,10 +16,12 @@ const { ProgramToken, $PROGRAM }  = require('./program');
 
 module.exports = {
   $ANY,
+  $BREAK,
   $DISCARD,
   $ENFORCE,
   $EQUALS,
   $GROUP,
+  $HALT,
   $LOOP,
   $MATCHES,
   $NOT,

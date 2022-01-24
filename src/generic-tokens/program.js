@@ -56,7 +56,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       return super.clone(offset, this._matchers);
     }
 
-    respond(context) {
+    respond(context, remapTokenLinks) {
       var opts        = this.getOptions();
       var matchers    = this.getMatchers(this._matchers);
       var source      = this.getSourceAsString();
@@ -97,7 +97,11 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         }
 
         var matcher = matchers[i];
+
         var result  = matcher.exec(this.getParser(), this.endOffset, newContext);
+
+        if (this.getTypeName() === 'CheckNextCommandName')
+          debugger;
 
         if (result == null)
           continue;
@@ -112,20 +116,20 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           return result;
 
         if (result instanceof Token) {
-          offset = this.endOffset = result.getSourceRange().end;
+          var outputToken = result.getOutputToken();
+          offset = this.endOffset = outputToken.getSourceRange().end;
 
           var skipResult = result.skipOutput();
           if (!skipResult) {
             if (!thisToken.children)
               thisToken.children = [];
 
-            thisToken.children.push(result.getOutputToken());
+            thisToken.children.push(outputToken);
           } else {
             skipCount++;
           }
 
           thisToken.setSourceRange(this.getSourceRange());
-          thisToken.length = (thisToken.children || []).length;
 
           count++;
 
@@ -147,10 +151,10 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         if (skipCount === matchers.length)
           return this.skip(context, this.endOffset);
         else
-          return context.fail(context, this.endOffset);
+          return this.fail(context, this.endOffset);
       }
 
-      return this.success(context, thisToken.remapTokenLinks());
+      return this.success(context, (remapTokenLinks === false) ? thisToken : thisToken.remapTokenLinks());
     }
   };
 });

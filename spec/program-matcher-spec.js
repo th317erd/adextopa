@@ -10,10 +10,10 @@ describe("$PROGRAM", function() {
       var $KV     = $PROGRAM(
         $MATCHES(
           /\w+/,
-          { typeName: 'Key'}),
-          $WS,
-          $MATCHES(/=/, { typeName: 'Operator' }
+          { typeName: 'Key'}
         ),
+        $WS,
+        $MATCHES(/=/, { typeName: 'Operator' }),
         $WS,
         $MATCHES(/[^;]*/),
         ({ token }) => token.clone({}),
@@ -23,7 +23,7 @@ describe("$PROGRAM", function() {
 
       expect(result1 instanceof Token).toBe(true);
       expect(result1._raw).toBe('KEY1 =VALUE1');
-      expect(result1.length).toBe(4);
+      expect(result1.children.length).toBe(4);
     });
 
     it("should be able to match against input, stopping on first match", function() {
@@ -41,7 +41,6 @@ describe("$PROGRAM", function() {
 
       expect(result1 instanceof Token).toBe(true);
       expect(result1._raw).toBe('one');
-      expect(result1.length).toBe(1);
       expect(result1.children.length).toBe(1);
       expect(result1.children[0]._raw).toBe('one');
     });

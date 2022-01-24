@@ -1,4 +1,4 @@
-const { isType }            = require('./utils');
+const { isType, clamp }     = require('./utils');
 const { SourceRange }       = require('./source-range');
 const { Token, SkipToken }  = require('./token');
 const { getMatchers }       = require('./matcher-definition');
@@ -155,17 +155,11 @@ class Parser {
 
     const displaySourceCode = (parser, sourceRange, prefix) => {
       var sourceString  = parser.getSourceAsString();
-      var startOffset   = sourceRange.start - 10;
-      var endOffset     = sourceRange.end + 10;
+      var startOffset   = clamp(sourceRange.start - 10, 0, sourceString.length);
+      var endOffset     = clamp(sourceRange.end + 10, 0, sourceString.length);
       var before;
       var after;
       var source;
-
-      if (startOffset < 0)
-        startOffset = 0;
-
-      if (endOffset > sourceString.length)
-        endOffset = sourceString.length;
 
       before  = sourceString.substring(startOffset, sourceRange.start);
       after   = sourceString.substring(sourceRange.end, endOffset);

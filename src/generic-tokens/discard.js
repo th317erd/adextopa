@@ -52,7 +52,8 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
         return result;
 
       // "discard" by skipping this range
-      return this.skip(context, result.getSourceRange().end);
+      result.setOutputToken(this.skip(context, result.getSourceRange().end));
+      return result;
     }
   };
 });

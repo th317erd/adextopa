@@ -8,7 +8,7 @@ describe("$SWITCH", function() {
       var program = $SWITCH(
         $MATCHES(/[a-zA-Z]+/, 'Word'),
         $MATCHES(/[\d.-]+/, 'Number'),
-        $MATCHES(/\s+/, 'WhiteSpace')
+        $MATCHES(/\s+/, 'WhiteSpace'),
       );
       var matcher = $LOOP(program);
       var result  = matcher.exec(parser);

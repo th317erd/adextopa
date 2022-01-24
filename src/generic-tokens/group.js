@@ -102,13 +102,13 @@ const $GROUP = defineMatcher('$GROUP', (ParentClass) => {
       var result  = matcher.exec(this.getParser(), this.startOffset, context);
 
       if (result === false)
-        return this.fail(context);
-
-      if (result == null)
-        return this.skip(context);
+        return this.fail(context, matcher.endOffset);
 
       if (result instanceof Error)
         return result;
+
+      if (result == null)
+        return this.skip(context);
 
       if (result.skipOutput())
         return result;

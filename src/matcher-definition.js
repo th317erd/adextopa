@@ -54,7 +54,7 @@ class MatcherDefinition {
       return (new Array(level + 1)).join('  ');
     };
 
-    var context     = Object.create(_context || {});
+    var context     = Object.create(_context || null);
     var offset      = _offset || 0;
     var sourceRange = (offset instanceof SourceRange) ? offset.clone() : parser.createSourceRange(offset, offset);
 
@@ -104,7 +104,34 @@ class MatcherDefinition {
           context.debug = true;
       }
 
-      context[typeName] = count + 1;
+      const findParentContext = (typeName, _currentContext) => {
+        var context = _currentContext;
+        if (!context)
+          context = _context;
+
+        if (context.typeName === typeName)
+          return context;
+
+        if (context._super)
+          return findParentContext(typeName, context._super);
+      };
+
+      context[typeName]         = count + 1;
+      context.typeName          = typeName;
+      context.findParentContext = findParentContext;
+      context.stop              = (typeName) => {
+        var context = context;
+        if (typeName)
+          context = findParentContext(typeName, context);
+
+        if (!context)
+          throw new Error('Attempting to stop process, but no context found');
+
+        if (debug)
+          console.log(`${getLevelIndent(context._level)}Parent command ${typeName} stopping as requested...`);
+
+        context.isStopped = true;
+      };
 
       if (debug && context.debugLevel > 0)
         console.log(`${getLevelIndent(context._level)}Entering matcher ${typeName}`);
@@ -113,6 +140,14 @@ class MatcherDefinition {
       var logKey;
 
       if (debug) {
+        const colorString = (color, _str) => {
+          var str = _str;
+          if (!str)
+            str = '<empty>';
+
+          return `\x1b[43m${str}\x1b[0m`;
+        }
+
         var status, range = '';
 
         if (result == null) {
@@ -134,7 +169,7 @@ class MatcherDefinition {
 
           logKey = `[${sourceRange.start}-${sourceRange.end}]`;
 
-          range = `: ${logKey}{${source.substring(sourceRange.start - 10, sourceRange.start)}${value.bgYellow}${source.substring(sourceRange.end, sourceRange.end + 10)}}`;
+          range = `: ${logKey}{${source.substring(sourceRange.start - 10, sourceRange.start)}${colorString('bgYellow', source.substring(sourceRange.start, sourceRange.end))}${source.substring(sourceRange.end, sourceRange.end + 10)}}`;
           status = (result instanceof SkipToken) ? 'SKIPPED+' : 'SUCCESS';
         }
 
@@ -142,8 +177,8 @@ class MatcherDefinition {
       }
 
       return result;
-    } catch (e) {
-      this.error(context, e);
+    } catch (error) {
+      this.error(context, error);
     }
   }
 
@@ -228,6 +263,10 @@ class MatcherDefinition {
     return (opts.typeName || this._getTypeName());
   }
 
+  getErrorTypeName() {
+    return this.getTypeName();
+  }
+
   getSourceAsString() {
     return this.getParser().getSourceAsString();
   }
@@ -241,7 +280,21 @@ class MatcherDefinition {
     return new (tokenClass || parser.getTokenClass())(parser, sourceRange, props);
   }
 
-  fail(context) {
+  fail(context, offset) {
+    var opts    = this.getOptions();
+    var onFail  = opts.onFail;
+    if (typeof onFail === 'function') {
+      var newSourceRange = this._parser.createSourceRange(this.startOffset, (offset == null) ? this.endOffset : offset);
+
+      try {
+        var str = onFail.call(this, context, newSourceRange, this);
+        if (isType(str, 'string'))
+          throw new Error(str);
+      } catch (error) {
+        return this.error(context, error, newSourceRange);
+      }
+    }
+
     return false;
   }
 
@@ -265,7 +318,7 @@ class MatcherDefinition {
 
   success(context, endOffset, props, tokenClass) {
     var token = this.successWithoutFinalize(context, endOffset, props, tokenClass);
-    return this.finalize(context, token);
+    return (context.runFinalize === false) ? token : this.finalize(context, token);
   }
 
   finalize(context, _token) {
@@ -281,11 +334,15 @@ class MatcherDefinition {
       return token;
 
     try {
-      var args = { matcher: this, context, token };
-      token = hook.call(this, (!extraArgs) ? args : Object.assign(args, extraArgs));
-
+      var argsToken = token;
       if (token instanceof Token)
-        token.remapTokenLinks();
+        argsToken = token.remapTokenLinks().getOutputToken();
+
+      var args      = { matcher: this, context, token: argsToken, options: this.getOptions() };
+      var newToken  = hook.call(this, (!extraArgs) ? args : Object.assign(args, extraArgs));
+
+      if (newToken && newToken !== token)
+        token.setOutputToken(newToken);
 
       return token;
     } catch (e) {
@@ -293,22 +350,22 @@ class MatcherDefinition {
     }
   }
 
-  skip(context, offset) {
-    if (!isValidNumber(offset))
-      return;
-
+  skip(context, _offset) {
+    var offset = (isValidNumber(_offset)) ? _offset : this.startOffset;
     return this.createToken(this.getParser().createSourceRange(this.startOffset, offset), undefined, SkipToken);
   }
 
   warning(context, message, offset) {
-    var result = { message };
+    var result      = { message };
+    var sourceRange = (offset instanceof SourceRange) ? offset.clone() : this.getSourceRange().clone();
 
     if (isValidNumber(offset))
-      this.endOffset = offset;
+      sourceRange.end = offset;
 
-    result.parser = this.getParser();
-    result.sourceRange = this.getSourceRange().clone();
-    result.context = context;
+    result.parser       = this.getParser();
+    result.matcher      = this;
+    result.sourceRange  = sourceRange;
+    result.context      = context;
 
     this.getParser().addWarning(result);
 
@@ -317,13 +374,15 @@ class MatcherDefinition {
 
   error(context, message, offset) {
     var errorResult = (message instanceof Error) ? message : new Error(message);
+    var sourceRange = (offset instanceof SourceRange) ? offset.clone() : this.getSourceRange().clone();
 
     if (isValidNumber(offset))
-      this.endOffset = offset;
+      sourceRange.end = offset;
 
-    errorResult.parser = this.getParser();
-    errorResult.sourceRange = this.getSourceRange().clone();
-    errorResult.context = context;
+    errorResult.parser      = this.getParser();
+    errorResult.matcher     = this;
+    errorResult.sourceRange = sourceRange;
+    errorResult.context     = context;
 
     this.getParser().addError(errorResult);
 
@@ -378,9 +437,20 @@ function defineMatcher(typeName, definer, _parent = MatcherDefinition) {
 
     creatorScope.name = creatorScope.displayName = typeName;
     creatorScope.MatcherDefinitionClass = MatcherDefinitionClass;
+
     creatorScope.exec = function(...args) {
       var instance = creatorScope();
       return instance.exec(...args);
+    };
+
+    creatorScope.getTypeName = function() {
+      var instance = creatorScope();
+      return instance.getTypeName();
+    };
+
+    creatorScope.getErrorTypeName = function() {
+      var instance = creatorScope();
+      return instance.getErrorTypeName();
     };
 
     return creatorScope;

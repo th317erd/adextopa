@@ -1,4 +1,4 @@
-const { Parser, Token, GenericTokens } = require('./lib');
+const { Parser, Token, SkipToken, GenericTokens } = require('./lib');
 const { $NOT, $LOOP, $PROGRAM, $OPTIONAL, $MATCHES } = GenericTokens;
 
 describe("$NOT", function() {
@@ -12,7 +12,8 @@ describe("$NOT", function() {
       expect(result).toBe(false);
 
       result = matcher2.exec(parser);
-      expect(result).toBe(undefined);
+      expect(result instanceof SkipToken).toBe(true);
+      expect(result._raw).toBe('');
     });
 
     it("should be able to match against input", function() {

@@ -1,4 +1,4 @@
-const { Parser, Token, GenericTokens } = require('./lib');
+const { Parser, Token, SkipToken, GenericTokens } = require('./lib');
 const { $OPTIONAL, $EQUALS } = GenericTokens;
 
 describe("$OPTIONAL", function() {
@@ -18,7 +18,8 @@ describe("$OPTIONAL", function() {
       var matcher = $OPTIONAL($EQUALS('something else'));
       var result  = matcher.exec(parser);
 
-      expect(result).toBe(undefined);
+      expect(result instanceof SkipToken).toBe(true);
+      expect(result._raw).toBe('');
     });
   });
 });

@@ -18,8 +18,9 @@ const $SWITCH = defineMatcher('$SWITCH', (ParentClass) => {
       super(...superArgs);
     }
 
-    respond(...args) {
-      var result = super.respond(...args);
+    respond(context, ...args) {
+      var newContext  = Object.assign(Object.create(context), { switch: true });
+      var result      = super.respond(newContext, ...args);
 
       if (result instanceof Token) {
         if (result.skipOutput())

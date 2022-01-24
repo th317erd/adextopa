@@ -30,18 +30,19 @@ const $OPTIONAL = defineMatcher('$OPTIONAL', (ParentClass) => {
     }
 
     respond(context) {
-      var opts    = this.getOptions();
-      var matcher = this.getMatchers(this._matcher);
-      var result  = matcher.exec(this.getParser(), this.getSourceRange(), context);
+      var opts        = this.getOptions();
+      var matcher     = this.getMatchers(this._matcher);
+      var newContext  = Object.assign(Object.create(context), { optional: true });
+      var result      = matcher.exec(this.getParser(), this.getSourceRange(), newContext);
 
       if (opts.debugInspect)
         debugger;
 
-      if (!result || result === false)
-        return this.skip(context);
-
       if (result instanceof Error)
         return result;
+
+      if (!result || result === false)
+        return this.skip(context);
 
       if (result.skipOutput())
         return result;

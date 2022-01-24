@@ -7,9 +7,16 @@ class LoopToken extends Token {
     var props     = _props || {};
     var children  = props.children || this.children || [];
 
-    return super.clone(Object.assign({}, {
-      '_length': children.length,
-    }, props));
+    return super.clone(
+      Object.assign(
+        {},
+        {
+          '_length': children.length,
+        },
+        props
+      ),
+      LoopToken
+    );
   }
 }
 
@@ -38,23 +45,25 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
     }
 
     respond(context) {
-      var opts        = this.getOptions();
-      var matcher     = this.getMatchers(this._matcher);
-      var source      = this.getSourceAsString();
-      var min         = opts.min || 1;
-      var max         = opts.max || Infinity;
-      var count       = 0;
-      var parser      = this.getParser();
-      var offset      = this.startOffset;
-      var thisToken   = this.createToken(
+      var opts            = this.getOptions();
+      var matcher         = this.getMatchers(this._matcher);
+      var source          = this.getSourceAsString();
+      var min             = opts.min || 1;
+      var max             = opts.max || Infinity;
+      var count           = 0;
+      var parser          = this.getParser();
+      var offset          = this.startOffset;
+      var previousOffset  = offset;
+      var thisToken       = this.createToken(
         this.getSourceRange(),
         {
           'typeName': this.getTypeName(),
           '_length':  0,
           'children': [],
         },
-        LoopToken
+        LoopToken,
       );
+      var newContext  = Object.assign(Object.create(context), { loop: thisToken });
 
       context.parent = thisToken;
 
@@ -64,12 +73,15 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
         debugger;
 
       while(count < max) {
+        if (context.isStopped)
+          break;
+
         if (typeof opts.optimize === 'function') {
-          if (this.callHook('optimize', context, thisToken, { source, offset, count }) === false)
+          if (this.callHook('optimize', newContext, thisToken, { source, offset, count }) === false)
             break;
         }
 
-        var result = matcher.exec(parser, offset, context);
+        var result = matcher.exec(parser, offset, newContext);
 
         // We break on skipping... because skipping isn't allowed in a loop
         if (result == null || result === false)
@@ -88,9 +100,13 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
             if (!thisToken.children)
               thisToken.children = [];
 
-            thisToken.children.push(result);
+            thisToken.children.push(result.getOutputToken());
+          } else {
+            if (previousOffset === offset)
+              break;
           }
 
+          previousOffset = offset;
           thisToken.setSourceRange(this.getSourceRange());
           thisToken.length = (thisToken.children || []).length;
 
@@ -104,8 +120,8 @@ const $LOOP = defineMatcher('$LOOP', (ParentClass) => {
 
       thisToken = this.callHook('after', context, thisToken);
 
-      if (count < min)
-        return this.fail(context);
+      if (count < min || this.startOffset === this.endOffset)
+        return this.fail(context, this.endOffset);
 
       if ((thisToken.children || []).length === 0)
         return this.skip(context, this.endOffset);

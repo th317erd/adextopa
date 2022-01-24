@@ -1,7 +1,7 @@
-const { isType }      = require('./utils');
-const { SourceRange } = require('./source-range');
-const { Token }       = require('./token');
-const { getMatchers } = require('./matcher-definition');
+const { isType }            = require('./utils');
+const { SourceRange }       = require('./source-range');
+const { Token, SkipToken }  = require('./token');
+const { getMatchers }       = require('./matcher-definition');
 
 const VERSION = '0.1.0';
 
@@ -144,6 +144,96 @@ class Parser {
     };
   }
 
+  formatErrorMessage(error) {
+    const generateStringOfLength = (len, char = ' ') => {
+      var parts = new Array(len);
+      for (var i = 0; i < len; i++)
+        parts[i] = char;
+
+      return parts.join('');
+    };
+
+    const displaySourceCode = (parser, sourceRange, prefix) => {
+      var sourceString  = parser.getSourceAsString();
+      var startOffset   = sourceRange.start - 10;
+      var endOffset     = sourceRange.end + 10;
+      var before;
+      var after;
+      var source;
+
+      if (startOffset < 0)
+        startOffset = 0;
+
+      if (endOffset > sourceString.length)
+        endOffset = sourceString.length;
+
+      before  = sourceString.substring(startOffset, sourceRange.start);
+      after   = sourceString.substring(sourceRange.end, endOffset);
+      source  = sourceString.substring(sourceRange.start, sourceRange.end);
+
+      return `...${before}${source}${after}...\n${generateStringOfLength(prefix.length + before.length + 3 + ((source.length) ? 0 : -1))}${generateStringOfLength((source.length) ? source.length : 1, '^')}`;
+    };
+
+    var {
+      message,
+      parser,
+      sourceRange,
+    } = error;
+
+    if (!parser || !sourceRange)
+      return message;
+
+    var {
+      startLine,
+      endLine,
+      startColumn,
+      endColumn,
+    } = this.getLinesAndColumnsFromRange(parser.getSourceAsString(), sourceRange);
+
+    var lineStr   = (startLine === endLine) ? `[${startLine}]` : `[${startLine}-${endLine}]`;
+    var columnStr = (startColumn === endColumn) ? `[${startColumn}]` : `[${startColumn}-${endColumn}]`;
+    var prefix    = `${message}:${lineStr}${columnStr}: `;
+
+    return `${prefix}${displaySourceCode(parser, sourceRange, prefix)}`;
+  }
+
+  formatErrors(_error) {
+    var error = _error;
+    if (error instanceof Error && !error.errors)
+      return [ `${error.message}\n${error.stack}` ];
+
+    var errors = error.errors || error;
+    if (!(errors instanceof Array))
+      errors = [ errors ];
+
+    var newErrors = [];
+
+    for (var i = 0, il = errors.length; i < il; i++) {
+      error = errors[i];
+
+      var {
+        message,
+        parser,
+        sourceRange,
+      } = error;
+
+      if (parser && sourceRange)
+        message = this.formatErrorMessage(error);
+
+      newErrors.push(message);
+    }
+
+    return newErrors;
+  }
+
+  displayErrors(_errors) {
+    var errors = this.formatErrors(_errors);
+    for (var i = 0, il = errors.length; i < il; i++) {
+      var error = errors[i];
+      console.error(error);
+    }
+  }
+
   tokenize(matcher, context) {
     var opts          = this.getOptions();
     var startContext  = Object.assign(
@@ -156,11 +246,31 @@ class Parser {
       context || {},
     );
 
+    this._errors    = [];
+    this._warnings  = [];
+
     var token         = getMatchers(matcher).exec(this, 0, startContext);
     var errors        = this.getErrors();
 
-    if (errors.length > 0)
-      throw new Error('Parsing Error');
+    if (errors.length > 0) {
+      var error = new Error('Parsing Error');
+
+      error.parser    = this;
+      error.matcher   = matcher;
+      error.errors    = errors;
+      error.warnings  = this.getWarnings();
+
+      throw error;
+    }
+
+    if (token instanceof Token)
+      token = token.getOutputToken();
+
+    if (token instanceof SkipToken)
+      return;
+
+    if (token instanceof Token)
+      return token.remapTokenLinks();
 
     return token;
   }

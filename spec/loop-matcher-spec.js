@@ -73,11 +73,11 @@ describe("$LOOP", function() {
         return token.clone({
           typeName: 'Words',
           words: token.children.map((token) => token.children[0]._raw),
-          token
+          token,
         });
       });
 
-      var result = matcher.exec(parser);
+      var result = parser.tokenize(matcher);
 
       expect(result instanceof Token).toBe(true);
       expect(result._raw).toBe('testing token matching');

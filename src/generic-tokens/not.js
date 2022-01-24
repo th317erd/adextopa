@@ -9,6 +9,13 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
       this.setMatcher(matcher);
     }
 
+    getErrorTypeName() {
+      if (!this._matcher)
+        return this.getTypeName();
+
+      return `NOT ${this._matcher.getTypeName()}`;
+    }
+
     setMatcher(matcher) {
       if (!isType(matcher, 'MatcherDefinition'))
         throw new TypeError('$NOT::setMatcher: First argument must be instance of `MatcherDefinition`');
@@ -40,7 +47,7 @@ const $NOT = defineMatcher('$NOT', (ParentClass) => {
         return result;
 
       // fail on valid match
-      return this.fail(context);
+      return this.fail(context, result.getSourceRange().end);
     }
   };
 });

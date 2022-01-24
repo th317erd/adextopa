@@ -39,7 +39,7 @@ const $EQUALS = defineMatcher('$EQUALS', (ParentClass) => {
         var char2 = matcher.charAt(i);
 
         if (char1 !== char2)
-          return this.fail(context);
+          return this.fail(context, offset + i);
       }
 
       return this.success(context, this.startOffset + matcher.length, { value: matcher });

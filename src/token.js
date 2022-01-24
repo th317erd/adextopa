@@ -56,7 +56,13 @@ class Token {
         configurable: true,
         get: () =>    (sourceRange && sourceRange.value),
         set: () =>    {}, // noop
-      }
+      },
+      '_outputToken': {
+        writable:     true,
+        enumerable:   false,
+        configurable: true,
+        value:        null,
+      },
     };
 
     Object.defineProperties(this, reservedProperties);
@@ -86,7 +92,9 @@ class Token {
       return this;
 
     var previousSibling = null;
-    this.children = (this.children || []).map((child) => {
+    this.children = (this.children || []).filter((child) => !(child instanceof SkipToken)).map((_child) => {
+      var child = _child.getOutputToken();
+
       if (previousSibling) {
         Object.defineProperties(previousSibling, {
           'nextSibling': {
@@ -147,6 +155,14 @@ class Token {
 
   getRawValue() {
     return this._raw;
+  }
+
+  getOutputToken() {
+    return this._outputToken || this;
+  }
+
+  setOutputToken(token) {
+    this._outputToken = token;
   }
 
   skipOutput() {

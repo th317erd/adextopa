@@ -1,5 +1,5 @@
 const { isType, isValidNumber } = require('../utils');
-const { Token }                 = require('../token');
+const { Token, SkipToken }      = require('../token');
 const { defineMatcher }         = require('../matcher-definition');
 
 class ProgramToken extends Token {
@@ -62,6 +62,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       var source      = this.getSourceAsString();
       var offset      = this.startOffset;
       var count       = 0;
+      var skipCount   = 0;
       var thisToken   = this.createToken(
         this.getSourceRange(),
         {
@@ -69,8 +70,9 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
           _length:  0,
           children: []
         },
-        ProgramToken
+        ProgramToken,
       );
+      var newContext  = Object.assign(Object.create(context), { program: thisToken });
       var i;
       var il;
 
@@ -82,8 +84,11 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         debugger;
 
       for (i = 0, il = matchers.length; i < il; i++) {
+        if (context.isStopped)
+          break;
+
         if (typeof opts.optimize === 'function') {
-          var result = this.callHook('optimize', context, thisToken, { source, offset, count, index: i });
+          var result = this.callHook('optimize', newContext, thisToken, { source, offset, count, index: i });
           if (result === false)
             break;
 
@@ -92,7 +97,7 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
         }
 
         var matcher = matchers[i];
-        var result  = matcher.exec(this.getParser(), this.endOffset, context);
+        var result  = matcher.exec(this.getParser(), this.endOffset, newContext);
 
         if (result == null)
           continue;
@@ -114,7 +119,9 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
             if (!thisToken.children)
               thisToken.children = [];
 
-            thisToken.children.push(result);
+            thisToken.children.push(result.getOutputToken());
+          } else {
+            skipCount++;
           }
 
           thisToken.setSourceRange(this.getSourceRange());
@@ -134,13 +141,14 @@ const $PROGRAM = defineMatcher('$PROGRAM', (ParentClass) => {
       thisToken = this.callHook('after', context, thisToken);
 
       if (!opts.stopOnFirstMatch && i < matchers.length)
-        return this.fail(context);
+        return this.fail(context, this.endOffset);
 
-      if (this.startOffset === this.endOffset || count === 0)
-        return this.fail(context);
-
-      if ((thisToken.children || []).length === 0)
-        return this.skip(context, this.endOffset);
+      if ((thisToken.children || []).length === 0) {
+        if (skipCount === matchers.length)
+          return this.skip(context, this.endOffset);
+        else
+          return context.fail(context, this.endOffset);
+      }
 
       return this.success(context, thisToken.remapTokenLinks());
     }

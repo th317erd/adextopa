@@ -31,15 +31,16 @@ const $DISCARD = defineMatcher('$DISCARD', (ParentClass) => {
     }
 
     respond(context) {
-      var opts      = this.getOptions();
-      var matcher   = this.getMatchers(this._matcher);
-      var result    = matcher.exec(this.getParser(), this.startOffset, context);
+      var opts        = this.getOptions();
+      var matcher     = this.getMatchers(this._matcher);
+      var newContext  = Object.assign(Object.create(context), { discard: true });
+      var result      = matcher.exec(this.getParser(), this.startOffset, newContext);
 
       if (opts.debugInspect)
         debugger;
 
       if (result === false)
-        return this.fail(context);
+        return this.fail(context, matcher.endOffset);
 
       if (result instanceof Error)
         return result;

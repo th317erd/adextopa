@@ -1,37 +1,39 @@
 {
   "name": "adextopa",
-  "version": "0.1.0",
-  "description": "Advanced Extensible Token Parser",
-  "main": "src/index.js",
+  "version": "0.0.1",
+  "description": "ADvanced EXtensible TOken PArser",
+  "main": "lib/index",
+  "type": "module",
   "scripts": {
-    "test": "node ./node_modules/.bin/jasmine"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/th317erd/adextopa.git"
+    "coverage": "clear ; node ./node_modules/.bin/nyc ./node_modules/.bin/jasmine",
+    "test": "node ./node_modules/.bin/jasmine",
+    "test-debug": "node --inspect-brk ./node_modules/.bin/jasmine",
+    "test-watch": "watch 'clear ; node ./node_modules/.bin/jasmine' . --wait=2 --interval=1"
   },
   "keywords": [
-    "programming",
-    "scripting",
-    "language",
+    "token",
     "tokenizer",
-    "parser",
-    "compiler",
-    "pattern",
-    "patterns",
-    "parsing",
-    "ast",
-    "syntax",
-    "tree",
-    "regexp"
+    "scripting",
+    "pattern"
   ],
   "author": "Wyatt Greenway",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/th317erd/adextopa/issues"
-  },
-  "homepage": "https://github.com/th317erd/adextopa#readme",
   "devDependencies": {
-    "jasmine": "^4.0.2"
+    "@spothero/eslint-plugin-spothero": "github:spothero/eslint-plugin-spothero",
+    "colors": "^1.4.0",
+    "diff": "^5.1.0",
+    "eslint": "^8.52.0",
+    "jasmine": "^5.1.0",
+    "nyc": "^15.1.0"
+  },
+  "nyc": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "exclude": [
+      "spec/**",
+      "lib/proxy-class/proxy-class.js"
+    ]
   }
 }

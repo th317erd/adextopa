@@ -21,7 +21,7 @@ describe('PinMatcher', () => {
     parser = new Parser({ source: 'Test World' });
   });
 
-  fit('works', async () => {
+  it('works', async () => {
     const Word = Matches('Word', /\w+/);
 
     let result = await parser.tokenize(
@@ -30,9 +30,8 @@ describe('PinMatcher', () => {
         Word,
         Pin(Fetch('Start'), Word),
       ),
-      true,
     );
 
-    expect(snapshot(result, true)).toBe('6756d0561ea04a5b9b6205e9b3e7ed6c');
+    expect(snapshot(result)).toBe('6756d0561ea04a5b9b6205e9b3e7ed6c');
   });
 });

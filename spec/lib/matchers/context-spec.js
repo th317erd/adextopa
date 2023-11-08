@@ -39,6 +39,8 @@ describe('ContextMatcher', () => {
   it('can reference other matchers', async () => {
     parser = new Parser({ source: 'Hello World' });
 
+    // Pin('Name', Matches('Word', /\w+/));
+
     let result = await parser.tokenize(
       Program(
         Matches('Word', /\w+/),

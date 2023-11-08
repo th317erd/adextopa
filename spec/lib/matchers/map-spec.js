@@ -28,6 +28,7 @@ describe('MapMatcher', () => {
         value.capturedRange.end = value.matchedRange.end = source.length;
         value.capturedValue = source;
         value.matchedValue = source;
+        value.value = source;
         value.name = 'SameRandomName';
 
         return result;

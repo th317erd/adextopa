@@ -71,7 +71,7 @@ module.exports = {
     'no-labels':                              'error',
     'no-lone-blocks':                         'warn',
     'no-loop-func':                           0,
-    'no-magic-numbers':                       [ 'warn', { ignoreArrayIndexes: true, ignoreDefaultValues: true, ignore: [ -1, 0, 1, 2, 16, 32, 64, 128, 256, 1024, 2048 ] } ],
+    'no-magic-numbers':                       [ 'warn', { ignoreArrayIndexes: true, ignoreDefaultValues: true, ignore: [ -1, 0, 1, 2, 3, 4, 16, 32, 64, 128, 256, 1024, 2048 ] } ],
     'no-nested-ternary':                      'error',
     'no-param-reassign':                      'error',
     'no-promise-executor-return':             'error',

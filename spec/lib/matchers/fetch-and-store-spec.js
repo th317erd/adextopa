@@ -12,6 +12,7 @@ const {
   Equals,
   Fetch,
   Store,
+  Switch,
 } = Matchers;
 
 describe('Fetch and Store', () => {
@@ -34,17 +35,27 @@ describe('Fetch and Store', () => {
     expect(snapshot(result)).toBe('49a9b09a6ebb8f5d6d6092f2d0be5080');
   });
 
-  // it('works with tokens', async () => {
-  //   parser = new Parser({ source: 'Testing Derp' });
+  it('works with tokens', async () => {
+    parser = new Parser({ source: 'Testing Derp' });
 
-  //   let result = await parser.tokenize(
-  //     Program('Program',
-  //       Store('Value', 'Testing'),
-  //       Store('CapturedValue', Equals('First', Fetch('Value'))),
-  //       Fetch('CapturedValue'),
-  //     ),
-  //   );
+    let result = await parser.tokenize(
+      Program('Program',
+        Store('Value', 'Testing'),
+        Store('CapturedValue', Equals('First', Fetch('Value'))),
+        Fetch('CapturedValue'),
+      ),
+    );
 
-  //   expect(snapshot(result, true)).toBe('49a9b09a6ebb8f5d6d6092f2d0be5080');
-  // });
+    expect(snapshot(result)).toBe('0e35bd56d01414e7044eac2354b1b6f5');
+  });
+
+  it('works with current scope', async () => {
+    let result = await parser.tokenize(
+      Program('Program',
+        Switch(Fetch('_')),
+      ),
+    );
+
+    expect(snapshot(result)).toBe('cbe03a102145abf7cd76103d1c7c3dec');
+  });
 });

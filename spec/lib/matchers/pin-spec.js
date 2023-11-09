@@ -9,7 +9,7 @@ import {
 
 const {
   Program,
-  Fetch,
+  Equals,
   Matches,
   Pin,
 } = Matchers;
@@ -24,14 +24,25 @@ describe('PinMatcher', () => {
   it('works', async () => {
     const Word = Matches('Word', /\w+/);
 
+    // Here we get a success, even though
+    // we only end up matching the range 'Test '.
+    // This is because the pin never moves
+    // the cursor, and so even though the
+    // match is successful, the match is
+    // discarded, as though it didn't
+    // happen.
+
     let result = await parser.tokenize(
       Program(
-        Pin('Start'),
         Word,
-        Pin(Fetch('Start'), Word),
+        Equals(' '),
+        Pin(Word),
       ),
     );
 
-    expect(snapshot(result)).toBe('6756d0561ea04a5b9b6205e9b3e7ed6c');
+    expect(snapshot(result)).toBe('066e3b4611242c308f76b672e8fecc2e');
   });
+
+  // it('works with seek', async () => {
+  // });
 });

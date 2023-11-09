@@ -11,8 +11,6 @@ const {
   Context,
   Fetch,
   Equals,
-  Matches,
-  Program,
 } = Matchers;
 
 describe('ContextMatcher', () => {
@@ -34,21 +32,5 @@ describe('ContextMatcher', () => {
     );
 
     expect(snapshot(result)).toBe('5a43700520e4e2a32a90b9148b547d9b');
-  });
-
-  it('can reference other matchers', async () => {
-    parser = new Parser({ source: 'Hello World' });
-
-    // Pin('Name', Matches('Word', /\w+/));
-
-    let result = await parser.tokenize(
-      Program(
-        Matches('Word', /\w+/),
-        Matches(/\s+/),
-        Fetch('Word'),
-      ),
-    );
-
-    expect(snapshot(result)).toBe('37174451a80f5d5a2ce6cc7d41d46505');
   });
 });

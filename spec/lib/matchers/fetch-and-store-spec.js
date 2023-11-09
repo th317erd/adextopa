@@ -24,8 +24,8 @@ describe('Fetch and Store', () => {
   it('works', async () => {
     let result = await parser.tokenize(
       Program('Program',
-        Store('Matcher', 'Testing'),
-        Store('CapturedValue', Equals('First', Fetch('Matcher'))),
+        Store('Value', 'Testing'),
+        Store('CapturedValue', Equals('First', Fetch('Value'))),
         Equals('Space', ' '),
         Equals('Second', Fetch('CapturedValue')),
       ),
@@ -33,4 +33,18 @@ describe('Fetch and Store', () => {
 
     expect(snapshot(result)).toBe('49a9b09a6ebb8f5d6d6092f2d0be5080');
   });
+
+  // it('works with tokens', async () => {
+  //   parser = new Parser({ source: 'Testing Derp' });
+
+  //   let result = await parser.tokenize(
+  //     Program('Program',
+  //       Store('Value', 'Testing'),
+  //       Store('CapturedValue', Equals('First', Fetch('Value'))),
+  //       Fetch('CapturedValue'),
+  //     ),
+  //   );
+
+  //   expect(snapshot(result, true)).toBe('49a9b09a6ebb8f5d6d6092f2d0be5080');
+  // });
 });

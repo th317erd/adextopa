@@ -39,6 +39,6 @@ describe('ScriptV1CommentMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('1e6b85196497051d7bc3ebe6ce2f8c6c');
+    expect(snapshot(result)).toBe('9ee5e093cc2bc8ff41d967770cd2f5f1');
   });
 });

@@ -36,6 +36,6 @@ describe('ProxyChildrenMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('1e46aad2fac9a49823437994cba4dc4c');
+    expect(snapshot(result)).toBe('f7bfdb425c5e3867274c6dc8e36cb73f');
   });
 });

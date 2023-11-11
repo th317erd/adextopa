@@ -31,6 +31,6 @@ describe('OptionalMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('6756d0561ea04a5b9b6205e9b3e7ed6c');
+    expect(snapshot(result)).toBe('1aed42ed7236d48605e88fa02a0ef6d2');
   });
 });

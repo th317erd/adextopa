@@ -35,7 +35,7 @@ describe('LoopMatcher', () => {
       Loop('TestProgram', SpaceOrNumber),
     );
 
-    expect(snapshot(result)).toBe('cd1290421c814ace91ee31dc6efb22b4');
+    expect(snapshot(result)).toBe('6433491943b37f3f3a98773388e56e72');
   });
 
   it('can target named loops', async () => {
@@ -58,7 +58,7 @@ describe('LoopMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('09e2961bc5d3cdac8127f83dfb11dff6');
+    expect(snapshot(result)).toBe('be56974fa2ec9730295549350e306e7f');
   });
 
   it('works with compound loops', async () => {
@@ -79,6 +79,6 @@ describe('LoopMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('f131479e79c7753467b35b2a009a6a8f');
+    expect(snapshot(result)).toBe('5eab312292c63bbfce5d732803ab8bd6');
   });
 });

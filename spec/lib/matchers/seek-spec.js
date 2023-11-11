@@ -13,8 +13,9 @@ const {
   Program,
   Equals,
   Matches,
-  Pin,
   Seek,
+  Store,
+  Fetch,
 } = Matchers;
 
 describe('SeekMatcher', () => {
@@ -105,5 +106,24 @@ describe('SeekMatcher', () => {
       context.range.end = 4;
       expect(p('-0:')).toBe('8b923e85b4c0ec4e7babb5145c9b304a');
     });
+  });
+
+  it('works', async () => {
+    const Word = Matches(/\w+/);
+
+    let result = await parser.tokenize(
+      Program(
+        Store('Location', Fetch('@.range')),
+        Word,
+        Equals(' '),
+        Seek(
+          Fetch('Location'),
+          Word,
+        ),
+        Word,
+      ),
+    );
+
+    expect(snapshot(result)).toBe('b05c9d2884c7e628730262b9ca487f47');
   });
 });

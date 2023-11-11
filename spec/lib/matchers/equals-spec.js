@@ -20,11 +20,11 @@ describe('EqualsMatcher', () => {
 
   it('works', async () => {
     let result = await parser.tokenize(Equals('Test'));
-    expect(snapshot(result)).toBe('5a43700520e4e2a32a90b9148b547d9b');
+    expect(snapshot(result)).toBe('c46b6e1121dd058680231f1ef51dd7aa');
   });
 
   it('can be given a custom name', async () => {
     let result = await parser.tokenize(Equals('TestToken', 'Test 1234'));
-    expect(snapshot(result)).toBe('750f26143339087ab042468da9346464');
+    expect(snapshot(result)).toBe('f349f22f0dddd2f0db1c828524465000');
   });
 });

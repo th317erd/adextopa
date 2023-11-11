@@ -21,6 +21,6 @@ describe('SequenceMatcher', () => {
   it('works', async () => {
     let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\'));
 
-    expect(snapshot(result)).toBe('6f32f3b119fa04a5c44f96711e0e3a25');
+    expect(snapshot(result)).toBe('44019c5ef7994a32522cb5fb6ccb6fa2');
   });
 });

@@ -35,7 +35,7 @@ describe('LoopMatcher', () => {
       Loop('TestProgram', NameOrNumber),
     );
 
-    expect(snapshot(result)).toBe('6756d0561ea04a5b9b6205e9b3e7ed6c');
+    expect(snapshot(result)).toBe('1aed42ed7236d48605e88fa02a0ef6d2');
   });
 
   it('can iterate', async () => {
@@ -48,6 +48,6 @@ describe('LoopMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('9c186424441173f916bef346f290cda4');
+    expect(snapshot(result)).toBe('82aceee0650ad3e0ad338133c3cdaa2a');
   });
 });

@@ -34,6 +34,6 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('49a9b09a6ebb8f5d6d6092f2d0be5080');
+    expect(snapshot(result)).toBe('8777cd8588aa92513c85f31bb2f760fb');
   });
 });

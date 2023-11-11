@@ -29,6 +29,6 @@ describe('DiscardMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('797dea4eacf7b178c6ba00e40fa9b46f');
+    expect(snapshot(result)).toBe('547e9b139955028b8dd25128d8a6635b');
   });
 });

@@ -32,7 +32,7 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('49a9b09a6ebb8f5d6d6092f2d0be5080');
+    expect(snapshot(result)).toBe('8777cd8588aa92513c85f31bb2f760fb');
   });
 
   it('works with tokens', async () => {
@@ -46,7 +46,7 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('0e35bd56d01414e7044eac2354b1b6f5');
+    expect(snapshot(result)).toBe('c43092e85460fe5f3cd0cc5cca87ef1e');
   });
 
   it('works with current scope', async () => {
@@ -56,6 +56,6 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('cbe03a102145abf7cd76103d1c7c3dec');
+    expect(snapshot(result)).toBe('d0264f86745aa20804ba5f465e113615');
   });
 });

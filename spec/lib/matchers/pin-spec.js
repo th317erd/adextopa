@@ -40,7 +40,7 @@ describe('PinMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('066e3b4611242c308f76b672e8fecc2e');
+    expect(snapshot(result)).toBe('077aaed958566de40a6189502ee7383e');
   });
 
   // it('works with seek', async () => {

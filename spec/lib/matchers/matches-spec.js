@@ -20,11 +20,11 @@ describe('MatchesMatcher', () => {
 
   it('works', async () => {
     let result = await parser.tokenize(Matches(/test/i));
-    expect(snapshot(result)).toBe('86d51851d480a0abc646b5b1b9eec724');
+    expect(snapshot(result)).toBe('b1acbb4cca4956a4f3ad3619f960fdd7');
   });
 
   it('can be given a custom name', async () => {
     let result = await parser.tokenize(Matches('TestToken', /test\s+\d+/i));
-    expect(snapshot(result)).toBe('750f26143339087ab042468da9346464');
+    expect(snapshot(result)).toBe('f349f22f0dddd2f0db1c828524465000');
   });
 });

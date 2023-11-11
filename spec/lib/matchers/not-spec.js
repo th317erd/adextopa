@@ -27,7 +27,7 @@ describe('NotMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('f422a58ba23e3efd2976e9dfdb155799');
+    expect(snapshot(result)).toBe('ec849c2b4452f1c7538f193a18f1d244');
 
     result = await parser.tokenize(
       Program('TestProgram',
@@ -35,6 +35,6 @@ describe('NotMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('c64811628b75d72925aca4f18b1f6f53');
+    expect(snapshot(result)).toBe('f35efd3f29e60f5bdc76617bdf08f920');
   });
 });

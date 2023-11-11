@@ -35,6 +35,6 @@ describe('MapMatcher', () => {
       }),
     );
 
-    expect(snapshot(result)).toBe('fdb2e4e70c092b07e5384c965b7ad784');
+    expect(snapshot(result)).toBe('ba2b62168a28c2df1cb51ac2db5aab69');
   });
 });

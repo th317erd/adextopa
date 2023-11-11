@@ -35,6 +35,6 @@ describe('ErrorMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('91527feeb205ff0b8fcbb544d5b447c7');
+    expect(snapshot(result)).toBe('cda3f47c8ff1c8a40500f226674903b7');
   });
 });

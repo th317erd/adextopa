@@ -31,6 +31,6 @@ describe('ContextMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('5a43700520e4e2a32a90b9148b547d9b');
+    expect(snapshot(result)).toBe('c46b6e1121dd058680231f1ef51dd7aa');
   });
 });

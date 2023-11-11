@@ -126,4 +126,50 @@ describe('SeekMatcher', () => {
 
     expect(snapshot(result)).toBe('b05c9d2884c7e628730262b9ca487f47');
   });
+
+  it('works without a range', async () => {
+    const Word = Matches(/\w+/);
+
+    let result = await parser.tokenize(
+      Program(
+        Word,
+        Equals(' '),
+        Seek(Word),
+      ),
+    );
+
+    expect(snapshot(result)).toBe('2da7e921b9f6255485556d615d74492a');
+  });
+
+  it('works with only a range', async () => {
+    const Word = Matches(/\w+/);
+
+    let result = await parser.tokenize(
+      Program(
+        Store('Location', Fetch('@.range')),
+        Word,
+        Equals(' '),
+        Seek(Fetch('Location')),
+        Word,
+      ),
+    );
+
+    expect(snapshot(result)).toBe('617a1f4112eaf49f5e0e1b70ac0941f8');
+  });
+
+  it('works with strings for names', async () => {
+    const Word = Matches(/\w+/);
+
+    let result = await parser.tokenize(
+      Program(
+        Store('Location', Fetch('@.range')),
+        Word,
+        Equals(' '),
+        Seek('Location'),
+        Word,
+      ),
+    );
+
+    expect(snapshot(result)).toBe('617a1f4112eaf49f5e0e1b70ac0941f8');
+  });
 });

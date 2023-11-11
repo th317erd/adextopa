@@ -43,6 +43,17 @@ describe('PinMatcher', () => {
     expect(snapshot(result)).toBe('077aaed958566de40a6189502ee7383e');
   });
 
-  // it('works with seek', async () => {
-  // });
+  it('works when match fails', async () => {
+    const Word = Matches('Word', /\w+/);
+
+    let result = await parser.tokenize(
+      Program(
+        Word,
+        Equals(' '),
+        Pin(Equals('Derp')),
+      ),
+    );
+
+    expect(snapshot(result)).toBe('ec849c2b4452f1c7538f193a18f1d244');
+  });
 });

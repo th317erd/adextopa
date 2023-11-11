@@ -27,10 +27,10 @@ describe('Fetch and Store', () => {
     let result = await parser.tokenize(
       Program('Program',
         Store('Matcher', 'Testing'),
-        Register('CapturedValue', Equals('Second', Fetch('Matcher'))),
-        Call('First', 'CapturedValue'),
+        Register('CaptureValue', Equals('Second', Fetch('Matcher'))),
+        Call('First', 'CaptureValue'), // name = 'First'
         Equals('Space', ' '),
-        Call('CapturedValue'),
+        Call('CaptureValue'), // name = 'Second'
       ),
     );
 

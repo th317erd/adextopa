@@ -15,7 +15,7 @@ const {
   },
 } = Script;
 
-describe('ScriptV1IdentifierMatcher', () => {
+describe('/Script/V1/Identifier', () => {
   const testIdentifier = async (source, debug) => {
     let parser = new Parser({ source });
     let result = await parser.tokenize(Identifier());

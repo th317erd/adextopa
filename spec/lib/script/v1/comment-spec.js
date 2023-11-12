@@ -22,7 +22,7 @@ const {
   },
 } = Script;
 
-describe('ScriptV1CommentMatcher', () => {
+describe('/Script/V1/Comment', () => {
   let parser;
 
   beforeEach(() => {

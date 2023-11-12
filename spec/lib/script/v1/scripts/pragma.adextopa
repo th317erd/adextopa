@@ -1,0 +1,8 @@
+@pragma use(1.0)
+@pragma name('test')
+@pragma description(
+'A test script \
+derp \
+stuff \
+'
+)

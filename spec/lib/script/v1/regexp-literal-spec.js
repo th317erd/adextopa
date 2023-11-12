@@ -16,7 +16,7 @@ const {
 } = Script;
 
 describe('/Script/V1/RegExpLiteral', () => {
-  it('works', async () => {
+  fit('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
 
@@ -43,6 +43,9 @@ describe('/Script/V1/RegExpLiteral', () => {
     expect(await test('/\\s/')).toMatchSnapshot();
     expect(await test('/\\s\\w\\d\\b\\S\\W\\D\\B/')).toMatchSnapshot();
     expect(await test('/[\\s\\w\\d\\b\\S\\W\\D\\B/]/')).toMatchSnapshot();
+    expect(await test('/cat/dgimsuy')).toMatchSnapshot();
+    expect(await test('/cat/dgimsvy')).toMatchSnapshot();
+    expect(await test('/cat/x')).toMatchSnapshot(); // Failure
     // expect(new Error('test')).toMatchSnapshot();
     // expect(await test('//')).toMatchSnapshot();
   });

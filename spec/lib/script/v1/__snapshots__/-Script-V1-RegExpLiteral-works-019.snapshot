@@ -1,0 +1,9 @@
+{
+  '$type': 'Error',
+  columnEnd: 6,
+  columnStart: 5,
+  lineEnd: 1,
+  lineStart: 1,
+  message: 'Unknown RegExp flag "x"',
+  parserContext: ParserContext {}
+}

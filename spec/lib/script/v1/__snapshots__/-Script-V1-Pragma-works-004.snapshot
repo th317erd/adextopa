@@ -1,0 +1,89 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: 'debug( true',
+    matchedValue: '@pragma debug( true )',
+    name: 'PragmaStatement',
+    parent: null,
+    value: 'debug( true',
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 19,
+      start: 8
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: 'debug',
+        matchedValue: 'debug',
+        name: 'Name',
+        value: 'debug',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 13,
+          start: 8
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 13,
+          start: 8
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: 'true',
+        matchedValue: 'true',
+        name: 'Arguments',
+        value: 'true',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 19,
+          start: 15
+        },
+        children: [
+          {
+            '$type': [class Token],
+            capturedValue: 'true',
+            matchedValue: 'true',
+            name: 'BooleanLiteral',
+            value: true,
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 19,
+              start: 15
+            },
+            children: [],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 19,
+              start: 15
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        ],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 19,
+          start: 15
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 21,
+      start: 0
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: '1 5 10 ',
+    matchedValue: '1 5 10 ',
+    name: 'TestProgram',
+    parent: null,
+    value: '1 5 10 ',
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 7,
+      start: 0
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: '1',
+        matchedValue: '1',
+        name: 'Number',
+        value: '1',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 1,
+          start: 0
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 1,
+          start: 0
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: ' ',
+        matchedValue: ' ',
+        name: 'Space',
+        value: ' ',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 2,
+          start: 1
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 2,
+          start: 1
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '5',
+        matchedValue: '5',
+        name: 'Number',
+        value: '5',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 3,
+          start: 2
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 3,
+          start: 2
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: ' ',
+        matchedValue: ' ',
+        name: 'Space',
+        value: ' ',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 4,
+          start: 3
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 4,
+          start: 3
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '10',
+        matchedValue: '10',
+        name: 'Number',
+        value: '10',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 6,
+          start: 4
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 6,
+          start: 4
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: ' ',
+        matchedValue: ' ',
+        name: 'Space',
+        value: ' ',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 7,
+          start: 6
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 7,
+          start: 6
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 7,
+      start: 0
+    }
+  }
+}

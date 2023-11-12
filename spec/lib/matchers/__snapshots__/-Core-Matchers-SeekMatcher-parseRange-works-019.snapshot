@@ -1,0 +1,5 @@
+{
+  '$type': [class SourceRange],
+  end: 1,
+  start: 0
+}

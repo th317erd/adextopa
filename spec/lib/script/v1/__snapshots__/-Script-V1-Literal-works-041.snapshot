@@ -1,0 +1,24 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: "derp \\'escaped\\' here",
+    matchedValue: "'derp \\'escaped\\' here'",
+    name: 'StringLiteral',
+    parent: null,
+    value: "derp 'escaped' here",
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 22,
+      start: 1
+    },
+    children: [],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 23,
+      start: 0
+    }
+  }
+}

@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -16,7 +16,7 @@ const {
   Register,
 } = Matchers;
 
-describe('Fetch and Store', () => {
+describe('/Core/Matchers/Register and Call', () => {
   let parser;
 
   beforeEach(() => {
@@ -34,6 +34,6 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('8777cd8588aa92513c85f31bb2f760fb');
+    expect(result).toMatchSnapshot();
   });
 });

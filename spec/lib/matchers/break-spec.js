@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -17,7 +17,7 @@ const {
   Switch,
 } = Matchers;
 
-describe('LoopMatcher', () => {
+describe('/Core/Matchers/BreakMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('LoopMatcher', () => {
       Loop('TestProgram', SpaceOrNumber),
     );
 
-    expect(snapshot(result)).toBe('6433491943b37f3f3a98773388e56e72');
+    expect(result).toMatchSnapshot();
   });
 
   it('can target named loops', async () => {
@@ -58,7 +58,7 @@ describe('LoopMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('be56974fa2ec9730295549350e306e7f');
+    expect(result).toMatchSnapshot();
   });
 
   it('works with compound loops', async () => {
@@ -79,6 +79,6 @@ describe('LoopMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('5eab312292c63bbfce5d732803ab8bd6');
+    expect(result).toMatchSnapshot();
   });
 });

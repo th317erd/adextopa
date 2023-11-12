@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -14,7 +14,7 @@ const {
   AssertIf,
 } = Matchers;
 
-describe('AssertIfMatcher', () => {
+describe('/Core/Matchers/AssertIfMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -48,7 +48,7 @@ describe('AssertIfMatcher', () => {
         ),
       );
 
-      expect(snapshot(result)).toBe('1aed42ed7236d48605e88fa02a0ef6d2');
+      expect(result).toMatchSnapshot();
     } catch (error) {
       fail('unreachable!');
     }

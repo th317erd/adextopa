@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../../support/test-helpers.js';
+import * as _TestHelpers from '../../../support/test-helpers.js';
 
 import {
   Parser,
@@ -39,6 +39,6 @@ describe('/Script/V1/Comment', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('9ee5e093cc2bc8ff41d967770cd2f5f1');
+    expect(result).toMatchSnapshot();
   });
 });

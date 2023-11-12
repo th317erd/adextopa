@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -13,7 +13,7 @@ const {
   Not,
 } = Matchers;
 
-describe('NotMatcher', () => {
+describe('/Core/Matchers/NotMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -27,7 +27,7 @@ describe('NotMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('ec849c2b4452f1c7538f193a18f1d244');
+    expect(result).toMatchSnapshot();
 
     result = await parser.tokenize(
       Program('TestProgram',
@@ -35,6 +35,6 @@ describe('NotMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('f35efd3f29e60f5bdc76617bdf08f920');
+    expect(result).toMatchSnapshot();
   });
 });

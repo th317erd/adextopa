@@ -1,0 +1,24 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: 'Test',
+    matchedValue: 'Test',
+    name: 'Matches',
+    parent: null,
+    value: 'Test',
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 4,
+      start: 0
+    },
+    children: [],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 4,
+      start: 0
+    }
+  }
+}

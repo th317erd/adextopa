@@ -1,0 +1,305 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+    matchedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)\n",
+    name: 'Program',
+    parent: null,
+    value: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 91,
+      start: 8
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+        matchedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)\n",
+        name: 'Pragmas',
+        value: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 91,
+          start: 8
+        },
+        children: [
+          {
+            '$type': [class Token],
+            capturedValue: 'use(1.0',
+            matchedValue: '@pragma use(1.0)',
+            name: 'PragmaStatement',
+            value: 'use(1.0',
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 15,
+              start: 8
+            },
+            children: [
+              {
+                '$type': [class Token],
+                capturedValue: 'use',
+                matchedValue: 'use',
+                name: 'Name',
+                value: 'use',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 11,
+                  start: 8
+                },
+                children: [],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 11,
+                  start: 8
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
+              {
+                '$type': [class Token],
+                capturedValue: '1.0',
+                matchedValue: '1.0',
+                name: 'Arguments',
+                value: '1.0',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 15,
+                  start: 12
+                },
+                children: [
+                  {
+                    '$type': [class Token],
+                    capturedValue: '1.0',
+                    matchedValue: '1.0',
+                    name: 'NumberLiteral',
+                    value: 1,
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 15,
+                      start: 12
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 15,
+                      start: 12
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 15,
+                  start: 12
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              }
+            ],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 16,
+              start: 0
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          },
+          {
+            '$type': [class Token],
+            capturedValue: "name('test",
+            matchedValue: "@pragma name('test')",
+            name: 'PragmaStatement',
+            value: "name('test",
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 35,
+              start: 25
+            },
+            children: [
+              {
+                '$type': [class Token],
+                capturedValue: 'name',
+                matchedValue: 'name',
+                name: 'Name',
+                value: 'name',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 29,
+                  start: 25
+                },
+                children: [],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 29,
+                  start: 25
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
+              {
+                '$type': [class Token],
+                capturedValue: 'test',
+                matchedValue: "'test'",
+                name: 'Arguments',
+                value: 'test',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 35,
+                  start: 31
+                },
+                children: [
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'test',
+                    matchedValue: "'test'",
+                    name: 'StringLiteral',
+                    value: 'test',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 35,
+                      start: 31
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 36,
+                      start: 30
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 36,
+                  start: 30
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              }
+            ],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 37,
+              start: 17
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          },
+          {
+            '$type': [class Token],
+            capturedValue: "description(\n'A test script \\\nderp \\\nstuff \\\n",
+            matchedValue: "@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
+            name: 'PragmaStatement',
+            value: "description(\n'A test script \\\nderp \\\nstuff \\\n",
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 91,
+              start: 46
+            },
+            children: [
+              {
+                '$type': [class Token],
+                capturedValue: 'description',
+                matchedValue: 'description',
+                name: 'Name',
+                value: 'description',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 57,
+                  start: 46
+                },
+                children: [],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 57,
+                  start: 46
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
+              {
+                '$type': [class Token],
+                capturedValue: 'A test script \\\nderp \\\nstuff \\\n',
+                matchedValue: "'A test script \\\nderp \\\nstuff \\\n'",
+                name: 'Arguments',
+                value: 'A test script \\\nderp \\\nstuff \\\n',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 91,
+                  start: 60
+                },
+                children: [
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'A test script \\\nderp \\\nstuff \\\n',
+                    matchedValue: "'A test script \\\nderp \\\nstuff \\\n'",
+                    name: 'StringLiteral',
+                    value: 'A test script \nderp \nstuff \n',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 91,
+                      start: 60
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 92,
+                      start: 59
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 92,
+                  start: 59
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              }
+            ],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 94,
+              start: 38
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        ],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 95,
+          start: 0
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 95,
+      start: 0
+    }
+  }
+}

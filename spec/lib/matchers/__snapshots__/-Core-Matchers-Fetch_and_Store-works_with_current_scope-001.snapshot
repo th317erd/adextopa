@@ -1,0 +1,48 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: '',
+    children: <ref *1> [
+      {
+        '$type': [class Token],
+        capturedValue: '',
+        matchedValue: '',
+        name: 'Program',
+        value: '',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 0,
+          start: 0
+        },
+        children: [Circular *1],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 0,
+          start: 0
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedValue: '',
+    name: 'Program',
+    value: '',
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 0,
+      start: 0
+    },
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 0,
+      start: 0
+    },
+    parent: {
+      '$ref': '0#'
+    }
+  }
+}

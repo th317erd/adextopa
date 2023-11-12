@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -11,7 +11,7 @@ const {
   Sequence,
 } = Matchers;
 
-describe('SequenceMatcher', () => {
+describe('/Core/Matchers/SequenceMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -21,7 +21,7 @@ describe('SequenceMatcher', () => {
   it('works', async () => {
     let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\'));
 
-    expect(snapshot(result)).toBe('44019c5ef7994a32522cb5fb6ccb6fa2');
+    expect(result).toMatchSnapshot();
   });
 
   it('works with escaping', async () => {
@@ -29,7 +29,7 @@ describe('SequenceMatcher', () => {
 
     let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\'));
 
-    expect(snapshot(result)).toBe('0b7d7eaff9208ccd385752e0d142f926');
+    expect(result).toMatchSnapshot();
   });
 
   it('works with RegExp patterns', async () => {
@@ -37,7 +37,7 @@ describe('SequenceMatcher', () => {
 
     let result = await parser.tokenize(Sequence('ItWorks', /\{\{\{/, /\}\}\}/, /\\\}\}\}/));
 
-    expect(snapshot(result)).toBe('64294379c0e866604646e7f6c914d837');
+    expect(result).toMatchSnapshot();
   });
 
   it('will disallow certain characters', async () => {
@@ -45,6 +45,6 @@ describe('SequenceMatcher', () => {
 
     let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\', [ '\n', '\r' ]));
 
-    expect(snapshot(result)).toBe('ec849c2b4452f1c7538f193a18f1d244');
+    expect(result).toMatchSnapshot();
   });
 });

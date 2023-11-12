@@ -1,0 +1,172 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: 'Hello world\n\n# Testing a comment\n#Another comment\n\n# Final comment\nHello line 2',
+    matchedValue: 'Hello world\n\n# Testing a comment\n#Another comment\n\n# Final comment\nHello line 2',
+    name: 'TestComments',
+    parent: null,
+    value: 'Hello world\n\n# Testing a comment\n#Another comment\n\n# Final comment\nHello line 2',
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 79,
+      start: 0
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: 'Hello world\n',
+        matchedValue: 'Hello world\n',
+        name: 'Line',
+        value: 'Hello world\n',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 12,
+          start: 0
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 12,
+          start: 0
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '\n',
+        matchedValue: '\n',
+        name: 'Line',
+        value: '\n',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 13,
+          start: 12
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 13,
+          start: 12
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '# Testing a comment\n',
+        matchedValue: '# Testing a comment\n',
+        name: 'Comment',
+        value: '# Testing a comment\n',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 33,
+          start: 13
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 33,
+          start: 13
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '#Another comment\n',
+        matchedValue: '#Another comment\n',
+        name: 'Comment',
+        value: '#Another comment\n',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 50,
+          start: 33
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 50,
+          start: 33
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '\n',
+        matchedValue: '\n',
+        name: 'Line',
+        value: '\n',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 51,
+          start: 50
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 51,
+          start: 50
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '# Final comment\n',
+        matchedValue: '# Final comment\n',
+        name: 'Comment',
+        value: '# Final comment\n',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 67,
+          start: 51
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 67,
+          start: 51
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: 'Hello line 2',
+        matchedValue: 'Hello line 2',
+        name: 'Line',
+        value: 'Hello line 2',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 79,
+          start: 67
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 79,
+          start: 67
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 79,
+      start: 0
+    }
+  }
+}

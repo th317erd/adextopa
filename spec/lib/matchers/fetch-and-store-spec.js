@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -15,7 +15,7 @@ const {
   Switch,
 } = Matchers;
 
-describe('Fetch and Store', () => {
+describe('/Core/Matchers/Fetch and Store', () => {
   let parser;
 
   beforeEach(() => {
@@ -32,7 +32,7 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('8777cd8588aa92513c85f31bb2f760fb');
+    expect(result).toMatchSnapshot();
   });
 
   it('works with tokens', async () => {
@@ -46,7 +46,7 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('c43092e85460fe5f3cd0cc5cca87ef1e');
+    expect(result).toMatchSnapshot();
   });
 
   it('works with current scope', async () => {
@@ -56,6 +56,6 @@ describe('Fetch and Store', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('d0264f86745aa20804ba5f465e113615');
+    expect(result).toMatchSnapshot();
   });
 });

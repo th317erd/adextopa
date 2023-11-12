@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -13,7 +13,7 @@ const {
   Program,
 } = Matchers;
 
-describe('OptionalMatcher', () => {
+describe('/Core/Matchers/OptionalMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -31,6 +31,6 @@ describe('OptionalMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('1aed42ed7236d48605e88fa02a0ef6d2');
+    expect(result).toMatchSnapshot();
   });
 });

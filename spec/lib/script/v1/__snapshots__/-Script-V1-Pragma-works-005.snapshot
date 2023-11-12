@@ -1,0 +1,89 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: "name(\n\t'test script",
+    matchedValue: "@pragma name(\n\t'test script'\n)",
+    name: 'PragmaStatement',
+    parent: null,
+    value: "name(\n\t'test script",
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 27,
+      start: 8
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: 'name',
+        matchedValue: 'name',
+        name: 'Name',
+        value: 'name',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 12,
+          start: 8
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 12,
+          start: 8
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: 'test script',
+        matchedValue: "'test script'",
+        name: 'Arguments',
+        value: 'test script',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 27,
+          start: 16
+        },
+        children: [
+          {
+            '$type': [class Token],
+            capturedValue: 'test script',
+            matchedValue: "'test script'",
+            name: 'StringLiteral',
+            value: 'test script',
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 27,
+              start: 16
+            },
+            children: [],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 28,
+              start: 15
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        ],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 28,
+          start: 15
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 30,
+      start: 0
+    }
+  }
+}

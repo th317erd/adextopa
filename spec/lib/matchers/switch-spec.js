@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -14,7 +14,7 @@ const {
   Switch,
 } = Matchers;
 
-describe('SwitchMatcher', () => {
+describe('/Core/Matchers/SwitchMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -36,6 +36,6 @@ describe('SwitchMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('1aed42ed7236d48605e88fa02a0ef6d2');
+    expect(result).toMatchSnapshot();
   });
 });

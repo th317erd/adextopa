@@ -11,7 +11,7 @@ const {
   Panic,
 } = Matchers;
 
-describe('PanicMatcher', () => {
+describe('/Core/Matchers/PanicMatcher', () => {
   let parser;
 
   beforeEach(() => {

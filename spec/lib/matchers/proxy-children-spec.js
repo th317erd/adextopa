@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -16,7 +16,7 @@ const {
   ProxyChildren,
 } = Matchers;
 
-describe('ProxyChildrenMatcher', () => {
+describe('/Core/Matchers/ProxyChildrenMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -36,6 +36,6 @@ describe('ProxyChildrenMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('f7bfdb425c5e3867274c6dc8e36cb73f');
+    expect(result).toMatchSnapshot();
   });
 });

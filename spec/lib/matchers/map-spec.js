@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -12,7 +12,7 @@ const {
   Equals,
 } = Matchers;
 
-describe('MapMatcher', () => {
+describe('/Core/Matchers/MapMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -35,6 +35,6 @@ describe('MapMatcher', () => {
       }),
     );
 
-    expect(snapshot(result)).toBe('ba2b62168a28c2df1cb51ac2db5aab69');
+    expect(result).toMatchSnapshot();
   });
 });

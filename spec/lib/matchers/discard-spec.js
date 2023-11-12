@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -15,7 +15,7 @@ const {
   Fetch,
 } = Matchers;
 
-describe('DiscardMatcher', () => {
+describe('/Core/Matchers/DiscardMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe('DiscardMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('547e9b139955028b8dd25128d8a6635b');
+    expect(result).toMatchSnapshot();
   });
 
   it('properly passes along a payload', async () => {
@@ -44,6 +44,6 @@ describe('DiscardMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('c40c4940abd68df4e0b0e5ab03bd0d81');
+    expect(result).toMatchSnapshot();
   });
 });

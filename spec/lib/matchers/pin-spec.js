@@ -1,6 +1,6 @@
 /* eslint-disable no-magic-numbers */
 
-import { snapshot } from '../../support/test-helpers.js';
+import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
   Parser,
@@ -14,7 +14,7 @@ const {
   Pin,
 } = Matchers;
 
-describe('PinMatcher', () => {
+describe('/Core/Matchers/PinMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -40,7 +40,7 @@ describe('PinMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('077aaed958566de40a6189502ee7383e');
+    expect(result).toMatchSnapshot();
   });
 
   it('works when match fails', async () => {
@@ -54,6 +54,6 @@ describe('PinMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('ec849c2b4452f1c7538f193a18f1d244');
+    expect(result).toMatchSnapshot();
   });
 });

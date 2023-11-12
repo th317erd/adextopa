@@ -1,5 +1,8 @@
-import { createHash }   from 'node:crypto';
-import * as Util        from 'node:util';
+/* global jasmine */
+
+import { createHash }       from 'node:crypto';
+import * as Util            from 'node:util';
+import { matchesSnapshot }  from './snapshot.js';
 
 const INSPECT_OPTIONS = {
   depth:            Infinity,
@@ -46,3 +49,18 @@ export function snapshot(_content, debug) {
 
   return hash;
 }
+
+beforeEach(function() {
+  jasmine.addMatchers({
+    toMatchSnapshot: function() {
+      return {
+        compare: function(actual) {
+          let pass    = matchesSnapshot(actual);
+          let message = `Expected [${actual}] to match snapshot`;
+
+          return { pass, message };
+        },
+      };
+    },
+  });
+});

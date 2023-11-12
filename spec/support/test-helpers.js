@@ -20,12 +20,24 @@ export function MD5(data) {
 }
 
 export function snapshot(_content, debug) {
-  let content = Util.inspect(_content, INSPECT_OPTIONS);
+  const massageError = (content) => {
+    if (content instanceof Error) {
+      return Object.assign({
+        message: content.message,
+      }, content);
+    }
+
+    return content;
+  };
+
+  let convertedContent  = massageError(_content);
+  let content           = Util.inspect(convertedContent, INSPECT_OPTIONS);
 
   let hash = MD5(content);
   if (debug === true) {
-    let debugContent = Util.inspect(_content, {
+    let debugContent = Util.inspect(convertedContent, {
       ...INSPECT_OPTIONS,
+      sorted: false,
       colors: true,
     });
 

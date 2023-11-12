@@ -15,7 +15,7 @@ const {
   },
 } = Script;
 
-describe('/Script/V1/String', () => {
+describe('/Script/V1/StringLiteral', () => {
   let parser;
 
   beforeEach(() => {

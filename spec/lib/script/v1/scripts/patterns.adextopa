@@ -1,0 +1,6 @@
+Program(
+  Equals('First', 'Hello'),
+  Equals('Space', ' '),
+  Equals('Second', 'World'),
+  Equals('Exclamation', '!'),
+)

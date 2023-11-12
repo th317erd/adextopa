@@ -17,7 +17,7 @@ const {
 
 const FAIL = 'ec849c2b4452f1c7538f193a18f1d244';
 
-describe('/Script/V1/Number', () => {
+describe('/Script/V1/NumberLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });

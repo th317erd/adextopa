@@ -17,7 +17,7 @@ const {
 
 const FAIL = 'ec849c2b4452f1c7538f193a18f1d244';
 
-fdescribe('/Script/V1/RegExpLiteral', () => {
+describe('/Script/V1/RegExpLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });

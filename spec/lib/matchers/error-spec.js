@@ -14,7 +14,7 @@ const {
   Error,
 } = Matchers;
 
-describe('ErrorMatcher', () => {
+describe('MessageMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -35,6 +35,6 @@ describe('ErrorMatcher', () => {
       ),
     );
 
-    expect(snapshot(result)).toBe('cda3f47c8ff1c8a40500f226674903b7');
+    expect(snapshot(result)).toBe('8dc02d37595300fb10b99f103ff44a6b');
   });
 });

@@ -12,7 +12,7 @@ const {
   Matches,
   Program,
   Loop,
-  Discard,
+  Skip,
   ProxyChildren,
 } = Matchers;
 
@@ -26,11 +26,11 @@ describe('/Core/Matchers/ProxyChildrenMatcher', () => {
   it('works', async () => {
     let result = await parser.tokenize(
       Program('TestProgram',
-        Discard(Matches(/\s*phone\s*:\s*/i)),
+        Skip(Matches(/\s*phone\s*:\s*/i)),
         ProxyChildren(
           Loop('PhonePart',
             Matches(Fetch('PhonePart.children_count'), /\d+/),
-            Discard(Matches(/\D+/)),
+            Skip(Matches(/\D+/)),
           ),
         ),
       ),

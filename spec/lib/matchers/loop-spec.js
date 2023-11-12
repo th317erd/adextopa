@@ -10,7 +10,7 @@ import {
 const {
   Equals,
   Matches,
-  Discard,
+  Skip,
   Switch,
   Loop,
   Iterate,
@@ -44,7 +44,7 @@ describe('/Core/Matchers/LoopMatcher', () => {
     let result = await parser.tokenize(
       Iterate('Repeated', 0, 4,
         Matches('Number', /\d+/),
-        Discard(Optional(Matches('Space', /\s+/))),
+        Skip(Optional(Matches('Space', /\s+/))),
       ),
     );
 

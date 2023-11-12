@@ -1,7 +1,7 @@
 {
   '$type': 'Error',
   columnEnd: 7,
-  columnStart: 1,
+  columnStart: 5,
   lineEnd: 1,
   lineStart: 1,
   message: 'Nothing to repeat',

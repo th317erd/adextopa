@@ -1,0 +1,218 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: '[^\\[-\\]\\]-]',
+    matchedValue: '/[^\\[-\\]\\]-]/',
+    name: 'RegExpLiteral',
+    parent: null,
+    value: /[^\[-\]\]-]/,
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 12,
+      start: 1
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: '[^\\[-\\]\\]-]',
+        matchedValue: '[^\\[-\\]\\]-]',
+        name: 'Pattern',
+        value: '[^\\[-\\]\\]-]',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 12,
+          start: 1
+        },
+        children: [
+          {
+            '$type': [class Token],
+            capturedValue: '[^\\[-\\]\\]-]',
+            matchedValue: '[^\\[-\\]\\]-]',
+            name: 'CharacterClass',
+            value: '[^\\[-\\]\\]-]',
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 12,
+              start: 1
+            },
+            children: [
+              {
+                '$type': [class Token],
+                capturedValue: '^',
+                matchedValue: '^',
+                name: 'Invert',
+                value: '^',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 3,
+                  start: 2
+                },
+                children: [],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 3,
+                  start: 2
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
+              {
+                '$type': [class Token],
+                capturedValue: '[-\\]\\]-',
+                matchedValue: '\\[-\\]\\]-',
+                name: 'Characters',
+                value: '[-\\]\\]-',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 11,
+                  start: 4
+                },
+                children: [
+                  {
+                    '$type': [class Token],
+                    capturedValue: '[-\\]',
+                    matchedValue: '\\[-\\]',
+                    name: 'CharacterRange',
+                    value: '[-\\]',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 8,
+                      start: 4
+                    },
+                    children: [
+                      {
+                        '$type': [class Token],
+                        capturedValue: '[',
+                        matchedValue: '\\[',
+                        name: 'CharacterLiteral',
+                        value: '[',
+                        capturedRange: {
+                          '$type': [class SourceRange],
+                          end: 5,
+                          start: 4
+                        },
+                        children: [],
+                        matchedRange: {
+                          '$type': [class SourceRange],
+                          end: 5,
+                          start: 3
+                        },
+                        parent: {
+                          '$ref': '0#'
+                        }
+                      },
+                      {
+                        '$type': [class Token],
+                        capturedValue: ']',
+                        matchedValue: '\\]',
+                        name: 'CharacterLiteral',
+                        value: ']',
+                        capturedRange: {
+                          '$type': [class SourceRange],
+                          end: 8,
+                          start: 7
+                        },
+                        children: [],
+                        matchedRange: {
+                          '$type': [class SourceRange],
+                          end: 8,
+                          start: 6
+                        },
+                        parent: {
+                          '$ref': '0#'
+                        }
+                      }
+                    ],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 8,
+                      start: 3
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: ']',
+                    matchedValue: '\\]',
+                    name: 'CharacterLiteral',
+                    value: ']',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 10,
+                      start: 9
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 10,
+                      start: 8
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: '-',
+                    matchedValue: '-',
+                    name: 'CharacterLiteral',
+                    value: '-',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 11,
+                      start: 10
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 11,
+                      start: 10
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 11,
+                  start: 3
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              }
+            ],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 12,
+              start: 1
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        ],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 12,
+          start: 1
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 13,
+      start: 0
+    }
+  }
+}

@@ -9,13 +9,13 @@ import {
 
 const {
   Matches,
-  Discard,
+  Skip,
   Program,
   Store,
   Fetch,
 } = Matchers;
 
-describe('/Core/Matchers/DiscardMatcher', () => {
+describe('/Core/Matchers/SkipMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -26,7 +26,7 @@ describe('/Core/Matchers/DiscardMatcher', () => {
     let result = await parser.tokenize(
       Program('TestProgram',
         Matches('Name', /test/i),
-        Discard(Matches('Space', /\s+/i)),
+        Skip(Matches('Space', /\s+/i)),
         Matches('Number', /\d+/i),
       ),
     );
@@ -38,7 +38,7 @@ describe('/Core/Matchers/DiscardMatcher', () => {
     let result = await parser.tokenize(
       Program('TestProgram',
         Matches('Name', /test/i),
-        Store('Whitespace', Discard(Matches('Space', /\s+/i))),
+        Store('Whitespace', Skip(Matches('Space', /\s+/i))),
         Matches('Number', /\d+/i),
         Fetch('Whitespace'),
       ),

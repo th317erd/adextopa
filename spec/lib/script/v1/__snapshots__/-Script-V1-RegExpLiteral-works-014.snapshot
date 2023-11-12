@@ -1,0 +1,91 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: 's',
+    matchedValue: '/\\s/',
+    name: 'RegExpLiteral',
+    parent: null,
+    value: /s/,
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 3,
+      start: 2
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: 's',
+        matchedValue: '\\s',
+        name: 'Pattern',
+        value: 's',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 3,
+          start: 2
+        },
+        children: [
+          {
+            '$type': [class Token],
+            capturedValue: 's',
+            matchedValue: '\\s',
+            name: 'CharacterAtom',
+            value: 's',
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 3,
+              start: 2
+            },
+            children: [
+              {
+                '$type': [class Token],
+                capturedValue: 's',
+                inverted: false,
+                matchedValue: '\\s',
+                name: 'WhitespaceSequence',
+                value: 's',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 3,
+                  start: 2
+                },
+                children: [],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 3,
+                  start: 1
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              }
+            ],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 3,
+              start: 1
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        ],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 3,
+          start: 1
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 4,
+      start: 0
+    }
+  }
+}

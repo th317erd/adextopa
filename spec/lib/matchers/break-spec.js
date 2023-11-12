@@ -9,7 +9,7 @@ import {
 
 const {
   Break,
-  Discard,
+  Skip,
   Equals,
   Loop,
   Matches,
@@ -50,11 +50,11 @@ describe('/Core/Matchers/BreakMatcher', () => {
     let result = await parser.tokenize(
       Loop('TestProgram',
         Optional(Equals('Space', ' ')),
-        Discard(Equals('OpeningParenthesis', '(')),
+        Skip(Equals('OpeningParenthesis', '(')),
         Loop('Numbers',
           SpaceOrNumber,
         ),
-        Discard(Equals('ClosingParenthesis', ')')),
+        Skip(Equals('ClosingParenthesis', ')')),
       ),
     );
 
@@ -72,7 +72,7 @@ describe('/Core/Matchers/BreakMatcher', () => {
 
     let result = await parser.tokenize(
       Loop('TestProgram',
-        Discard(Matches('NotANumber', /\D+/)),
+        Skip(Matches('NotANumber', /\D+/)),
         Loop('Numbers',
           SpaceOrNumber,
         ),

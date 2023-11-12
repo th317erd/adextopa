@@ -12,21 +12,25 @@ import colors             from 'colors/safe.js';
 
 const MAX_FILE_NAME_LENGTH = 100;
 
-function showDiff(fileName, c1, c2) {
-  jsDiff.createPatch(fileName, c1 || '', c2 || '').replace(/.*/g, function(m) {
+function calcDiff(fileName, c1, c2) {
+  return jsDiff.createPatch(fileName, c1 || '', c2 || '').replace(/.*/g, function(m) {
     if (!m)
-      return;
+      return m;
 
     let c = m.charAt(0);
     let out = m;
 
     if (c === '-')
-      console.log(colors.red(out));
+      return colors.red(out);
     else if (c === '+')
-      console.log(colors.green(out));
+      return colors.green(out);
     else
-      console.log(out);
+      return out;
   });
+}
+
+function showDiff(fileName, c1, c2) {
+  console.log(calcDiff(fileName, c1, c2));
 }
 
 const TYPE_TEST = /^'?\$type'?:/;
@@ -318,11 +322,6 @@ export function matchesSnapshot(value) {
     FileSystem.writeFileSync(fullPath, serializedValue, 'utf8');
 
   let storedValue = FileSystem.readFileSync(fullPath, 'utf8');
-
-  if (storedValue !== serializedValue) {
-    showDiff(fullPath, storedValue, serializedValue);
-    return false;
-  }
-
-  return true;
+  if (storedValue !== serializedValue)
+    return calcDiff(fullPath, storedValue, serializedValue);
 }

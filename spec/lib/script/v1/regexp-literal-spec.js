@@ -27,18 +27,22 @@ describe('/Script/V1/RegExpLiteral', () => {
       }
     };
 
-    // expect(await test('/+cat+/')).toMatchSnapshot();
-    // expect(await test('/cat+*/')).toMatchSnapshot();
-    // expect(await test('/cat+/')).toMatchSnapshot();
-    // expect(await test('/cat*/')).toMatchSnapshot();
-    // expect(await test('/cat[abc]/')).toMatchSnapshot();
-    // expect(await test('/cat[abcA-Z]/')).toMatchSnapshot();
-    // expect(await test('/[a-zA-Z-]/')).toMatchSnapshot();
-    // expect(await test('/[^a-z]/')).toMatchSnapshot();
-    // expect(await test('/[^\\[-\\]\\]-]/')).toMatchSnapshot();
-    // expect(await test('/^dog/')).toMatchSnapshot();
-    // expect(await test('/^bark$/')).toMatchSnapshot();
+    expect(await test('/+cat+/')).toMatchSnapshot();
+    expect(await test('/cat+*/')).toMatchSnapshot();
+    expect(await test('/cat+/')).toMatchSnapshot();
+    expect(await test('/cat*/')).toMatchSnapshot();
+    expect(await test('/cat[abc]/')).toMatchSnapshot();
+    expect(await test('/cat[abcA-Z]/')).toMatchSnapshot();
+    expect(await test('/[a-zA-Z-]/')).toMatchSnapshot();
+    expect(await test('/[^a-z]/')).toMatchSnapshot();
+    expect(await test('/[^\\[-\\]\\]-]/')).toMatchSnapshot();
+    expect(await test('/^dog/')).toMatchSnapshot();
+    expect(await test('/^bark$/')).toMatchSnapshot();
     expect(await test('/\\..*./')).toMatchSnapshot();
+    expect(await test('/\\..*./')).toMatchSnapshot();
+    expect(await test('/\\s/')).toMatchSnapshot();
+    expect(await test('/\\s\\w\\d\\b\\S\\W\\D\\B/')).toMatchSnapshot();
+    expect(await test('/[\\s\\w\\d\\b\\S\\W\\D\\B/]/')).toMatchSnapshot();
     // expect(new Error('test')).toMatchSnapshot();
     // expect(await test('//')).toMatchSnapshot();
   });

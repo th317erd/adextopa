@@ -1,0 +1,288 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+    matchedValue: '/[\\s\\w\\d\\b\\S\\W\\D\\B/]/',
+    name: 'RegExpLiteral',
+    parent: null,
+    value: /[\s\w\d\b\S\W\D\B/]/,
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 20,
+      start: 1
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+        matchedValue: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+        name: 'Pattern',
+        value: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 20,
+          start: 1
+        },
+        children: [
+          {
+            '$type': [class Token],
+            capturedValue: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+            matchedValue: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+            name: 'CharacterClass',
+            value: '[\\s\\w\\d\\b\\S\\W\\D\\B/]',
+            capturedRange: {
+              '$type': [class SourceRange],
+              end: 20,
+              start: 1
+            },
+            children: [
+              {
+                '$type': [class Token],
+                capturedValue: 's\\w\\d\\b\\S\\W\\D\\B/',
+                matchedValue: '\\s\\w\\d\\b\\S\\W\\D\\B/',
+                name: 'Characters',
+                value: 's\\w\\d\\b\\S\\W\\D\\B/',
+                capturedRange: {
+                  '$type': [class SourceRange],
+                  end: 19,
+                  start: 3
+                },
+                children: [
+                  {
+                    '$type': [class Token],
+                    capturedValue: 's',
+                    inverted: false,
+                    matchedValue: '\\s',
+                    name: 'WhitespaceSequence',
+                    value: 's',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 4,
+                      start: 3
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 4,
+                      start: 2
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'w',
+                    inverted: false,
+                    matchedValue: '\\w',
+                    name: 'WordSequence',
+                    value: 'w',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 6,
+                      start: 5
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 6,
+                      start: 4
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'd',
+                    inverted: false,
+                    matchedValue: '\\d',
+                    name: 'NumericSequence',
+                    value: 'd',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 8,
+                      start: 7
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 8,
+                      start: 6
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'b',
+                    inverted: false,
+                    matchedValue: '\\b',
+                    name: 'WordBoundarySequence',
+                    value: 'b',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 10,
+                      start: 9
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 10,
+                      start: 8
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'S',
+                    inverted: true,
+                    matchedValue: '\\S',
+                    name: 'WhitespaceSequence',
+                    value: 'S',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 12,
+                      start: 11
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 12,
+                      start: 10
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'W',
+                    inverted: true,
+                    matchedValue: '\\W',
+                    name: 'WordSequence',
+                    value: 'W',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 14,
+                      start: 13
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 14,
+                      start: 12
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'D',
+                    inverted: true,
+                    matchedValue: '\\D',
+                    name: 'NumericSequence',
+                    value: 'D',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 16,
+                      start: 15
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 16,
+                      start: 14
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: 'B',
+                    inverted: true,
+                    matchedValue: '\\B',
+                    name: 'WordBoundarySequence',
+                    value: 'B',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 18,
+                      start: 17
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 18,
+                      start: 16
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': [class Token],
+                    capturedValue: '/',
+                    matchedValue: '/',
+                    name: 'CharacterLiteral',
+                    value: '/',
+                    capturedRange: {
+                      '$type': [class SourceRange],
+                      end: 19,
+                      start: 18
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': [class SourceRange],
+                      end: 19,
+                      start: 18
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': [class SourceRange],
+                  end: 19,
+                  start: 2
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              }
+            ],
+            matchedRange: {
+              '$type': [class SourceRange],
+              end: 20,
+              start: 1
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        ],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 20,
+          start: 1
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 21,
+      start: 0
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  '$type': 'SyntaxError',
+  columnEnd: 7,
+  columnStart: 5,
+  lineEnd: 1,
+  lineStart: 1,
+  message: "Invalid flags supplied to RegExp constructor 'dd'",
+  parserContext: ParserContext {}
+}

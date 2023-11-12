@@ -46,7 +46,7 @@ describe('/Script/V1/RegExpLiteral', () => {
     expect(await test('/cat/dgimsuy')).toMatchSnapshot();
     expect(await test('/cat/dgimsvy')).toMatchSnapshot();
     expect(await test('/cat/x')).toMatchSnapshot(); // Failure
-    // expect(new Error('test')).toMatchSnapshot();
-    // expect(await test('//')).toMatchSnapshot();
+    expect(await test('/cat/uv')).toMatchSnapshot(); // Failure
+    expect(await test('/cat/dd')).toMatchSnapshot(); // Failure
   });
 });

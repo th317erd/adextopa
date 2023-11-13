@@ -16,7 +16,7 @@ const {
 } = Script;
 
 describe('/Script/V1/RegExpLiteral', () => {
-  fit('works', async () => {
+  it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
 

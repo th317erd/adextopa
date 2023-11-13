@@ -4,15 +4,15 @@
   type: Symbol(/adextopa/results/token),
   value: {
     '$type': [class Token],
-    capturedValue: 'debug( true',
+    capturedValue: '@pragma debug( true )',
     matchedValue: '@pragma debug( true )',
     name: 'PragmaStatement',
     parent: null,
-    value: 'debug( true',
+    value: '@pragma debug( true )',
     capturedRange: {
       '$type': [class SourceRange],
-      end: 19,
-      start: 8
+      end: 21,
+      start: 0
     },
     children: [
       {

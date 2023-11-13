@@ -4,33 +4,33 @@
   type: Symbol(/adextopa/results/token),
   value: {
     '$type': [class Token],
-    capturedValue: '@pragma use( 1.0, true,)',
-    matchedValue: '@pragma use( 1.0, true,)',
-    name: 'PragmaStatement',
+    capturedValue: "test('hello',true,)",
+    matchedValue: "test('hello',true,)",
+    name: 'FunctionCall',
     parent: null,
-    value: '@pragma use( 1.0, true,)',
+    value: "test('hello',true,)",
     capturedRange: {
       '$type': [class SourceRange],
-      end: 24,
+      end: 19,
       start: 0
     },
     children: [
       {
         '$type': [class Token],
-        capturedValue: 'use',
-        matchedValue: 'use',
-        name: 'Name',
-        value: 'use',
+        capturedValue: 'test',
+        matchedValue: 'test',
+        name: 'Identifier',
+        value: 'test',
         capturedRange: {
           '$type': [class SourceRange],
-          end: 11,
-          start: 8
+          end: 4,
+          start: 0
         },
         children: [],
         matchedRange: {
           '$type': [class SourceRange],
-          end: 11,
-          start: 8
+          end: 4,
+          start: 0
         },
         parent: {
           '$ref': '0#'
@@ -38,32 +38,32 @@
       },
       {
         '$type': [class Token],
-        capturedValue: '1.0, true,',
-        matchedValue: '1.0, true,',
+        capturedValue: "('hello',true,)",
+        matchedValue: "('hello',true,)",
         name: 'Arguments',
-        value: '1.0, true,',
+        value: "('hello',true,)",
         capturedRange: {
           '$type': [class SourceRange],
-          end: 23,
-          start: 13
+          end: 19,
+          start: 4
         },
         children: [
           {
             '$type': [class Token],
-            capturedValue: '1.0',
-            matchedValue: '1.0',
-            name: 'NumberLiteral',
-            value: 1,
+            capturedValue: 'hello',
+            matchedValue: "'hello'",
+            name: 'StringLiteral',
+            value: 'hello',
             capturedRange: {
               '$type': [class SourceRange],
-              end: 16,
-              start: 13
+              end: 11,
+              start: 6
             },
             children: [],
             matchedRange: {
               '$type': [class SourceRange],
-              end: 16,
-              start: 13
+              end: 12,
+              start: 5
             },
             parent: {
               '$ref': '0#'
@@ -77,14 +77,14 @@
             value: true,
             capturedRange: {
               '$type': [class SourceRange],
-              end: 22,
-              start: 18
+              end: 17,
+              start: 13
             },
             children: [],
             matchedRange: {
               '$type': [class SourceRange],
-              end: 22,
-              start: 18
+              end: 17,
+              start: 13
             },
             parent: {
               '$ref': '0#'
@@ -93,8 +93,8 @@
         ],
         matchedRange: {
           '$type': [class SourceRange],
-          end: 23,
-          start: 13
+          end: 19,
+          start: 4
         },
         parent: {
           '$ref': '0#'
@@ -103,7 +103,7 @@
     ],
     matchedRange: {
       '$type': [class SourceRange],
-      end: 24,
+      end: 19,
       start: 0
     }
   }

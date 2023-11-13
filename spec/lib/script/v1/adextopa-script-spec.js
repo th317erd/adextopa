@@ -23,14 +23,19 @@ const {
 } = Script;
 
 describe('/Script/V1/AdextopaScript', () => {
-  const testScript = async (fileName, debug) => {
-    let source =  FileSystem.readFileSync(Path.resolve(__dirname, 'scripts', `${fileName.replace(/\.adextopa$/, '')}.adextopa`), 'utf8');
-    let parser = new Parser({ source, fileName });
-    return await parser.tokenize(AdextopaScript(), debug);
+  const test = async (fileName, debug, deepDebug) => {
+    let source  = FileSystem.readFileSync(Path.resolve(__dirname, 'scripts', `${fileName.replace(/\.adextopa$/, '')}.adextopa`), 'utf8');
+    let parser  = new Parser({ source, fileName });
+    let result  = await parser.tokenize(AdextopaScript(), deepDebug);
+
+    if (debug)
+      _TestHelpers.inspect(result);
+
+    return result;
   };
 
   it('can parse pragma headers', async () => {
-    expect(await testScript('pragma')).toMatchSnapshot();
+    expect(await test('pragma')).toMatchSnapshot();
   });
 
   // it('can parse nested pattern calls', async () => {

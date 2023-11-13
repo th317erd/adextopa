@@ -4,39 +4,39 @@
   type: Symbol(/adextopa/results/token),
   value: {
     '$type': [class Token],
-    capturedValue: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
-    matchedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)\n",
+    capturedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
+    matchedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
     name: 'Program',
     parent: null,
-    value: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+    value: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
     capturedRange: {
       '$type': [class SourceRange],
-      end: 91,
-      start: 8
+      end: 94,
+      start: 0
     },
     children: [
       {
         '$type': [class Token],
-        capturedValue: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+        capturedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
         matchedValue: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)\n",
         name: 'Pragmas',
-        value: "use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n",
+        value: "@pragma use(1.0)\n@pragma name('test')\n@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
         capturedRange: {
           '$type': [class SourceRange],
-          end: 91,
-          start: 8
+          end: 94,
+          start: 0
         },
         children: [
           {
             '$type': [class Token],
-            capturedValue: 'use(1.0',
+            capturedValue: '@pragma use(1.0)',
             matchedValue: '@pragma use(1.0)',
             name: 'PragmaStatement',
-            value: 'use(1.0',
+            value: '@pragma use(1.0)',
             capturedRange: {
               '$type': [class SourceRange],
-              end: 15,
-              start: 8
+              end: 16,
+              start: 0
             },
             children: [
               {
@@ -115,14 +115,14 @@
           },
           {
             '$type': [class Token],
-            capturedValue: "name('test",
+            capturedValue: "@pragma name('test')",
             matchedValue: "@pragma name('test')",
             name: 'PragmaStatement',
-            value: "name('test",
+            value: "@pragma name('test')",
             capturedRange: {
               '$type': [class SourceRange],
-              end: 35,
-              start: 25
+              end: 37,
+              start: 17
             },
             children: [
               {
@@ -148,13 +148,13 @@
               },
               {
                 '$type': [class Token],
-                capturedValue: 'test',
+                capturedValue: "test'",
                 matchedValue: "'test'",
                 name: 'Arguments',
-                value: 'test',
+                value: "test'",
                 capturedRange: {
                   '$type': [class SourceRange],
-                  end: 35,
+                  end: 36,
                   start: 31
                 },
                 children: [
@@ -201,14 +201,14 @@
           },
           {
             '$type': [class Token],
-            capturedValue: "description(\n'A test script \\\nderp \\\nstuff \\\n",
+            capturedValue: "@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
             matchedValue: "@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
             name: 'PragmaStatement',
-            value: "description(\n'A test script \\\nderp \\\nstuff \\\n",
+            value: "@pragma description(\n'A test script \\\nderp \\\nstuff \\\n'\n)",
             capturedRange: {
               '$type': [class SourceRange],
-              end: 91,
-              start: 46
+              end: 94,
+              start: 38
             },
             children: [
               {
@@ -234,13 +234,13 @@
               },
               {
                 '$type': [class Token],
-                capturedValue: 'A test script \\\nderp \\\nstuff \\\n',
+                capturedValue: "A test script \\\nderp \\\nstuff \\\n'",
                 matchedValue: "'A test script \\\nderp \\\nstuff \\\n'",
                 name: 'Arguments',
-                value: 'A test script \\\nderp \\\nstuff \\\n',
+                value: "A test script \\\nderp \\\nstuff \\\n'",
                 capturedRange: {
                   '$type': [class SourceRange],
-                  end: 91,
+                  end: 92,
                   start: 60
                 },
                 children: [
@@ -298,7 +298,7 @@
     ],
     matchedRange: {
       '$type': [class SourceRange],
-      end: 95,
+      end: 94,
       start: 0
     }
   }

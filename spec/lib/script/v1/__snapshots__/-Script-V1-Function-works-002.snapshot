@@ -4,33 +4,33 @@
   type: Symbol(/adextopa/results/token),
   value: {
     '$type': [class Token],
-    capturedValue: "@pragma name(\n\t'test script'\n)",
-    matchedValue: "@pragma name(\n\t'test script'\n)",
-    name: 'PragmaStatement',
+    capturedValue: "test('hello')",
+    matchedValue: "test('hello')",
+    name: 'FunctionCall',
     parent: null,
-    value: "@pragma name(\n\t'test script'\n)",
+    value: "test('hello')",
     capturedRange: {
       '$type': [class SourceRange],
-      end: 30,
+      end: 13,
       start: 0
     },
     children: [
       {
         '$type': [class Token],
-        capturedValue: 'name',
-        matchedValue: 'name',
-        name: 'Name',
-        value: 'name',
+        capturedValue: 'test',
+        matchedValue: 'test',
+        name: 'Identifier',
+        value: 'test',
         capturedRange: {
           '$type': [class SourceRange],
-          end: 12,
-          start: 8
+          end: 4,
+          start: 0
         },
         children: [],
         matchedRange: {
           '$type': [class SourceRange],
-          end: 12,
-          start: 8
+          end: 4,
+          start: 0
         },
         parent: {
           '$ref': '0#'
@@ -38,32 +38,32 @@
       },
       {
         '$type': [class Token],
-        capturedValue: "test script'",
-        matchedValue: "'test script'",
+        capturedValue: "('hello')",
+        matchedValue: "('hello')",
         name: 'Arguments',
-        value: "test script'",
+        value: "('hello')",
         capturedRange: {
           '$type': [class SourceRange],
-          end: 28,
-          start: 16
+          end: 13,
+          start: 4
         },
         children: [
           {
             '$type': [class Token],
-            capturedValue: 'test script',
-            matchedValue: "'test script'",
+            capturedValue: 'hello',
+            matchedValue: "'hello'",
             name: 'StringLiteral',
-            value: 'test script',
+            value: 'hello',
             capturedRange: {
               '$type': [class SourceRange],
-              end: 27,
-              start: 16
+              end: 11,
+              start: 6
             },
             children: [],
             matchedRange: {
               '$type': [class SourceRange],
-              end: 28,
-              start: 15
+              end: 12,
+              start: 5
             },
             parent: {
               '$ref': '0#'
@@ -72,8 +72,8 @@
         ],
         matchedRange: {
           '$type': [class SourceRange],
-          end: 28,
-          start: 15
+          end: 13,
+          start: 4
         },
         parent: {
           '$ref': '0#'
@@ -82,7 +82,7 @@
     ],
     matchedRange: {
       '$type': [class SourceRange],
-      end: 30,
+      end: 13,
       start: 0
     }
   }

@@ -76,5 +76,9 @@ describe('/Script/V1/Literal', () => {
     expect(await test('')).toMatchSnapshot();
     expect(await test('"0"')).toMatchSnapshot();
     expect(await test('#')).toMatchSnapshot();
+
+    // Null
+    expect(await test('null')).toMatchSnapshot();
+    expect(await test('nulll')).toMatchSnapshot();
   });
 });

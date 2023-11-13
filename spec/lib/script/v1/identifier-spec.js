@@ -16,25 +16,25 @@ const {
 } = Script;
 
 describe('/Script/V1/Identifier', () => {
-  const testIdentifier = async (source, debug) => {
+  const test = async (source, debug) => {
     let parser = new Parser({ source });
     return await parser.tokenize(Identifier(), debug);
   };
 
   it('works', async () => {
-    expect(await testIdentifier('derp:')).toMatchSnapshot();
-    expect(await testIdentifier('derp!!')).toMatchSnapshot();
-    expect(await testIdentifier('@derp.')).toMatchSnapshot();
-    expect(await testIdentifier('@derp??')).toMatchSnapshot();
-    expect(await testIdentifier('@derp!!')).toMatchSnapshot();
-    expect(await testIdentifier('$derp-')).toMatchSnapshot();
-    expect(await testIdentifier('@derp?s')).toMatchSnapshot();
-    expect(await testIdentifier('@derp?.')).toMatchSnapshot();
-    expect(await testIdentifier('@derp?!')).toMatchSnapshot();
-    expect(await testIdentifier('derp!')).toMatchSnapshot();
-    expect(await testIdentifier('derp_!')).toMatchSnapshot();
-    expect(await testIdentifier('_derp!')).toMatchSnapshot();
-    expect(await testIdentifier('2derp')).toMatchSnapshot(); // Fail
-    expect(await testIdentifier('derp2')).toMatchSnapshot();
+    expect(await test('derp:')).toMatchSnapshot();
+    expect(await test('derp!!')).toMatchSnapshot();
+    expect(await test('@derp.')).toMatchSnapshot();
+    expect(await test('@derp??')).toMatchSnapshot();
+    expect(await test('@derp!!')).toMatchSnapshot();
+    expect(await test('$derp-')).toMatchSnapshot();
+    expect(await test('@derp?s')).toMatchSnapshot();
+    expect(await test('@derp?.')).toMatchSnapshot();
+    expect(await test('@derp?!')).toMatchSnapshot();
+    expect(await test('derp!')).toMatchSnapshot();
+    expect(await test('derp_!')).toMatchSnapshot();
+    expect(await test('_derp!')).toMatchSnapshot();
+    expect(await test('2derp')).toMatchSnapshot(); // Fail
+    expect(await test('derp2')).toMatchSnapshot();
   });
 });

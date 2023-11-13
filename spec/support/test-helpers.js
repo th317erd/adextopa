@@ -1,14 +1,15 @@
 /* global jasmine */
 
-import { matchesSnapshot } from './snapshot.js';
+import * as Util            from 'node:util';
+import { matchesSnapshot }  from './snapshot.js';
 
 beforeEach(function() {
   jasmine.addMatchers({
     toMatchSnapshot: function() {
       return {
-        compare: function(actual) {
+        compare: function(actual, skipMessage) {
           let result  = matchesSnapshot(actual);
-          let message = (result) ? `Expected [${actual}] to match snapshot\n${result}` : `Expected [${actual}] to match snapshot`;
+          let message = (result && skipMessage !== true) ? `Expected [${actual}] to match snapshot\n${result}` : `Expected [${actual}] to match snapshot`;
 
           return { pass: !result, message };
         },
@@ -16,3 +17,21 @@ beforeEach(function() {
     },
   });
 });
+
+const INSPECT_OPTIONS = {
+  depth:            Infinity,
+  colors:           true,
+  maxArrayLength:   Infinity,
+  maxStringLength:  Infinity,
+  breakLength:      Infinity,
+  compact:          false,
+  sorted:           false,
+  getters:          false,
+  numericSeparator: true,
+};
+
+export function inspect(...args) {
+  args.forEach((arg) => {
+    console.log(Util.inspect(arg, INSPECT_OPTIONS));
+  });
+}

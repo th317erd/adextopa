@@ -1,0 +1,67 @@
+{
+  '$type': [class MatcherResult],
+  payload: null,
+  type: Symbol(/adextopa/results/token),
+  value: {
+    '$type': [class Token],
+    capturedValue: 'test()',
+    matchedValue: 'test()',
+    name: 'FunctionCall',
+    parent: null,
+    value: 'test()',
+    capturedRange: {
+      '$type': [class SourceRange],
+      end: 6,
+      start: 0
+    },
+    children: [
+      {
+        '$type': [class Token],
+        capturedValue: 'test',
+        matchedValue: 'test',
+        name: 'Identifier',
+        value: 'test',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 4,
+          start: 0
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 4,
+          start: 0
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      },
+      {
+        '$type': [class Token],
+        capturedValue: '()',
+        matchedValue: '()',
+        name: 'Arguments',
+        value: '()',
+        capturedRange: {
+          '$type': [class SourceRange],
+          end: 6,
+          start: 4
+        },
+        children: [],
+        matchedRange: {
+          '$type': [class SourceRange],
+          end: 6,
+          start: 4
+        },
+        parent: {
+          '$ref': '0#'
+        }
+      }
+    ],
+    matchedRange: {
+      '$type': [class SourceRange],
+      end: 6,
+      start: 0
+    }
+  }
+}

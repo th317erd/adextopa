@@ -138,6 +138,15 @@ fdescribe('SourceRange', () => {
     });
   });
 
+  describe('expandTo', () => {
+    it('works', () => {
+      expect((new SourceRange(10, 20)).expandTo().toJSON()).toEqual({ $type: 'SourceRange', start: 10, end: 20, relative: false });
+      expect((new SourceRange(10, 20)).expandTo(new SourceRange(2, 21)).toJSON()).toEqual({ $type: 'SourceRange', start: 2, end: 21, relative: false });
+      expect((new SourceRange(10, 20)).expandTo(new SourceRange(9, 21), new SourceRange(1, 30)).toJSON()).toEqual({ $type: 'SourceRange', start: 1, end: 30, relative: false });
+      expect((new SourceRange(10, 20)).expandTo(new SourceRange(1, 99), new SourceRange(15, 15)).toJSON()).toEqual({ $type: 'SourceRange', start: 1, end: 99, relative: false });
+    });
+  });
+
   describe('clone', () => {
     it('works', () => {
       let sourceRange1 = new SourceRange(10, 20);

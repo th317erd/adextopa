@@ -17,7 +17,7 @@ const {
   Optional,
 } = Matchers;
 
-describe('/Core/Matchers/LoopMatcher', () => {
+describe('/Core/Matchers/ProcessMatcher', () => {
   let parser;
 
   beforeEach(() => {

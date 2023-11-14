@@ -31,7 +31,9 @@ const INSPECT_OPTIONS = {
 };
 
 export function inspect(...args) {
-  args.forEach((arg) => {
-    console.log(Util.inspect(arg, INSPECT_OPTIONS));
-  });
+  return args.map((arg) => Util.inspect(arg, INSPECT_OPTIONS)).join('');
+}
+
+export function inspectNoColor(...args) {
+  return args.map((arg) => Util.inspect(arg, { ...INSPECT_OPTIONS, colors: false })).join('');
 }

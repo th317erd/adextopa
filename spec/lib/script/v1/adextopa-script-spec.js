@@ -29,7 +29,7 @@ describe('/Script/V1/AdextopaScript', () => {
     let result  = await parser.tokenize(AdextopaScript(), deepDebug);
 
     if (debug)
-      _TestHelpers.inspect(result);
+      console.log(_TestHelpers.inspect(result));
 
     return result;
   };

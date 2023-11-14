@@ -22,7 +22,7 @@ describe('/Script/V1/NullLiteral', () => {
       let result = await parser.tokenize(NullLiteral(), deepDebug);
 
       if (debug)
-        _TestHelpers.inspect(result);
+        console.log(_TestHelpers.inspect(result));
 
       return result;
     };

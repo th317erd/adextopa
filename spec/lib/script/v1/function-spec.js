@@ -21,7 +21,7 @@ describe('/Script/V1/Function', () => {
     let result = await parser.tokenize(FunctionCall(), deepDebug);
 
     if (debug)
-      _TestHelpers.inspect(result);
+      console.log(_TestHelpers.inspect(result));
 
     return result;
   };

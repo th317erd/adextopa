@@ -11,7 +11,7 @@ const {
   Equals,
 } = Matchers;
 
-describe('/Core/Matchers/EqualsMatcher', () => {
+fdescribe('/Core/Matchers/EqualsMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -19,12 +19,12 @@ describe('/Core/Matchers/EqualsMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(Equals('Test'));
+    let result = await parser.exec(Equals('Test'));
     expect(result).toMatchSnapshot();
   });
 
   it('can be given a custom name', async () => {
-    let result = await parser.tokenize(Equals('TestToken', 'Test 1234'));
+    let result = await parser.exec(Equals('TestToken', 'Test 1234'));
     expect(result).toMatchSnapshot();
   });
 });

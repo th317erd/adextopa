@@ -43,6 +43,7 @@ const INSPECT_OPTIONS = {
   maxStringLength:  Infinity,
   breakLength:      Infinity,
   compact:          false,
+  customInspect:    true,
   sorted:           (_a, _b) => {
     let a     = _a.replace(/'\$type':/, '$type:');
     let b     = _b.replace(/'\$type':/, '$type:');
@@ -64,23 +65,32 @@ const INSPECT_OPTIONS = {
 };
 
 function serialize(_value) {
+  const typeOf = (value) => {
+    if (value === undefined)
+      return 'undefined';
+
+    if (value === null)
+      return 'null';
+
+    let type = typeof value;
+    if (type !== 'object')
+      return type;
+
+    return ((value.constructor && value.constructor.name) || 'Object');
+  };
+
   let value = _value;
 
-  if (value == null) {
-    value = { $type: (value === undefined) ? 'undefined' : 'null', value: ('' + value) };
-  } else if (typeof value === 'boolean' || value instanceof Boolean) {
-    value = { $type: (value instanceof Boolean) ? 'Boolean' : 'primitive:boolean', value: value };
-  } else if (typeof value === 'number' || value instanceof Number) {
-    value = { $type: (value instanceof Number) ? 'Number' : 'primitive:number', value: value };
-  } else if (typeof value === 'bigint') {
-    value = { $type: 'BigInt', value: `${value}n` };
-  } else if (typeof value === 'string' || value instanceof String) {
-    value = { $type: (value instanceof String) ? 'String' : 'primitive:string', value: value };
-  } else if (value instanceof Error) {
+  if (value instanceof Error) {
     value = Object.assign({
       $type:    (value.constructor.name || 'Error'),
       message:  value.message,
     }, value);
+  } else {
+    value = {
+      $type: typeOf(value),
+      value,
+    };
   }
 
   return Util.inspect(value, INSPECT_OPTIONS);

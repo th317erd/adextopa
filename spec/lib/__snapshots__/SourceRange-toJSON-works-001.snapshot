@@ -1,0 +1,9 @@
+{
+  '$type': 'Object',
+  value: {
+    '$type': 'SourceRange',
+    end: 20,
+    relative: false,
+    start: 6
+  }
+}

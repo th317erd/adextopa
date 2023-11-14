@@ -1,0 +1,4 @@
+{
+  '$type': 'string',
+  value: "{\n  '$type': 'SourceRange',\n  start: 6,\n  end: 20,\n  relative: false\n}"
+}

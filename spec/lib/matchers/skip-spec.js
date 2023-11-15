@@ -31,9 +31,7 @@ describe('/Core/Matchers/SkipMatcher', () => {
       ),
     );
 
-    console.log(_TestHelpers.inspect(result));
-
-    // expect(result).toMatchSnapshot();
+    expect(result).toMatchSnapshot();
   });
 
   it('properly passes along a payload', async () => {

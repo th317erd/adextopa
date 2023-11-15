@@ -26,7 +26,7 @@ describe('/Script/V1/AdextopaScript', () => {
   const test = async (fileName, debug, deepDebug) => {
     let source  = FileSystem.readFileSync(Path.resolve(__dirname, 'scripts', `${fileName.replace(/\.adextopa$/, '')}.adextopa`), 'utf8');
     let parser  = new Parser({ source, fileName });
-    let result  = await parser.tokenize(AdextopaScript(), deepDebug);
+    let result  = await parser.exec(AdextopaScript(), deepDebug);
 
     if (debug)
       console.log(_TestHelpers.inspect(result));

@@ -24,7 +24,7 @@ describe('/Core/Matchers/ProcessMatcher', () => {
     parser = new Parser({ source: 'Test 1234' });
   });
 
-  fit('works', async () => {
+  it('works', async () => {
     parser = new Parser({ source: '1234' });
 
     let result = await parser.exec(

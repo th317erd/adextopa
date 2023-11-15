@@ -24,7 +24,7 @@ describe('/Core/Matchers/Register and Call', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('Program',
         Store('Matcher', 'Testing'),
         Register('CaptureValue', Equals('Second', Fetch('Matcher'))),

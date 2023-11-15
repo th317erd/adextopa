@@ -18,7 +18,7 @@ const {
 describe('/Script/V1/Identifier', () => {
   const test = async (source, debug) => {
     let parser = new Parser({ source });
-    return await parser.tokenize(Identifier(), debug);
+    return await parser.exec(Identifier(), debug);
   };
 
   it('works', async () => {

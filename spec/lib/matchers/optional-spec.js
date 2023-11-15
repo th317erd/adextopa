@@ -21,7 +21,7 @@ describe('/Core/Matchers/OptionalMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         Optional(Matches('Name', /test/i)),
         Optional(Matches('Nothing', /derp/i)),

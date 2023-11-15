@@ -21,7 +21,7 @@ describe('/Core/Matchers/ProgramMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         Matches('Name', /test/i),
         Equals('Space', ' '),

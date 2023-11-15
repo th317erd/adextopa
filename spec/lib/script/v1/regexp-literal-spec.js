@@ -21,7 +21,7 @@ describe('/Script/V1/RegExpLiteral', () => {
       let parser = new Parser({ source });
 
       try {
-        return await parser.tokenize(RegExpLiteral(), debug);
+        return await parser.exec(RegExpLiteral(), debug);
       } catch (error) {
         return error;
       }

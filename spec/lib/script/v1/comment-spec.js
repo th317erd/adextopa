@@ -30,7 +30,7 @@ describe('/Script/V1/Comment', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Loop('TestComments',
         Switch(
           Comment(),

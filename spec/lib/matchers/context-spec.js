@@ -21,7 +21,7 @@ describe('/Core/Matchers/ContextMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Context(
         Fetch('testMatcher'),
         {

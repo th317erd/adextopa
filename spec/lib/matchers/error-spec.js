@@ -22,7 +22,7 @@ describe('/Core/Matchers/MessageMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Loop(
         Switch(
           Equals('Identifier', 'Test'),

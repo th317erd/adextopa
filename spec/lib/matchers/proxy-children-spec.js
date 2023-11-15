@@ -24,7 +24,7 @@ describe('/Core/Matchers/ProxyChildrenMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         Skip(Matches(/\s*phone\s*:\s*/i)),
         ProxyChildren(

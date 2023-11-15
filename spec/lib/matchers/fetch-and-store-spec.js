@@ -23,7 +23,7 @@ describe('/Core/Matchers/Fetch and Store', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('Program',
         Store('Value', 'Testing'),
         Store('CapturedValue', Equals('First', Fetch('Value'))),
@@ -38,7 +38,7 @@ describe('/Core/Matchers/Fetch and Store', () => {
   it('works with tokens', async () => {
     parser = new Parser({ source: 'Testing Derp' });
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('Program',
         Store('Value', 'Testing'),
         Store('CapturedValue', Equals('First', Fetch('Value'))),
@@ -50,7 +50,7 @@ describe('/Core/Matchers/Fetch and Store', () => {
   });
 
   it('works with current scope', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('Program',
         Switch(Fetch('_')),
       ),

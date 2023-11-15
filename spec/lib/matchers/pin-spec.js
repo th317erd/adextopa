@@ -32,7 +32,7 @@ describe('/Core/Matchers/PinMatcher', () => {
     // discarded, as though it didn't
     // happen.
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program(
         Word,
         Equals(' '),
@@ -46,7 +46,7 @@ describe('/Core/Matchers/PinMatcher', () => {
   it('works when match fails', async () => {
     const Word = Matches('Word', /\w+/);
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program(
         Word,
         Equals(' '),

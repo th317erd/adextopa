@@ -28,13 +28,16 @@ describe('/Core/Matchers/SwitchMatcher', () => {
       Matches('Number', /\d+/),
     );
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         NameOrNumber,
         NameOrNumber,
         NameOrNumber,
       ),
+      // { debug: true },
     );
+
+    // console.log(_TestHelpers.inspect(result));
 
     expect(result).toMatchSnapshot();
   });

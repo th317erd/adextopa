@@ -112,7 +112,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
   it('works', async () => {
     const Word = Matches(/\w+/);
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program(
         Store('Location', Fetch('@.range')),
         Word,
@@ -131,7 +131,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
   it('works without a range', async () => {
     const Word = Matches(/\w+/);
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program(
         Word,
         Equals(' '),
@@ -145,7 +145,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
   it('works with only a range', async () => {
     const Word = Matches(/\w+/);
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program(
         Store('Location', Fetch('@.range')),
         Word,
@@ -161,7 +161,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
   it('works with strings for names', async () => {
     const Word = Matches(/\w+/);
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program(
         Store('Location', Fetch('@.range')),
         Word,

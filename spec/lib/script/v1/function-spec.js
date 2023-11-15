@@ -18,7 +18,7 @@ const {
 describe('/Script/V1/Function', () => {
   const test = async (source, debug, deepDebug) => {
     let parser = new Parser({ source });
-    let result = await parser.tokenize(FunctionCall(), deepDebug);
+    let result = await parser.exec(FunctionCall(), deepDebug);
 
     if (debug)
       console.log(_TestHelpers.inspect(result));

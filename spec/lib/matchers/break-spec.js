@@ -31,7 +31,7 @@ describe('/Core/Matchers/BreakMatcher', () => {
       Break(),
     );
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Loop('TestProgram', SpaceOrNumber),
     );
 
@@ -47,7 +47,7 @@ describe('/Core/Matchers/BreakMatcher', () => {
       Break('TestProgram'),
     );
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Loop('TestProgram',
         Optional(Equals('Space', ' ')),
         Skip(Equals('OpeningParenthesis', '(')),
@@ -70,7 +70,7 @@ describe('/Core/Matchers/BreakMatcher', () => {
       Break(),
     );
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Loop('TestProgram',
         Skip(Matches('NotANumber', /\D+/)),
         Loop('Numbers',

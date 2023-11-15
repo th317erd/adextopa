@@ -19,7 +19,7 @@ describe('/Script/V1/BooleanLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
-      return await parser.tokenize(BooleanLiteral(), debug);
+      return await parser.exec(BooleanLiteral(), debug);
     };
 
     expect(await test('true')).toMatchSnapshot();

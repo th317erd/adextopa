@@ -21,7 +21,7 @@ describe('/Core/Matchers/NotMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         Not(Equals('Test')),
       ),
@@ -29,7 +29,7 @@ describe('/Core/Matchers/NotMatcher', () => {
 
     expect(result).toMatchSnapshot();
 
-    result = await parser.tokenize(
+    result = await parser.exec(
       Program('TestProgram',
         Equals('Test'),
       ),

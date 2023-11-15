@@ -19,7 +19,7 @@ describe('/Script/V1/Literal', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
-      return await parser.tokenize(Literal(), debug);
+      return await parser.exec(Literal(), debug);
     };
 
     // Boolean

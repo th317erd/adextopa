@@ -21,7 +21,7 @@ describe('/Core/Matchers/TokenMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         Equals('Test'),
         Token('CustomToken', { value: 'hello world' }),
@@ -32,7 +32,7 @@ describe('/Core/Matchers/TokenMatcher', () => {
   });
 
   it('works with a fetch named', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Program('TestProgram',
         Store('TokenName', 'SomeCrazyName'),
         Equals('Test'),

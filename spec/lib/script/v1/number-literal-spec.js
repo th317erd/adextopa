@@ -19,7 +19,7 @@ describe('/Script/V1/NumberLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
-      return await parser.tokenize(NumberLiteral(), debug);
+      return await parser.exec(NumberLiteral(), debug);
     };
 
     expect(await test('0.0')).toMatchSnapshot();

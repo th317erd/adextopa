@@ -19,12 +19,12 @@ describe('/Core/Matchers/MatchesMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(Matches(/test/i));
+    let result = await parser.exec(Matches(/test/i));
     expect(result).toMatchSnapshot();
   });
 
   it('can be given a custom name', async () => {
-    let result = await parser.tokenize(Matches('TestToken', /test\s+\d+/i));
+    let result = await parser.exec(Matches('TestToken', /test\s+\d+/i));
     expect(result).toMatchSnapshot();
   });
 });

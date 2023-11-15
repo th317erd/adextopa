@@ -23,19 +23,19 @@ describe('/Script/V1/StringLiteral', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(StringLiteral());
+    let result = await parser.exec(StringLiteral());
     expect(result).toMatchSnapshot();
   });
 
   it('can have a custom name', async () => {
-    let result = await parser.tokenize(StringLiteral('MyString'));
+    let result = await parser.exec(StringLiteral('MyString'));
     expect(result).toMatchSnapshot();
   });
 
   it('can be a multiline string', async () => {
     parser = new Parser({ source: '\'Line 1 \\\nLine 2\\\r\nLine 3\\\rEnd\'' });
 
-    let result = await parser.tokenize(StringLiteral());
+    let result = await parser.exec(StringLiteral());
     expect(result).toMatchSnapshot();
   });
 });

@@ -20,7 +20,7 @@ describe('/Core/Matchers/PanicMatcher', () => {
 
   it('works', async () => {
     try {
-      await parser.tokenize(
+      await parser.exec(
         Program('TestProgram',
           Equals('Test'),
           Panic('Hot Dawg!'),

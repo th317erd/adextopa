@@ -23,7 +23,7 @@ describe('/Core/Matchers/AssertIfMatcher', () => {
 
   it('works', async () => {
     try {
-      await parser.tokenize(
+      await parser.exec(
         Program('TestProgram',
           Matches('Name', /test/i),
           Equals('Space', ' '),
@@ -39,7 +39,7 @@ describe('/Core/Matchers/AssertIfMatcher', () => {
 
   it('properly is ignored on success', async () => {
     try {
-      let result = await parser.tokenize(
+      let result = await parser.exec(
         Program('TestProgram',
           Matches('Name', /test/i),
           Equals('Space', ' '),

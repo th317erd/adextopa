@@ -20,7 +20,7 @@ describe('/Core/Matchers/MapMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Map(Equals('Test'), ({ result, value, context }) => {
         let source = context.getSource();
 

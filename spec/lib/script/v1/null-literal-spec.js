@@ -19,7 +19,7 @@ describe('/Script/V1/NullLiteral', () => {
   it('works', async () => {
     const test = async (source, debug, deepDebug) => {
       let parser = new Parser({ source });
-      let result = await parser.tokenize(NullLiteral(), deepDebug);
+      let result = await parser.exec(NullLiteral(), deepDebug);
 
       if (debug)
         console.log(_TestHelpers.inspect(result));

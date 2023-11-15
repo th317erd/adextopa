@@ -19,7 +19,7 @@ describe('/Core/Matchers/SequenceMatcher', () => {
   });
 
   it('works', async () => {
-    let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\'));
+    let result = await parser.exec(Sequence('ItWorks', '"', '"', '\\'));
 
     expect(result).toMatchSnapshot();
   });
@@ -27,7 +27,7 @@ describe('/Core/Matchers/SequenceMatcher', () => {
   it('works with escaping', async () => {
     parser = new Parser({ source: '"Test \\" \\n \n \\\\ \\t \\r stuff"' });
 
-    let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\'));
+    let result = await parser.exec(Sequence('ItWorks', '"', '"', '\\'));
 
     expect(result).toMatchSnapshot();
   });
@@ -35,7 +35,7 @@ describe('/Core/Matchers/SequenceMatcher', () => {
   it('works with RegExp patterns', async () => {
     parser = new Parser({ source: '{{{Test \\}}} \\n \n \\\\ \\t \\r stuff}}}' });
 
-    let result = await parser.tokenize(Sequence('ItWorks', /\{\{\{/, /\}\}\}/, /\\\}\}\}/));
+    let result = await parser.exec(Sequence('ItWorks', /\{\{\{/, /\}\}\}/, /\\\}\}\}/));
 
     expect(result).toMatchSnapshot();
   });
@@ -43,7 +43,7 @@ describe('/Core/Matchers/SequenceMatcher', () => {
   it('will disallow certain characters', async () => {
     parser = new Parser({ source: '"Test \\" \\n \n \\\\ \\t \\r stuff"' });
 
-    let result = await parser.tokenize(Sequence('ItWorks', '"', '"', '\\', [ '\n', '\r' ]));
+    let result = await parser.exec(Sequence('ItWorks', '"', '"', '\\', [ '\n', '\r' ]));
 
     expect(result).toMatchSnapshot();
   });

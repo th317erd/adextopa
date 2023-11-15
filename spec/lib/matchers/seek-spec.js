@@ -76,9 +76,9 @@ describe('/Core/Matchers/SeekMatcher', () => {
 
       expect(p(-2)).toMatchSnapshot();
 
-      context.range.start = 4;
+      context.parserRange.start = 4;
       expect(p(-2)).toMatchSnapshot();
-      context.range.start = 0;
+      context.parserRange.start = 0;
 
       expect(p([ 1, 4 ])).toMatchSnapshot();
       expect(p([ 4, 1 ])).toMatchSnapshot();
@@ -94,17 +94,17 @@ describe('/Core/Matchers/SeekMatcher', () => {
 
       expect(p('-2:-5')).toMatchSnapshot();
 
-      context.range.start = 3;
+      context.parserRange.start = 3;
       expect(p('-2:-5')).toMatchSnapshot();
-      context.range.start = 0;
+      context.parserRange.start = 0;
 
       expect(p('+2:2')).toMatchSnapshot();
 
-      context.range.end = 7;
+      context.parserRange.end = 7;
       expect(p('+2:2')).toMatchSnapshot();
 
-      context.range.start = 1;
-      context.range.end = 4;
+      context.parserRange.start = 1;
+      context.parserRange.end = 4;
       expect(p('-0:')).toMatchSnapshot();
     });
   });

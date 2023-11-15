@@ -2,6 +2,7 @@
 
 import * as Util            from 'node:util';
 import { matchesSnapshot }  from './snapshot.js';
+import { isPlainObject }    from '../../lib/utils.js';
 
 beforeEach(function() {
   jasmine.addMatchers({
@@ -18,7 +19,7 @@ beforeEach(function() {
   });
 });
 
-const INSPECT_OPTIONS = {
+const INSPECT_OPTIONS = Object.assign(Object.create(null), {
   depth:            Infinity,
   colors:           true,
   maxArrayLength:   Infinity,
@@ -28,12 +29,12 @@ const INSPECT_OPTIONS = {
   sorted:           false,
   getters:          false,
   numericSeparator: true,
-};
+});
 
 export function inspect(...args) {
-  return args.map((arg) => Util.inspect(arg, INSPECT_OPTIONS)).join('');
-}
+  let options = INSPECT_OPTIONS;
+  if (this !== globalThis && isPlainObject(this))
+    options = Object.assign({}, INSPECT_OPTIONS, this);
 
-export function inspectNoColor(...args) {
-  return args.map((arg) => Util.inspect(arg, { ...INSPECT_OPTIONS, colors: false })).join('');
+  return args.map((arg) => Util.inspect(arg, options)).join('');
 }

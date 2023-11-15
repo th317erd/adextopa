@@ -24,14 +24,25 @@ describe('/Core/Matchers/ProcessMatcher', () => {
     parser = new Parser({ source: 'Test 1234' });
   });
 
-  it('works', async () => {
+  fit('works', async () => {
+    parser = new Parser({ source: '1234' });
+
+    let result = await parser.exec(
+      Loop('TestProgram', Matches('Number', /\d/)),
+      // { debug: true },
+    );
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('works with a Switch', async () => {
     const NameOrNumber = Switch(
       Matches('Name', /test/i),
       Equals('Space', ' '),
       Matches('Number', /\d+/),
     );
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Loop('TestProgram', NameOrNumber),
     );
 
@@ -41,7 +52,7 @@ describe('/Core/Matchers/ProcessMatcher', () => {
   it('can iterate', async () => {
     parser = new Parser({ source: '1 5 10 15 20 25' });
 
-    let result = await parser.tokenize(
+    let result = await parser.exec(
       Iterate('Repeated', 0, 4,
         Matches('Number', /\d+/),
         Skip(Optional(Matches('Space', /\s+/))),

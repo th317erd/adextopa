@@ -88,7 +88,7 @@ module.exports = {
     'no-whitespace-before-property':          'error',
     'nonblock-statement-body-position':       [ 'error', 'below' ],
     'one-var':                                [ 'error', 'never' ],
-    'quotes':                                 [ 'error', 'single' ],
+    'quotes':                                 [ 'error', 'single', { 'avoidEscape': true } ],
     'radix':                                  'error',
     'rest-spread-spacing':                    [ 'error', 'never' ],
     'semi-spacing':                           [ 'error', { before: false, after: true } ],

@@ -2,11 +2,13 @@
 /* eslint-disable no-array-constructor */
 /* eslint-disable no-magic-numbers */
 
+import * as _TestHelpers from '../support/test-helpers.js';
+
 import {
   Utils,
 } from '../../lib/index.js';
 
-fdescribe('Utils', () => {
+describe('Utils', () => {
   describe('isPlainObject', () => {
     it('works', () => {
       class Test {}
@@ -229,6 +231,37 @@ fdescribe('Utils', () => {
     });
   });
 
+  describe('isValidNumber', () => {
+    it('works', () => {
+      class Test {}
+
+      expect(Utils.isValidNumber(() => {})).toBe(false);
+      expect(Utils.isValidNumber(Set)).toBe(false);
+      expect(Utils.isValidNumber({})).toBe(false);
+      expect(Utils.isValidNumber([])).toBe(false);
+      expect(Utils.isValidNumber(undefined)).toBe(false);
+      expect(Utils.isValidNumber(null)).toBe(false);
+      expect(Utils.isValidNumber(NaN)).toBe(false);
+      expect(Utils.isValidNumber(Infinity)).toBe(false);
+      expect(Utils.isValidNumber(-Infinity)).toBe(false);
+      expect(Utils.isValidNumber(Symbol.for('test'))).toBe(false);
+      expect(Utils.isValidNumber(new Test())).toBe(false);
+      expect(Utils.isValidNumber(2n)).toBe(false);
+      expect(Utils.isValidNumber(BigInt(2))).toBe(false);
+      expect(Utils.isValidNumber(true)).toBe(false);
+      expect(Utils.isValidNumber(new Boolean(true))).toBe(false);
+      expect(Utils.isValidNumber('test')).toBe(false);
+      expect(Utils.isValidNumber(new String('test'))).toBe(false);
+
+      expect(Utils.isValidNumber(0)).toBe(true);
+      expect(Utils.isValidNumber(-2.5)).toBe(true);
+      expect(Utils.isValidNumber(1.5)).toBe(true);
+      expect(Utils.isValidNumber(1)).toBe(true);
+      expect(Utils.isValidNumber(new Number(1))).toBe(true);
+      expect(Utils.isValidNumber(new Number(-1))).toBe(true);
+    });
+  });
+
   describe('isSerializable', () => {
     it('works', () => {
       class Test {}
@@ -260,6 +293,26 @@ fdescribe('Utils', () => {
       expect(Utils.isSerializable(new Number(1))).toBe(true);
       expect(Utils.isSerializable('test')).toBe(true);
       expect(Utils.isSerializable(new String('test'))).toBe(true);
+    });
+  });
+
+  describe('makeKeysNonEnumerable', () => {
+    it('works', () => {
+      let obj = { test: true, hello: 'world' };
+      expect(Object.keys(obj)).toEqual([ 'test', 'hello' ]);
+      expect(Utils.makeKeysNonEnumerable(obj)).toBe(obj);
+      expect(Object.keys(obj)).toEqual([]);
+    });
+  });
+
+  describe('nonEnumerableAssign', () => {
+    it('works', () => {
+      let obj = { test: true, hello: 'world' };
+      let obj2 = Utils.nonEnumerableAssign({}, obj);
+
+      expect(Object.keys(obj)).toEqual([ 'test', 'hello' ]);
+      expect(Object.keys(obj2)).toEqual([]);
+      expect(_TestHelpers.inspect.call({ compact: true, colors: false, showHidden: true }, obj2)).toEqual("{ [test]: true, [hello]: 'world' }");
     });
   });
 });

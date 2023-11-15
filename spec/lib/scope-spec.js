@@ -5,7 +5,7 @@ import {
   Scope,
 } from '../../lib/index.js';
 
-fdescribe('Scope', () => {
+describe('Scope', () => {
   describe('new', () => {
     it('works', () => {
       let FAKE_PARENT = {};

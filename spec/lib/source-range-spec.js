@@ -8,7 +8,7 @@ import {
   SourceRange,
 } from '../../lib/index.js';
 
-fdescribe('SourceRange', () => {
+describe('SourceRange', () => {
   describe('new', () => {
     it('works', () => {
       expect((new SourceRange()).toJSON()).toEqual({ $type: 'SourceRange', start: 0, end: 0, relative: false });
@@ -199,7 +199,7 @@ fdescribe('SourceRange', () => {
   describe('custom inspect', () => {
     it('works', () => {
       let sourceRange = new SourceRange(6, 20);
-      expect(_TestHelpers.inspectNoColor(sourceRange)).toMatchSnapshot();
+      expect(_TestHelpers.inspect.call({ colors: false }, sourceRange)).toMatchSnapshot();
     });
   });
 

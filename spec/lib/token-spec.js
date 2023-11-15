@@ -8,7 +8,7 @@ import {
   SourceRange,
 } from '../../lib/index.js';
 
-fdescribe('Token', () => {
+describe('Token', () => {
   let context;
 
   beforeEach(() => {

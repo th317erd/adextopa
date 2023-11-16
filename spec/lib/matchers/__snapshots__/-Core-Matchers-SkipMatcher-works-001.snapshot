@@ -1,13 +1,13 @@
 {
-  '$type': 'TokenMatcherResult',
+  '$type': 'Object',
   value: {
-    '$type': 'TokenMatcherResult',
-    status: Symbol(/adextopa/status/success),
-    value: {
+    success: true,
+    result: {
       '$type': 'Token',
       capturedValue: 'Test 1234',
       matchedValue: 'Test 1234',
-      name: 'Token',
+      name: 'TestProgram',
+      parent: null,
       proxyChildren: false,
       value: null,
       capturedRange: {
@@ -21,7 +21,7 @@
           '$type': 'Token',
           capturedValue: 'Test',
           matchedValue: 'Test',
-          name: 'Token',
+          name: 'Name',
           proxyChildren: false,
           value: 'Test',
           capturedRange: {
@@ -45,7 +45,7 @@
           '$type': 'Token',
           capturedValue: '1234',
           matchedValue: '1234',
-          name: 'Token',
+          name: 'Number',
           proxyChildren: false,
           value: '1234',
           capturedRange: {
@@ -71,9 +71,6 @@
         end: 9,
         relative: false,
         start: 0
-      },
-      parent: {
-        '$ref': '0#'
       }
     }
   }

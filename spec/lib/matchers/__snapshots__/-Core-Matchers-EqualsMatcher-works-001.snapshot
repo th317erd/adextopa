@@ -1,9 +1,8 @@
 {
-  '$type': 'TokenMatcherResult',
+  '$type': 'Object',
   value: {
-    '$type': 'TokenMatcherResult',
-    status: Symbol(/adextopa/status/success),
-    value: {
+    success: true,
+    result: {
       '$type': 'Token',
       capturedValue: 'Test',
       matchedValue: 'Test',

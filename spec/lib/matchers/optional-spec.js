@@ -29,7 +29,10 @@ describe('/Core/Matchers/OptionalMatcher', () => {
         Optional(Matches('Nothing', /derp/i)),
         Optional(Matches('Number', /\d+/i)),
       ),
+      // { debug: true },
     );
+
+    // console.log(_TestHelpers.inspect(result));
 
     expect(result).toMatchSnapshot();
   });

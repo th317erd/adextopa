@@ -1,13 +1,13 @@
 {
-  '$type': 'TokenMatcherResult',
+  '$type': 'Object',
   value: {
-    '$type': 'TokenMatcherResult',
-    status: Symbol(/adextopa/status/success),
-    value: {
+    success: true,
+    result: {
       '$type': 'Token',
       capturedValue: 'Test 1234',
       matchedValue: 'Test 1234',
-      name: 'Token',
+      name: 'TestProgram',
+      parent: null,
       proxyChildren: false,
       value: null,
       capturedRange: {
@@ -19,96 +19,71 @@
       children: [
         {
           '$type': 'Token',
-          capturedValue: 'Test 1234',
-          matchedValue: 'Test 1234',
-          name: 'Token',
+          capturedValue: 'Test',
+          matchedValue: 'Test',
+          name: 'Name',
           proxyChildren: false,
-          value: null,
+          value: 'Test',
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: ' ',
+          matchedValue: ' ',
+          name: 'Space',
+          proxyChildren: false,
+          value: ' ',
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 5,
+            relative: false,
+            start: 4
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 5,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '1234',
+          matchedValue: '1234',
+          name: 'Number',
+          proxyChildren: false,
+          value: '1234',
           capturedRange: {
             '$type': 'SourceRange',
             end: 9,
             relative: false,
-            start: 0
+            start: 5
           },
-          children: [
-            {
-              '$type': 'Token',
-              capturedValue: 'Test',
-              matchedValue: 'Test',
-              name: 'Token',
-              proxyChildren: false,
-              value: 'Test',
-              capturedRange: {
-                '$type': 'SourceRange',
-                end: 4,
-                relative: false,
-                start: 0
-              },
-              children: [],
-              matchedRange: {
-                '$type': 'SourceRange',
-                end: 4,
-                relative: false,
-                start: 0
-              },
-              parent: {
-                '$ref': '0#'
-              }
-            },
-            {
-              '$type': 'Token',
-              capturedValue: ' ',
-              matchedValue: ' ',
-              name: 'Space',
-              proxyChildren: false,
-              value: ' ',
-              capturedRange: {
-                '$type': 'SourceRange',
-                end: 5,
-                relative: false,
-                start: 4
-              },
-              children: [],
-              matchedRange: {
-                '$type': 'SourceRange',
-                end: 5,
-                relative: false,
-                start: 4
-              },
-              parent: {
-                '$ref': '0#'
-              }
-            },
-            {
-              '$type': 'Token',
-              capturedValue: '1234',
-              matchedValue: '1234',
-              name: 'Token',
-              proxyChildren: false,
-              value: '1234',
-              capturedRange: {
-                '$type': 'SourceRange',
-                end: 9,
-                relative: false,
-                start: 5
-              },
-              children: [],
-              matchedRange: {
-                '$type': 'SourceRange',
-                end: 9,
-                relative: false,
-                start: 5
-              },
-              parent: {
-                '$ref': '0#'
-              }
-            }
-          ],
+          children: [],
           matchedRange: {
             '$type': 'SourceRange',
             end: 9,
             relative: false,
-            start: 0
+            start: 5
           },
           parent: {
             '$ref': '0#'
@@ -120,9 +95,6 @@
         end: 9,
         relative: false,
         start: 0
-      },
-      parent: {
-        '$ref': '0#'
       }
     }
   }

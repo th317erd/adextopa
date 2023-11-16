@@ -38,3 +38,7 @@ export function inspect(...args) {
 
   return args.map((arg) => Util.inspect(arg, options)).join('');
 }
+
+export function inspectLog(...args) {
+  console.log(inspect.call(this, ...args));
+}

@@ -1,0 +1,6 @@
+{
+  '$type': 'Map',
+  value: Map(1) {
+    Symbol(/adextopa/result/panic) => true
+  }
+}

@@ -22,7 +22,7 @@ describe('/Core/Matchers/SkipMatcher', () => {
     parser = new Parser({ source: 'Test 1234' });
   });
 
-  fit('works', async () => {
+  it('works', async () => {
     let result = await parser.exec(
       Program('TestProgram',
         Matches('Name', /test/i),
@@ -34,7 +34,7 @@ describe('/Core/Matchers/SkipMatcher', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('properly passes along a payload', async () => {
+  fit('properly passes along a payload', async () => {
     let result = await parser.exec(
       Program('TestProgram',
         Matches('Name', /test/i),
@@ -43,6 +43,8 @@ describe('/Core/Matchers/SkipMatcher', () => {
         Fetch('Whitespace'),
       ),
     );
+
+    // console.log(_TestHelpers.inspect(result));
 
     expect(result).toMatchSnapshot();
   });

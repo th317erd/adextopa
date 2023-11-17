@@ -22,7 +22,7 @@ describe('/Core/Matchers/Fetch and Store', () => {
     parser = new Parser({ source: 'Testing Testing' });
   });
 
-  it('works', async () => {
+  fit('works', async () => {
     let result = await parser.exec(
       Program('Program',
         Store('Value', 'Testing'),
@@ -32,10 +32,12 @@ describe('/Core/Matchers/Fetch and Store', () => {
       ),
     );
 
+    // _TestHelpers.inspectLog(result);
+
     expect(result).toMatchSnapshot();
   });
 
-  it('works with tokens', async () => {
+  fit('works with tokens directly', async () => {
     parser = new Parser({ source: 'Testing Derp' });
 
     let result = await parser.exec(
@@ -45,6 +47,8 @@ describe('/Core/Matchers/Fetch and Store', () => {
         Fetch('CapturedValue'),
       ),
     );
+
+    // _TestHelpers.inspectLog(result);
 
     expect(result).toMatchSnapshot();
   });

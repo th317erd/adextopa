@@ -4,15 +4,15 @@
     success: true,
     result: {
       '$type': 'Token',
-      capturedValue: 'Testing Testing',
-      matchedValue: 'Testing Testing',
+      capturedValue: 'Testing',
+      matchedValue: 'Testing',
       name: 'Program',
       parent: null,
       proxyChildren: false,
       value: null,
       capturedRange: {
         '$type': 'SourceRange',
-        end: 15,
+        end: 7,
         relative: false,
         start: 0
       },
@@ -43,47 +43,23 @@
         },
         {
           '$type': 'Token',
-          capturedValue: ' ',
-          matchedValue: ' ',
-          name: 'Space',
-          proxyChildren: false,
-          value: ' ',
-          capturedRange: {
-            '$type': 'SourceRange',
-            end: 8,
-            relative: false,
-            start: 7
-          },
-          children: [],
-          matchedRange: {
-            '$type': 'SourceRange',
-            end: 8,
-            relative: false,
-            start: 7
-          },
-          parent: {
-            '$ref': '0#'
-          }
-        },
-        {
-          '$type': 'Token',
           capturedValue: 'Testing',
           matchedValue: 'Testing',
-          name: 'Second',
+          name: 'First',
           proxyChildren: false,
           value: 'Testing',
           capturedRange: {
             '$type': 'SourceRange',
-            end: 15,
+            end: 7,
             relative: false,
-            start: 8
+            start: 0
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 15,
+            end: 7,
             relative: false,
-            start: 8
+            start: 0
           },
           parent: {
             '$ref': '0#'
@@ -92,7 +68,7 @@
       ],
       matchedRange: {
         '$type': 'SourceRange',
-        end: 15,
+        end: 7,
         relative: false,
         start: 0
       }

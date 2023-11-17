@@ -34,7 +34,7 @@ describe('/Core/Matchers/SkipMatcher', () => {
     expect(result).toMatchSnapshot();
   });
 
-  fit('properly passes along a payload', async () => {
+  it('properly passes along a payload', async () => {
     let result = await parser.exec(
       Program('TestProgram',
         Matches('Name', /test/i),

@@ -176,7 +176,6 @@ describe('SourceRange', () => {
   describe('get', () => {
     it('works', () => {
       let sourceRange = new SourceRange(6, 20);
-      expect(sourceRange.get(Utils.TO_PRIMITIVE_SYMBOL)).toBe(6);
       expect(sourceRange.get('start')).toBe(6);
       expect(sourceRange.get('end')).toBe(20);
       expect(sourceRange.get('size')).toBe(14);

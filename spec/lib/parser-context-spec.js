@@ -85,7 +85,7 @@ describe('ParserContext', () => {
     });
   });
 
-  describe('resolvePrimitive', () => {
+  describe('resolveValue', () => {
     it('works', () => {
       const token = new Token(context, null, { value: 'hello' });
 
@@ -93,10 +93,10 @@ describe('ParserContext', () => {
         [ParserContext.VIRTUAL_RESOLVER]: () => token,
       };
 
-      expect(context.resolvePrimitive(FAKE)).toBe('hello');
-      expect(context.resolvePrimitive('derp')).toBe('derp');
-      expect(context.resolvePrimitive(undefined)).toBe(undefined);
-      expect(context.resolvePrimitive(null)).toBe(null);
+      expect(context.resolveValue(FAKE)).toBe('hello');
+      expect(context.resolveValue('derp')).toBe('derp');
+      expect(context.resolveValue(undefined)).toBe(undefined);
+      expect(context.resolveValue(null)).toBe(null);
     });
   });
 

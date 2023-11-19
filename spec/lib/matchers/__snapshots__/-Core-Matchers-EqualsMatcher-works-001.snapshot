@@ -6,10 +6,12 @@
       '$type': 'Token',
       capturedValue: 'Test',
       matchedValue: 'Test',
-      name: 'Equals',
       parent: null,
-      proxyChildren: false,
       value: 'Test',
+      attributes: {
+        name: 'Equals',
+        proxyChildren: false
+      },
       capturedRange: {
         '$type': 'SourceRange',
         end: 4,

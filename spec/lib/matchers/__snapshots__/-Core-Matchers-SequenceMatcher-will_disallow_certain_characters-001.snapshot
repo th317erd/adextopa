@@ -1,6 +1,0 @@
-{
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/fail),
-  value: null
-}

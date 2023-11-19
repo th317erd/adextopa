@@ -10,9 +10,11 @@
           '$type': 'Token',
           capturedValue: '',
           matchedValue: '',
-          name: 'Program',
-          proxyChildren: false,
           value: null,
+          attributes: {
+            name: 'Program',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 0,
@@ -32,9 +34,11 @@
         }
       ],
       matchedValue: '',
-      name: 'Program',
-      proxyChildren: false,
       value: null,
+      attributes: {
+        name: 'Program',
+        proxyChildren: false
+      },
       capturedRange: {
         '$type': 'SourceRange',
         end: 0,

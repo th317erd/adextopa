@@ -6,10 +6,12 @@
       '$type': 'Token',
       capturedValue: '4 6 8',
       matchedValue: '4 6 8 ',
-      name: 'Repeated',
       parent: null,
-      proxyChildren: false,
       value: null,
+      attributes: {
+        name: 'Repeated',
+        proxyChildren: false
+      },
       capturedRange: {
         '$type': 'SourceRange',
         end: 5,
@@ -21,9 +23,11 @@
           '$type': 'Token',
           capturedValue: '4',
           matchedValue: '4',
-          name: 'Number',
-          proxyChildren: false,
           value: '4',
+          attributes: {
+            name: 'Number',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 1,
@@ -45,9 +49,11 @@
           '$type': 'Token',
           capturedValue: '6',
           matchedValue: '6',
-          name: 'Number',
-          proxyChildren: false,
           value: '6',
+          attributes: {
+            name: 'Number',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 3,
@@ -69,9 +75,11 @@
           '$type': 'Token',
           capturedValue: '8',
           matchedValue: '8',
-          name: 'Number',
-          proxyChildren: false,
           value: '8',
+          attributes: {
+            name: 'Number',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 5,

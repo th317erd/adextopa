@@ -6,10 +6,12 @@
       '$type': 'Token',
       capturedValue: 'Testing',
       matchedValue: 'Testing',
-      name: 'Program',
       parent: null,
-      proxyChildren: false,
       value: null,
+      attributes: {
+        name: 'Program',
+        proxyChildren: false
+      },
       capturedRange: {
         '$type': 'SourceRange',
         end: 7,
@@ -21,9 +23,11 @@
           '$type': 'Token',
           capturedValue: 'Testing',
           matchedValue: 'Testing',
-          name: 'First',
-          proxyChildren: false,
           value: 'Testing',
+          attributes: {
+            name: 'First',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 7,
@@ -45,9 +49,11 @@
           '$type': 'Token',
           capturedValue: 'Testing',
           matchedValue: 'Testing',
-          name: 'First',
-          proxyChildren: false,
           value: 'Testing',
+          attributes: {
+            name: 'First',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 7,

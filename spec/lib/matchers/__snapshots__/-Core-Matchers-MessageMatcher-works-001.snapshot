@@ -6,10 +6,12 @@
       '$type': 'Token',
       capturedValue: 'Test 1234',
       matchedValue: 'Test 1234',
-      name: 'Loop',
       parent: null,
-      proxyChildren: false,
       value: null,
+      attributes: {
+        name: 'Loop',
+        proxyChildren: false
+      },
       capturedRange: {
         '$type': 'SourceRange',
         end: 9,
@@ -21,9 +23,11 @@
           '$type': 'Token',
           capturedValue: 'Test',
           matchedValue: 'Test',
-          name: 'Identifier',
-          proxyChildren: false,
           value: 'Test',
+          attributes: {
+            name: 'Identifier',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 4,
@@ -45,10 +49,11 @@
           '$type': 'Token',
           capturedValue: '',
           matchedValue: ' ',
-          message: 'Parsing Error!',
-          name: 'Token',
-          proxyChildren: false,
           value: '',
+          attributes: {
+            name: 'Token',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 4,
@@ -70,9 +75,11 @@
           '$type': 'Token',
           capturedValue: '1234',
           matchedValue: '1234',
-          name: 'Value',
-          proxyChildren: false,
           value: '1234',
+          attributes: {
+            name: 'Value',
+            proxyChildren: false
+          },
           capturedRange: {
             '$type': 'SourceRange',
             end: 9,

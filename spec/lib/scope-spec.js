@@ -16,6 +16,7 @@ import {
       scope = new Scope(FAKE_PARENT, { properties: { test: true, hello: 'world' } });
       expect(scope.parent).toBe(FAKE_PARENT);
       expect(scope.toJSON()).toEqual({
+        $type:  'Scope',
         test:   true,
         hello:  'world',
       });
@@ -44,6 +45,7 @@ import {
       });
 
       expect(scope2.toJSON()).toEqual({
+        $type:  'Scope',
         hello:  'dude!',
         parent: true,
         see:    10,

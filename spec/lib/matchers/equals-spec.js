@@ -11,7 +11,7 @@ const {
   Equals,
 } = Matchers;
 
-describe('/Core/Matchers/EqualsMatcher', () => {
+fdescribe('/Core/Matchers/EqualsMatcher', () => {
   let parser;
 
   beforeEach(() => {

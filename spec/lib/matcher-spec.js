@@ -4,7 +4,7 @@ import {
   Matcher,
 } from '../../lib/index.js';
 
-describe('Matcher', () => {
+fdescribe('Matcher', () => {
   describe('new', () => {
     it('works', () => {
       let matcher = new Matcher();

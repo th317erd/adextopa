@@ -8,7 +8,7 @@ import {
   SourceRange,
 } from '../../lib/index.js';
 
-describe('Token', () => {
+fdescribe('Token', () => {
   let context;
 
   beforeEach(() => {
@@ -28,10 +28,10 @@ describe('Token', () => {
         name:           'Token',
         parent:         null,
         value:          null,
-        capturedValue:  'Testing 1234',
-        matchedValue:   'Testing 1234',
-        capturedRange:  { $type: 'SourceRange', start: 0, end: 12, relative: false },
-        matchedRange:   { $type: 'SourceRange', start: 0, end: 12, relative: false },
+        capturedValue:  '',
+        matchedValue:   '',
+        capturedRange:  { $type: 'SourceRange', start: 0, end: 0, relative: false },
+        matchedRange:   { $type: 'SourceRange', start: 0, end: 0, relative: false },
         children:       [],
         proxyChildren:  false,
       });

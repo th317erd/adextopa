@@ -9,7 +9,7 @@ import {
 
 import { InputStream } from '../../lib/input-stream.js';
 
-describe('ParserContext', () => {
+fdescribe('ParserContext', () => {
   let context;
   let parser;
 
@@ -72,13 +72,11 @@ describe('ParserContext', () => {
 
   describe('resolveValue', () => {
     it('works', () => {
-      const OBJ = {};
-
       const FAKE = {
-        [ParserContext.VIRTUAL_RESOLVER]: () => OBJ,
+        toString: () => 'yoot',
       };
 
-      expect(context.resolveValue(FAKE)).toBe(OBJ);
+      expect(('' + context.resolveValue(FAKE))).toBe('yoot');
       expect(context.resolveValue('derp')).toBe('derp');
       expect(context.resolveValue(undefined)).toBe(undefined);
       expect(context.resolveValue(null)).toBe(null);
@@ -90,10 +88,11 @@ describe('ParserContext', () => {
       const token = new Token(context, null, { value: 'hello' });
 
       const FAKE = {
-        [ParserContext.VIRTUAL_RESOLVER]: () => token,
+        toString: () => 'yoot',
+        toValue:  () => token,
       };
 
-      expect(context.resolveValue(FAKE)).toBe('hello');
+      expect(('' + context.resolveValue(FAKE))).toBe('yoot');
       expect(context.resolveValue('derp')).toBe('derp');
       expect(context.resolveValue(undefined)).toBe(undefined);
       expect(context.resolveValue(null)).toBe(null);

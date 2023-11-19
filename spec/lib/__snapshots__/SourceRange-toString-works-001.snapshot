@@ -1,4 +1,4 @@
 {
   '$type': 'string',
-  value: '{ start: 6, end: 20, relative: false }'
+  value: '[6:20/false]'
 }

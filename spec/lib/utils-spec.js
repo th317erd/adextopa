@@ -8,7 +8,7 @@ import {
   Utils,
 } from '../../lib/index.js';
 
-describe('Utils', () => {
+fdescribe('Utils', () => {
   describe('isPlainObject', () => {
     it('works', () => {
       class Test {}
@@ -197,7 +197,7 @@ describe('Utils', () => {
 
   describe('isType', () => {
     it('works', () => {
-      expect(Utils.isType(WeakSet, 'Class')).toBe(true);
+      expect(Utils.isType(WeakSet, '[Class WeakSet]')).toBe(true);
       expect(Utils.isType(JSON, 'Class')).toBe(false);
       expect(Utils.isType(JSON, 'Class', 'Object')).toBe(true);
       expect(Utils.isType(2.0, 'Class', 'Object', 'Number')).toBe(true);

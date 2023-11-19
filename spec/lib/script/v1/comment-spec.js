@@ -31,12 +31,12 @@ describe('/Script/V1/Comment', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Loop('TestComments',
+      Loop(
         Switch(
           Comment(),
           Line(),
         ),
-      ),
+      ).name('TestComments'),
     );
 
     expect(result).toMatchSnapshot();

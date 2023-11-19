@@ -13,7 +13,7 @@ const {
   Program,
 } = Matchers;
 
-fdescribe('/Core/Matchers/OptionalMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/OptionalMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -22,13 +22,13 @@ fdescribe('/Core/Matchers/OptionalMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
-        Optional(Matches('Name', /test/i)),
-        Optional(Matches('Nothing', /derp/i)),
-        Optional(Matches('Space', /\s+/i)),
-        Optional(Matches('Nothing', /derp/i)),
-        Optional(Matches('Number', /\d+/i)),
-      ),
+      Program(
+        Optional(Matches(/test/i).name('Name')),
+        Optional(Matches(/derp/i).name('Nothing')),
+        Optional(Matches(/\s+/i).name('Space')),
+        Optional(Matches(/derp/i).name('Nothing')),
+        Optional(Matches(/\d+/i).name('Number')),
+      ).name('TestProgram'),
       // { debug: true },
     );
 

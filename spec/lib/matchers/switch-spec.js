@@ -14,26 +14,26 @@ const {
   Switch,
 } = Matchers;
 
-fdescribe('/Core/Matchers/SwitchMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/SwitchMatcher', () => {
   let parser;
 
   beforeEach(() => {
     parser = new Parser({ source: 'Test 1234' });
   });
 
-  it('works', async () => {
+  fit('works', async () => {
     const NameOrNumber = Switch(
-      Matches('Name', /test/i),
-      Equals('Space', ' '),
-      Matches('Number', /\d+/),
+      Matches(/test/i).name('Name'),
+      Equals(' ').name('Space'),
+      Matches(/\d+/).name('Number'),
     );
 
     let result = await parser.exec(
-      Program('TestProgram',
+      Program(
         NameOrNumber,
         NameOrNumber,
         NameOrNumber,
-      ),
+      ).name('TestProgram'),
       // { debug: true },
     );
 

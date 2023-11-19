@@ -11,7 +11,7 @@ const {
   Equals,
 } = Matchers;
 
-fdescribe('/Core/Matchers/EqualsMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/EqualsMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ fdescribe('/Core/Matchers/EqualsMatcher', () => {
   });
 
   it('can be given a custom name', async () => {
-    let result = await parser.exec(Equals('TestToken', 'Test 1234'));
+    let result = await parser.exec(Equals('Test 1234').name('TestToken'));
     expect(result).toMatchSnapshot();
   });
 });

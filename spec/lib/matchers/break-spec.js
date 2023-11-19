@@ -26,13 +26,13 @@ describe('/Core/Matchers/BreakMatcher', () => {
 
   it('works', async () => {
     const SpaceOrNumber = Switch(
-      Equals('Space', ' '),
-      Matches('Number', /\d+/),
+      Equals(' ').name('Space'),
+      Matches(/\d+/).name('Number'),
       Break(),
     );
 
     let result = await parser.exec(
-      Loop('TestProgram', SpaceOrNumber),
+      Loop(SpaceOrNumber).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
@@ -42,20 +42,20 @@ describe('/Core/Matchers/BreakMatcher', () => {
     parser = new Parser({ source: '(1 5) (10 derp) (6 2)' });
 
     const SpaceOrNumber = Switch(
-      Equals('Space', ' '),
-      Matches('Number', /\d+/),
+      Equals(' ').name('Space'),
+      Matches(/\d+/).name('Number'),
       Break('TestProgram'),
     );
 
     let result = await parser.exec(
-      Loop('TestProgram',
-        Optional(Equals('Space', ' ')),
-        Skip(Equals('OpeningParenthesis', '(')),
-        Loop('Numbers',
+      Loop(
+        Optional(Equals(' ').name('Space')),
+        Skip(Equals('(').name('OpeningParenthesis')),
+        Loop(
           SpaceOrNumber,
-        ),
-        Skip(Equals('ClosingParenthesis', ')')),
-      ),
+        ).name('Numbers'),
+        Skip(Equals(')').name('ClosingParenthesis')),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
@@ -65,18 +65,18 @@ describe('/Core/Matchers/BreakMatcher', () => {
     parser = new Parser({ source: '(1 5) (10 derp) (6 2)' });
 
     const SpaceOrNumber = Switch(
-      Equals('Space', ' '),
-      Matches('Number', /\d+/),
+      Equals(' ').name('Space'),
+      Matches(/\d+/).name('Number'),
       Break(),
     );
 
     let result = await parser.exec(
-      Loop('TestProgram',
-        Skip(Matches('NotANumber', /\D+/)),
-        Loop('Numbers',
+      Loop(
+        Skip(Matches(/\D+/).name('NotANumber')),
+        Loop(
           SpaceOrNumber,
-        ),
-      ),
+        ).name('Numbers'),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();

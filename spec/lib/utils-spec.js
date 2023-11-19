@@ -8,7 +8,7 @@ import {
   Utils,
 } from '../../lib/index.js';
 
-fdescribe('Utils', () => {
+/*active*/fdescribe('Utils', () => {
   describe('isPlainObject', () => {
     it('works', () => {
       class Test {}
@@ -313,6 +313,46 @@ fdescribe('Utils', () => {
       expect(Object.keys(obj)).toEqual([ 'test', 'hello' ]);
       expect(Object.keys(obj2)).toEqual([]);
       expect(_TestHelpers.inspect.call({ compact: true, colors: false, showHidden: true }, obj2)).toEqual("{ [test]: true, [hello]: 'world' }");
+    });
+  });
+
+  describe('iterate', () => {
+    it('works', () => {
+      let obj = { test: true, hello: 'world' };
+
+      expect(Utils.iterate(obj, (key) => key)).toEqual([ 'test', 'hello' ]);
+      expect(Utils.iterate(obj, (_, value) => value)).toEqual([ true, 'world' ]);
+
+      let obj2 = new Map();
+      obj2.set('test', true);
+      obj2.set('hello', 'world');
+
+      expect(Utils.iterate(obj2, (key) => key)).toEqual([ 'test', 'hello' ]);
+      expect(Utils.iterate(obj2, (_, value) => value)).toEqual([ true, 'world' ]);
+
+      let arr = [];
+      arr.push(true);
+      arr.push('world');
+
+      expect(Utils.iterate(arr, (key) => key)).toEqual([ 0, 1 ]);
+      expect(Utils.iterate(arr, (_, value) => value)).toEqual([ true, 'world' ]);
+    });
+  });
+
+  describe('noe', () => {
+    it('works', () => {
+      expect(Utils.noe(undefined)).toBe(true);
+      expect(Utils.noe(null)).toBe(true);
+      expect(Utils.noe(NaN)).toBe(true);
+      expect(Utils.noe('')).toBe(true);
+      expect(Utils.noe('   ')).toBe(true);
+      expect(Utils.noe('   \n\r\n')).toBe(true);
+
+      expect(Utils.noe(0)).toBe(false);
+      expect(Utils.noe(true)).toBe(false);
+      expect(Utils.noe(false)).toBe(false);
+      expect(Utils.noe([])).toBe(false);
+      expect(Utils.noe({})).toBe(false);
     });
   });
 });

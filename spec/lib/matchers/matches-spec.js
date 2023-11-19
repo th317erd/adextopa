@@ -11,7 +11,7 @@ const {
   Matches,
 } = Matchers;
 
-fdescribe('/Core/Matchers/MatchesMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/MatchesMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ fdescribe('/Core/Matchers/MatchesMatcher', () => {
   });
 
   it('can be given a custom name', async () => {
-    let result = await parser.exec(Matches('TestToken', /test\s+\d+/i));
+    let result = await parser.exec(Matches(/test\s+\d+/i).name('TestToken'));
     expect(result).toMatchSnapshot();
   });
 });

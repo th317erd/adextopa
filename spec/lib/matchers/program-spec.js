@@ -13,7 +13,7 @@ const {
   Program,
 } = Matchers;
 
-fdescribe('/Core/Matchers/ProgramMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/ProgramMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -22,11 +22,11 @@ fdescribe('/Core/Matchers/ProgramMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
-        Matches('Name', /test/i),
-        Equals('Space', ' '),
-        Matches('Number', /\d+/),
-      ),
+      Program(
+        Matches(/test/i).name('Name'),
+        Equals(' ').name('Space'),
+        Matches(/\d+/).name('Number'),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();

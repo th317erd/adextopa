@@ -15,7 +15,7 @@ const {
   Switch,
 } = Matchers;
 
-fdescribe('/Core/Matchers/Fetch and Store', () => {
+/*active*/fdescribe('/Core/Matchers/Fetch and Store', () => {
   let parser;
 
   beforeEach(() => {
@@ -24,12 +24,12 @@ fdescribe('/Core/Matchers/Fetch and Store', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('Program',
+      Program(
         Store('Value', 'Testing'),
-        Store('CapturedValue', Equals('First', Fetch('Value'))),
-        Equals('Space', ' '),
-        Equals('Second', Fetch('CapturedValue')),
-      ),
+        Store('CapturedValue', Equals(Fetch('Value')).name('First')),
+        Equals(' ').name('Space'),
+        Equals(Fetch('CapturedValue')).name('Second'),
+      ).name('Program'),
     );
 
     // _TestHelpers.inspectLog(result);
@@ -41,11 +41,11 @@ fdescribe('/Core/Matchers/Fetch and Store', () => {
     parser = new Parser({ source: 'Testing Derp' });
 
     let result = await parser.exec(
-      Program('Program',
+      Program(
         Store('Value', 'Testing'),
-        Store('CapturedValue', Equals('First', Fetch('Value'))),
+        Store('CapturedValue', Equals(Fetch('Value')).name('First')),
         Fetch('CapturedValue'),
-      ),
+      ).name('Program'),
     );
 
     // _TestHelpers.inspectLog(result);
@@ -55,9 +55,9 @@ fdescribe('/Core/Matchers/Fetch and Store', () => {
 
   it('works with current scope', async () => {
     let result = await parser.exec(
-      Program('Program',
+      Program(
         Switch(Fetch('_')),
-      ),
+      ).name('Program'),
     );
 
     // _TestHelpers.inspectLog(result);

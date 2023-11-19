@@ -17,7 +17,7 @@ const {
   Optional,
 } = Matchers;
 
-fdescribe('/Core/Matchers/ProcessMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/ProcessMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -28,7 +28,7 @@ fdescribe('/Core/Matchers/ProcessMatcher', () => {
     parser = new Parser({ source: '1234' });
 
     let result = await parser.exec(
-      Loop('TestProgram', Matches('Number', /\d/)),
+      Loop(Matches(/\d/).name('Number')).name('TestProgram'),
       // { debug: true },
     );
 
@@ -37,13 +37,13 @@ fdescribe('/Core/Matchers/ProcessMatcher', () => {
 
   it('works with a Switch', async () => {
     const NameOrNumber = Switch(
-      Matches('Name', /test/i),
-      Equals('Space', ' '),
-      Matches('Number', /\d+/),
+      Matches(/test/i).name('Name'),
+      Equals(' ').name('Space'),
+      Matches(/\d+/).name('Number'),
     );
 
     let result = await parser.exec(
-      Loop('TestProgram', NameOrNumber),
+      Loop(NameOrNumber).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
@@ -53,10 +53,10 @@ fdescribe('/Core/Matchers/ProcessMatcher', () => {
     parser = new Parser({ source: '1 5 10 15 20 25' });
 
     let result = await parser.exec(
-      Iterate('Repeated', 0, 4,
-        Matches('Number', /\d+/),
-        Skip(Optional(Matches('Space', /\s+/))),
-      ),
+      Iterate(
+        Matches(/\d+/).name('Number'),
+        Skip(Optional(Matches(/\s+/).name('Space'))),
+      ).name('Repeated').start(0).end(4),
     );
 
     expect(result).toMatchSnapshot();

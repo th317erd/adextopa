@@ -22,17 +22,17 @@ describe('/Core/Matchers/NotMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
+      Program(
         Not(Equals('Test')),
-      ),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
 
     result = await parser.exec(
-      Program('TestProgram',
+      Program(
         Equals('Test'),
-      ),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();

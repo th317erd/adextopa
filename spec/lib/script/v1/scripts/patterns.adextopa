@@ -1,6 +1,6 @@
 Program(
-  Equals('First', 'Hello'),
-  Equals('Space', ' '),
-  Equals('Second', 'World'),
-  Equals('Exclamation', '!'),
+  Equals('Hello').name('First'),
+  Equals(' ').name('Space'),
+  Equals('World').name('Second'),
+  Equals('!').name('Exclamation'),
 )

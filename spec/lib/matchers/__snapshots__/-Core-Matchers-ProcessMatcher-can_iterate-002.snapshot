@@ -4,9 +4,9 @@
     success: true,
     result: {
       '$type': 'Token',
-      capturedValue: 'Test 1234',
-      matchedValue: 'Test 1234',
-      name: 'Loop',
+      capturedValue: '1 5 10 15',
+      matchedValue: '1 5 10 15 ',
+      name: 'Repeated',
       parent: null,
       proxyChildren: false,
       value: null,
@@ -19,21 +19,21 @@
       children: [
         {
           '$type': 'Token',
-          capturedValue: 'Test',
-          matchedValue: 'Test',
-          name: 'Identifier',
+          capturedValue: '1',
+          matchedValue: '1',
+          name: 'Number',
           proxyChildren: false,
-          value: 'Test',
+          value: '1',
           capturedRange: {
             '$type': 'SourceRange',
-            end: 4,
+            end: 1,
             relative: false,
             start: 0
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 4,
+            end: 1,
             relative: false,
             start: 0
           },
@@ -43,22 +43,45 @@
         },
         {
           '$type': 'Token',
-          capturedValue: '',
-          matchedValue: ' ',
-          message: 'Parsing Error!',
-          name: 'Token',
+          capturedValue: '5',
+          matchedValue: '5',
+          name: 'Number',
           proxyChildren: false,
-          value: '',
+          value: '5',
           capturedRange: {
             '$type': 'SourceRange',
-            end: 4,
+            end: 3,
+            relative: false,
+            start: 2
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 3,
+            relative: false,
+            start: 2
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '10',
+          matchedValue: '10',
+          name: 'Number',
+          proxyChildren: false,
+          value: '10',
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 6,
             relative: false,
             start: 4
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 5,
+            end: 6,
             relative: false,
             start: 4
           },
@@ -68,23 +91,23 @@
         },
         {
           '$type': 'Token',
-          capturedValue: '1234',
-          matchedValue: '1234',
-          name: 'Value',
+          capturedValue: '15',
+          matchedValue: '15',
+          name: 'Number',
           proxyChildren: false,
-          value: '1234',
+          value: '15',
           capturedRange: {
             '$type': 'SourceRange',
             end: 9,
             relative: false,
-            start: 5
+            start: 7
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
             end: 9,
             relative: false,
-            start: 5
+            start: 7
           },
           parent: {
             '$ref': '0#'
@@ -93,7 +116,7 @@
       ],
       matchedRange: {
         '$type': 'SourceRange',
-        end: 9,
+        end: 10,
         relative: false,
         start: 0
       }

@@ -6,7 +6,7 @@
       '$type': 'Token',
       capturedValue: 'Test 1234',
       matchedValue: 'Test 1234',
-      name: 'Loop',
+      name: 'TestProgram',
       parent: null,
       proxyChildren: false,
       value: null,
@@ -21,7 +21,7 @@
           '$type': 'Token',
           capturedValue: 'Test',
           matchedValue: 'Test',
-          name: 'Identifier',
+          name: 'Name',
           proxyChildren: false,
           value: 'Test',
           capturedRange: {
@@ -43,15 +43,14 @@
         },
         {
           '$type': 'Token',
-          capturedValue: '',
+          capturedValue: ' ',
           matchedValue: ' ',
-          message: 'Parsing Error!',
-          name: 'Token',
+          name: 'Space',
           proxyChildren: false,
-          value: '',
+          value: ' ',
           capturedRange: {
             '$type': 'SourceRange',
-            end: 4,
+            end: 5,
             relative: false,
             start: 4
           },
@@ -70,7 +69,7 @@
           '$type': 'Token',
           capturedValue: '1234',
           matchedValue: '1234',
-          name: 'Value',
+          name: 'Number',
           proxyChildren: false,
           value: '1234',
           capturedRange: {

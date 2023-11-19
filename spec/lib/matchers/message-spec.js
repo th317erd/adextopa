@@ -11,10 +11,10 @@ const {
   Loop,
   Switch,
   Equals,
-  Error,
+  Message,
 } = Matchers;
 
-describe('/Core/Matchers/MessageMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/MessageMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -25,10 +25,10 @@ describe('/Core/Matchers/MessageMatcher', () => {
     let result = await parser.exec(
       Loop(
         Switch(
-          Equals('Identifier', 'Test'),
-          Equals('Operator', '='),
-          Equals('Value', '1234'),
-          Error('Parsing Error!', ({ token }) => {
+          Equals('Test').name('Identifier'),
+          Equals('=').name('Operator'),
+          Equals('1234').name('Value'),
+          Message('Parsing Error!', ({ token }) => {
             token.matchedRange.end++;
           }),
         ),

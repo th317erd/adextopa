@@ -24,11 +24,11 @@ describe('/Core/Matchers/AssertIfMatcher', () => {
   it('works', async () => {
     try {
       await parser.exec(
-        Program('TestProgram',
-          Matches('Name', /test/i),
-          Equals('Space', ' '),
-          AssertIf('Oh no! Not a number!', Matches('Number', /\d+/)),
-        ),
+        Program(
+          Matches(/test/i).name('Name'),
+          Equals(' ').name('Space'),
+          AssertIf('Oh no! Not a number!', Matches(/\d+/).name('Number')),
+        ).name('TestProgram'),
       );
 
       fail('unreachable!');
@@ -40,12 +40,12 @@ describe('/Core/Matchers/AssertIfMatcher', () => {
   it('properly is ignored on success', async () => {
     try {
       let result = await parser.exec(
-        Program('TestProgram',
-          Matches('Name', /test/i),
-          Equals('Space', ' '),
-          AssertIf('Oh no! Not a number!', Matches('NotANumber', /[a-z]+/)),
-          Matches('Number', /\d+/),
-        ),
+        Program(
+          Matches(/test/i).name('Name'),
+          Equals(' ').name('Space'),
+          AssertIf('Oh no! Not a number!', Matches(/[a-z]+/).name('NotANumber')),
+          Matches(/\d+/).name('Number'),
+        ).name('TestProgram'),
       );
 
       expect(result).toMatchSnapshot();

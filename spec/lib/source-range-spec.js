@@ -4,11 +4,10 @@
 import * as _TestHelpers from '../support/test-helpers.js';
 
 import {
-  Utils,
   SourceRange,
 } from '../../lib/index.js';
 
-fdescribe('SourceRange', () => {
+/*active*/fdescribe('SourceRange', () => {
   describe('new', () => {
     it('works', () => {
       expect((new SourceRange()).toJSON()).toEqual({ $type: 'SourceRange', start: 0, end: 0, relative: false });

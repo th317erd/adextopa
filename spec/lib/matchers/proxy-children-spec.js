@@ -25,15 +25,15 @@ describe('/Core/Matchers/ProxyChildrenMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
+      Program(
         Skip(Matches(/\s*phone\s*:\s*/i)),
         ProxyChildren(
-          Loop('PhonePart',
+          Loop(
             Matches(Fetch('PhonePart.children_count'), /\d+/),
             Skip(Matches(/\D+/)),
-          ),
+          ).name('PhonePart'),
         ),
-      ),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();

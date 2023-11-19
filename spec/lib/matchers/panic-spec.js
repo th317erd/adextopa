@@ -21,10 +21,10 @@ describe('/Core/Matchers/PanicMatcher', () => {
   it('works', async () => {
     try {
       await parser.exec(
-        Program('TestProgram',
+        Program(
           Equals('Test'),
           Panic('Hot Dawg!'),
-        ),
+        ).name('TestProgram'),
       );
 
       fail('unreachable!');

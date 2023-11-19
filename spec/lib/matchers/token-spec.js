@@ -22,10 +22,10 @@ describe('/Core/Matchers/TokenMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
+      Program(
         Equals('Test'),
         Token('CustomToken', { value: 'hello world' }),
-      ),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
@@ -33,11 +33,11 @@ describe('/Core/Matchers/TokenMatcher', () => {
 
   it('works with a fetch named', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
+      Program(
         Store('TokenName', 'SomeCrazyName'),
         Equals('Test'),
         Token(Fetch('TokenName'), { value: 'hello world', someOtherProp: true }),
-      ),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();

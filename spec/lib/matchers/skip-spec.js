@@ -15,7 +15,7 @@ const {
   Fetch,
 } = Matchers;
 
-fdescribe('/Core/Matchers/SkipMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/SkipMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -24,11 +24,11 @@ fdescribe('/Core/Matchers/SkipMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
-        Matches('Name', /test/i),
-        Skip(Matches('Space', /\s+/i)),
-        Matches('Number', /\d+/i),
-      ),
+      Program(
+        Matches(/test/i).name('Name'),
+        Skip(Matches(/\s+/i).name('Space')),
+        Matches(/\d+/i).name('Number'),
+      ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
@@ -36,12 +36,12 @@ fdescribe('/Core/Matchers/SkipMatcher', () => {
 
   it('properly passes along a payload', async () => {
     let result = await parser.exec(
-      Program('TestProgram',
-        Matches('Name', /test/i),
-        Store('Whitespace', Skip(Matches('Space', /\s+/i))),
-        Matches('Number', /\d+/i),
+      Program(
+        Matches(/test/i).name('Name'),
+        Store('Whitespace', Skip(Matches(/\s+/i).name('Space'))),
+        Matches(/\d+/i).name('Number'),
         Fetch('Whitespace'),
-      ),
+      ).name('TestProgram'),
     );
 
     // console.log(_TestHelpers.inspect(result));

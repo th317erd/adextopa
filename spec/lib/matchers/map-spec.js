@@ -12,7 +12,7 @@ const {
   Equals,
 } = Matchers;
 
-describe('/Core/Matchers/MapMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/MapMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -21,15 +21,14 @@ describe('/Core/Matchers/MapMatcher', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Map(Equals('Test'), ({ result, value, context }) => {
-        let source = context.getSource();
+      Map(Equals('Test'), function({ context }, result) {
+        let token   = result.token;
+        let source  = context.getInputStream().toString();
 
-        value.capturedRange.start = value.matchedRange.start = 0;
-        value.capturedRange.end = value.matchedRange.end = source.length;
-        value.capturedValue = source;
-        value.matchedValue = source;
-        value.value = source;
-        value.name = 'SameRandomName';
+        token.capturedRange.start = token.matchedRange.start = 0;
+        token.capturedRange.end = token.matchedRange.end = source.length;
+        token.value = source;
+        token.name = 'SameRandomName';
 
         return result;
       }),

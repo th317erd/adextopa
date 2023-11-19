@@ -25,13 +25,13 @@ describe('/Core/Matchers/Register and Call', () => {
 
   it('works', async () => {
     let result = await parser.exec(
-      Program('Program',
+      Program(
         Store('Matcher', 'Testing'),
-        Register('CaptureValue', Equals('Second', Fetch('Matcher'))),
-        Call('First', 'CaptureValue'), // name = 'First'
-        Equals('Space', ' '),
+        Register('CaptureValue', Equals(Fetch('Matcher').name('Second'))),
+        Call('CaptureValue').name('First'), // name = 'First'
+        Equals(' ').name('Space'),
         Call('CaptureValue'), // name = 'Second'
-      ),
+      ).name('Program'),
     );
 
     expect(result).toMatchSnapshot();

@@ -22,7 +22,7 @@ describe('/Core/Matchers/PinMatcher', () => {
   });
 
   it('works', async () => {
-    const Word = Matches('Word', /\w+/);
+    const Word = Matches(/\w+/).name('Word');
 
     // Here we get a success, even though
     // we only end up matching the range 'Test '.
@@ -44,7 +44,7 @@ describe('/Core/Matchers/PinMatcher', () => {
   });
 
   it('works when match fails', async () => {
-    const Word = Matches('Word', /\w+/);
+    const Word = Matches(/\w+/).name('Word');
 
     let result = await parser.exec(
       Program(

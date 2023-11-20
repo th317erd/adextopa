@@ -8,7 +8,7 @@ import {
 } from '../../../lib/index.js';
 
 const {
-  Map,
+  MapResult,
   Equals,
 } = Matchers;
 
@@ -21,7 +21,7 @@ const {
 
   it('works', async () => {
     let result = await parser.exec(
-      Map(Equals('Test'), function({ context }, result) {
+      MapResult(Equals('Test'), function({ context }, result) {
         let token   = result.token;
         let source  = context.getInputStream().toString();
 

@@ -1,0 +1,109 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'Phone: 602-512-9876',
+      matchedValue: 'Phone: 602-512-9876',
+      parent: null,
+      value: null,
+      attributes: {
+        name: 'TestProgram',
+        proxyChildren: false
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 19,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: '602',
+          matchedValue: '602',
+          value: '602',
+          attributes: {
+            name: '0',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 10,
+            relative: false,
+            start: 7
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 10,
+            relative: false,
+            start: 7
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '512',
+          matchedValue: '512',
+          value: '512',
+          attributes: {
+            name: '1',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 14,
+            relative: false,
+            start: 11
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 14,
+            relative: false,
+            start: 11
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '9876',
+          matchedValue: '9876',
+          value: '9876',
+          attributes: {
+            name: '2',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 19,
+            relative: false,
+            start: 15
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 19,
+            relative: false,
+            start: 15
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 19,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

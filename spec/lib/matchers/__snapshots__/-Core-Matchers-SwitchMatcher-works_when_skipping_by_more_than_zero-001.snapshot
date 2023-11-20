@@ -1,0 +1,30 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: '',
+      matchedValue: ' ',
+      parent: null,
+      value: null,
+      attributes: {
+        name: 'TestProgram',
+        proxyChildren: false
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 0,
+        relative: false,
+        start: 0
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 1,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

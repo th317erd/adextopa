@@ -16,7 +16,7 @@ const {
   ProxyChildren,
 } = Matchers;
 
-describe('/Core/Matchers/ProxyChildrenMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/ProxyChildrenMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('/Core/Matchers/ProxyChildrenMatcher', () => {
         Skip(Matches(/\s*phone\s*:\s*/i)),
         ProxyChildren(
           Loop(
-            Matches(Fetch('PhonePart.children_count'), /\d+/),
+            Matches(/\d+/).name(Fetch('PhonePart.token.childrenCount')),
             Skip(Matches(/\D+/)),
           ).name('PhonePart'),
         ),

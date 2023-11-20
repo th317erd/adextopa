@@ -11,6 +11,7 @@ const {
   Equals,
   Matches,
   Program,
+  Skip,
   Switch,
 } = Matchers;
 
@@ -21,7 +22,7 @@ const {
     parser = new Parser({ source: 'Test 1234' });
   });
 
-  fit('works', async () => {
+  it('works', async () => {
     const NameOrNumber = Switch(
       Matches(/test/i).name('Name'),
       Equals(' ').name('Space'),
@@ -38,6 +39,27 @@ const {
     );
 
     // console.log(_TestHelpers.inspect(result));
+
+    expect(result).toMatchSnapshot();
+  });
+
+  it('works when skipping by more than zero', async () => {
+    parser = new Parser({ source: ' ' });
+
+    const NameOrNumber = Switch(
+      Matches(/test/i).name('Name'),
+      Equals(' ').name('Space'),
+      Matches(/\d+/).name('Number'),
+    );
+
+    let result = await parser.exec(
+      Program(
+        Switch(
+          Skip(Matches(/\s+/).name('Whitespace')),
+          NameOrNumber,
+        ),
+      ).name('TestProgram'),
+    );
 
     expect(result).toMatchSnapshot();
   });

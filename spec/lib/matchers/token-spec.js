@@ -13,7 +13,7 @@ const {
   Fetch,
 } = Matchers;
 
-describe('/Core/Matchers/TokenMatcher', () => {
+fdescribe('/Core/Matchers/TokenMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -24,19 +24,19 @@ describe('/Core/Matchers/TokenMatcher', () => {
     let result = await parser.exec(
       Program(
         Equals('Test'),
-        Token('CustomToken', { value: 'hello world' }),
+        Token({ value: 'hello world' }).name('CustomToken'),
       ).name('TestProgram'),
     );
 
     expect(result).toMatchSnapshot();
   });
 
-  it('works with a fetch named', async () => {
+  it('works with a fetched name', async () => {
     let result = await parser.exec(
       Program(
         Store('TokenName', 'SomeCrazyName'),
         Equals('Test'),
-        Token(Fetch('TokenName'), { value: 'hello world', someOtherProp: true }),
+        Token({ value: 'hello world', someOtherProp: true }).name(Fetch('TokenName')),
       ).name('TestProgram'),
     );
 

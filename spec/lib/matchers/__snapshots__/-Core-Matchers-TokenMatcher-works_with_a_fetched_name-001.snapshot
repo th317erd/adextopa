@@ -44,6 +44,32 @@
           parent: {
             '$ref': '0#'
           }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '',
+          matchedValue: '',
+          value: '',
+          attributes: {
+            name: 'Token',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 4
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
         }
       ],
       matchedRange: {

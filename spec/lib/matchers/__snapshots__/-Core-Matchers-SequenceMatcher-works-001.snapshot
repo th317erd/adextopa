@@ -1,0 +1,30 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'Test \\"Hello world\\" how are you?',
+      matchedValue: '"Test \\"Hello world\\" how are you?"',
+      parent: null,
+      value: 'Test \\"Hello world\\" how are you?',
+      attributes: {
+        name: 'Token',
+        proxyChildren: false
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 34,
+        relative: false,
+        start: 1
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 35,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

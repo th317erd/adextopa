@@ -44,6 +44,33 @@
           parent: {
             '$ref': '0#'
           }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '',
+          matchedValue: '',
+          value: 'hello world',
+          attributes: {
+            name: 'CustomToken',
+            proxyChildren: false,
+            value: 'hello world'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 4
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
         }
       ],
       matchedRange: {

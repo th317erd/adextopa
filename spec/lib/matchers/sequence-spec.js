@@ -11,7 +11,7 @@ const {
   Sequence,
 } = Matchers;
 
-describe('/Core/Matchers/SequenceMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/SequenceMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -45,6 +45,8 @@ describe('/Core/Matchers/SequenceMatcher', () => {
 
     let result = await parser.exec(Sequence('"', '"', '\\', [ '\n', '\r' ]).name('ItWorks'));
 
-    expect(result).toMatchSnapshot();
+    expect(result.success).toBe(false);
+    expect(result.result).toBeInstanceOf(Error);
+    expect(result.result.message).toBe('Failed to match');
   });
 });

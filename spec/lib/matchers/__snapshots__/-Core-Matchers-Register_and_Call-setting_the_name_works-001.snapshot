@@ -1,0 +1,109 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'Testing Testing',
+      matchedValue: 'Testing Testing',
+      parent: null,
+      value: null,
+      attributes: {
+        name: 'Program',
+        proxyChildren: false
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 15,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'Testing',
+          matchedValue: 'Testing',
+          value: 'Testing',
+          attributes: {
+            name: 'First',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 7,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 7,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: ' ',
+          matchedValue: ' ',
+          value: ' ',
+          attributes: {
+            name: 'Space',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 8,
+            relative: false,
+            start: 7
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 8,
+            relative: false,
+            start: 7
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: 'Testing',
+          matchedValue: 'Testing',
+          value: 'Testing',
+          attributes: {
+            name: 'Second',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 15,
+            relative: false,
+            start: 8
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 15,
+            relative: false,
+            start: 8
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 15,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

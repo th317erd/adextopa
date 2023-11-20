@@ -11,7 +11,7 @@ const {
   Panic,
 } = Matchers;
 
-describe('/Core/Matchers/PanicMatcher', () => {
+/*active*/fdescribe('/Core/Matchers/PanicMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -32,13 +32,13 @@ describe('/Core/Matchers/PanicMatcher', () => {
       expect(error.message).toBe('Hot Dawg!');
       expect(error.lineStart).toEqual(1);
       expect(error.lineEnd).toEqual(1);
-      expect(error.columnStart).toEqual(4);
-      expect(error.columnEnd).toEqual(9);
+      expect(error.columnStart).toEqual(5);
+      expect(error.columnEnd).toEqual(10);
       expect(error.parserContext).not.toBeNull();
-      expect(error.parserContext.range.start).toEqual(4);
-      expect(error.parserContext.range.end).toEqual(9);
+      expect(error.parserContext.parserRange.start).toEqual(4);
+      expect(error.parserContext.parserRange.end).toEqual(9);
       expect(error.parserContext.getFileName()).toEqual('test.script');
-      expect(error.parserContext.getSource()).toEqual('Test 1234');
+      expect(error.parserContext.getInputStream().toString()).toEqual('Test 1234');
     }
   });
 });

@@ -32,8 +32,6 @@ const {
       ).name('Program'),
     );
 
-    // _TestHelpers.inspectLog(result);
-
     expect(result).toMatchSnapshot();
   });
 

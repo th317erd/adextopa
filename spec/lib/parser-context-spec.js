@@ -81,10 +81,8 @@ import { InputStream } from '../../lib/input-stream.js';
       expect(context.resolveValue(undefined)).toBe(undefined);
       expect(context.resolveValue(null)).toBe(null);
     });
-  });
 
-  describe('resolveValue', () => {
-    it('works', () => {
+    it('can convert to primitive', () => {
       const token = new Token(context, null, { value: 'hello' });
 
       const FAKE = {

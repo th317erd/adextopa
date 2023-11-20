@@ -26,7 +26,6 @@ import {
       expect(token.toJSON()).toEqual({
         $type:          'Token',
         parent:         null,
-        value:          null,
         capturedValue:  '',
         matchedValue:   '',
         capturedRange:  { $type: 'SourceRange', start: 0, end: 0, relative: false },
@@ -35,20 +34,19 @@ import {
         attributes:     {
           proxyChildren:  false,
           name:           'Token',
+          value:          null,
         },
       });
 
-      token = new Token(context, token, {
+      token = (new Token(context, token, {
         capturedRange:  new SourceRange(2, 10),
         matchedRange:   new SourceRange(1, 11),
-        value:          { derp: true },
         name:           'TestToken',
-      });
+      })).setAttribute('value', { derp: true });
 
       expect(token.toJSON()).toEqual({
         $type:          'Token',
         parent:         { $ref: '0#' },
-        value:          { derp: true },
         capturedValue:  'sting 12',
         matchedValue:   'esting 123',
         capturedRange:  { $type: 'SourceRange', start: 2, end: 10, relative: false },
@@ -57,6 +55,7 @@ import {
         attributes:     {
           proxyChildren:  false,
           name:           'TestToken',
+          value:          { derp: true },
         },
       });
     });

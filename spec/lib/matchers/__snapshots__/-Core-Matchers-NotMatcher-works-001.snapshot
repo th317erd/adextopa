@@ -7,10 +7,10 @@
       capturedValue: 'Test',
       matchedValue: 'Test',
       parent: null,
-      value: null,
       attributes: {
         name: 'TestProgram',
-        proxyChildren: false
+        proxyChildren: false,
+        value: null
       },
       capturedRange: {
         '$type': 'SourceRange',
@@ -23,10 +23,10 @@
           '$type': 'Token',
           capturedValue: 'Test',
           matchedValue: 'Test',
-          value: 'Test',
           attributes: {
             name: 'Equals',
-            proxyChildren: false
+            proxyChildren: false,
+            value: 'Test'
           },
           capturedRange: {
             '$type': 'SourceRange',

@@ -7,10 +7,10 @@
       capturedValue: '1234',
       matchedValue: '1234',
       parent: null,
-      value: null,
       attributes: {
         name: 'TestProgram',
-        proxyChildren: false
+        proxyChildren: false,
+        value: null
       },
       capturedRange: {
         '$type': 'SourceRange',
@@ -23,10 +23,10 @@
           '$type': 'Token',
           capturedValue: '1',
           matchedValue: '1',
-          value: '1',
           attributes: {
             name: 'Number',
-            proxyChildren: false
+            proxyChildren: false,
+            value: '1'
           },
           capturedRange: {
             '$type': 'SourceRange',
@@ -49,10 +49,10 @@
           '$type': 'Token',
           capturedValue: '2',
           matchedValue: '2',
-          value: '2',
           attributes: {
             name: 'Number',
-            proxyChildren: false
+            proxyChildren: false,
+            value: '2'
           },
           capturedRange: {
             '$type': 'SourceRange',
@@ -75,10 +75,10 @@
           '$type': 'Token',
           capturedValue: '3',
           matchedValue: '3',
-          value: '3',
           attributes: {
             name: 'Number',
-            proxyChildren: false
+            proxyChildren: false,
+            value: '3'
           },
           capturedRange: {
             '$type': 'SourceRange',
@@ -101,10 +101,10 @@
           '$type': 'Token',
           capturedValue: '4',
           matchedValue: '4',
-          value: '4',
           attributes: {
             name: 'Number',
-            proxyChildren: false
+            proxyChildren: false,
+            value: '4'
           },
           capturedRange: {
             '$type': 'SourceRange',

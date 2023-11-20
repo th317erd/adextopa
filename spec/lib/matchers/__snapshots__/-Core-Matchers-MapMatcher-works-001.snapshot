@@ -7,10 +7,10 @@
       capturedValue: 'Test 1234',
       matchedValue: 'Test 1234',
       parent: null,
-      value: 'Test 1234',
       attributes: {
         name: 'Equals',
-        proxyChildren: false
+        proxyChildren: false,
+        value: 'Test'
       },
       capturedRange: {
         '$type': 'SourceRange',

@@ -7,10 +7,10 @@
       capturedValue: 'Test \\"Hello world\\" how are you?',
       matchedValue: '"Test \\"Hello world\\" how are you?"',
       parent: null,
-      value: 'Test \\"Hello world\\" how are you?',
       attributes: {
-        name: 'Token',
-        proxyChildren: false
+        name: 'ItWorks',
+        proxyChildren: false,
+        value: 'Test \\"Hello world\\" how are you?'
       },
       capturedRange: {
         '$type': 'SourceRange',

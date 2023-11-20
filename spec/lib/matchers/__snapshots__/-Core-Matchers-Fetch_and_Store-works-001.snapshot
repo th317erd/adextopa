@@ -7,10 +7,10 @@
       capturedValue: 'Testing Testing',
       matchedValue: 'Testing Testing',
       parent: null,
-      value: null,
       attributes: {
         name: 'Program',
-        proxyChildren: false
+        proxyChildren: false,
+        value: null
       },
       capturedRange: {
         '$type': 'SourceRange',
@@ -23,10 +23,10 @@
           '$type': 'Token',
           capturedValue: 'Testing',
           matchedValue: 'Testing',
-          value: 'Testing',
           attributes: {
             name: 'First',
-            proxyChildren: false
+            proxyChildren: false,
+            value: 'Testing'
           },
           capturedRange: {
             '$type': 'SourceRange',
@@ -49,10 +49,10 @@
           '$type': 'Token',
           capturedValue: ' ',
           matchedValue: ' ',
-          value: ' ',
           attributes: {
             name: 'Space',
-            proxyChildren: false
+            proxyChildren: false,
+            value: ' '
           },
           capturedRange: {
             '$type': 'SourceRange',
@@ -75,10 +75,10 @@
           '$type': 'Token',
           capturedValue: 'Testing',
           matchedValue: 'Testing',
-          value: 'Testing',
           attributes: {
             name: 'Second',
-            proxyChildren: false
+            proxyChildren: false,
+            value: 'Testing'
           },
           capturedRange: {
             '$type': 'SourceRange',

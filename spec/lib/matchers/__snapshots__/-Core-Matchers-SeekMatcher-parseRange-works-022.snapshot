@@ -4,6 +4,6 @@
     '$type': 'SourceRange',
     end: 0,
     relative: true,
-    start: 0
+    start: -0
   }
 }

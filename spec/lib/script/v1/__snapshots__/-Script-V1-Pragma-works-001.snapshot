@@ -1,110 +1,136 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: '@pragma use(1.0, true)',
-    matchedValue: '@pragma use(1.0, true)',
-    name: 'PragmaStatement',
-    parent: null,
-    value: '@pragma use(1.0, true)',
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 22,
-      start: 0
-    },
-    children: [
-      {
-        '$type': [class Token],
-        capturedValue: 'use',
-        matchedValue: 'use',
-        name: 'Name',
-        value: 'use',
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 11,
-          start: 8
-        },
-        children: [],
-        matchedRange: {
-          '$type': [class SourceRange],
-          end: 11,
-          start: 8
-        },
-        parent: {
-          '$ref': '0#'
-        }
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: '@pragma use(1.0, true)',
+      matchedValue: '@pragma use(1.0, true)',
+      parent: null,
+      attributes: {
+        name: 'PragmaStatement',
+        proxyChildren: false,
+        value: null
       },
-      {
-        '$type': [class Token],
-        capturedValue: '1.0, true',
-        matchedValue: '1.0, true',
-        name: 'Arguments',
-        value: '1.0, true',
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 21,
-          start: 12
-        },
-        children: [
-          {
-            '$type': [class Token],
-            capturedValue: '1.0',
-            matchedValue: '1.0',
-            name: 'NumberLiteral',
-            value: 1,
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 15,
-              start: 12
-            },
-            children: [],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 15,
-              start: 12
-            },
-            parent: {
-              '$ref': '0#'
-            }
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 22,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'use',
+          matchedValue: 'use',
+          attributes: {
+            name: 'Name',
+            proxyChildren: false,
+            value: 'use'
           },
-          {
-            '$type': [class Token],
-            capturedValue: 'true',
-            matchedValue: 'true',
-            name: 'BooleanLiteral',
-            value: true,
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 21,
-              start: 17
-            },
-            children: [],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 21,
-              start: 17
-            },
-            parent: {
-              '$ref': '0#'
-            }
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 11,
+            relative: false,
+            start: 8
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 11,
+            relative: false,
+            start: 8
+          },
+          parent: {
+            '$ref': '0#'
           }
-        ],
-        matchedRange: {
-          '$type': [class SourceRange],
-          end: 21,
-          start: 12
         },
-        parent: {
-          '$ref': '0#'
+        {
+          '$type': 'Token',
+          capturedValue: '1.0, true',
+          matchedValue: '1.0, true',
+          attributes: {
+            name: 'Arguments',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 21,
+            relative: false,
+            start: 12
+          },
+          children: [
+            {
+              '$type': 'Token',
+              capturedValue: '1.0',
+              matchedValue: '1.0',
+              attributes: {
+                name: 'NumberLiteral',
+                proxyChildren: false,
+                value: 1
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 15,
+                relative: false,
+                start: 12
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 15,
+                relative: false,
+                start: 12
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: 'true',
+              matchedValue: 'true',
+              attributes: {
+                name: 'BooleanLiteral',
+                proxyChildren: false,
+                value: true
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 21,
+                relative: false,
+                start: 17
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 21,
+                relative: false,
+                start: 17
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            }
+          ],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 21,
+            relative: false,
+            start: 12
+          },
+          parent: {
+            '$ref': '0#'
+          }
         }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 22,
+        relative: false,
+        start: 0
       }
-    ],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 22,
-      start: 0
     }
   }
 }

@@ -1,24 +1,30 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: 'Line 1 \\\nLine 2\\\r\nLine 3\\\rEnd',
-    matchedValue: "'Line 1 \\\nLine 2\\\r\nLine 3\\\rEnd'",
-    name: 'StringLiteral',
-    parent: null,
-    value: 'Line 1 \nLine 2\r\nLine 3\rEnd',
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 30,
-      start: 1
-    },
-    children: [],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 31,
-      start: 0
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'Line 1 \\\nLine 2\\\r\nLine 3\\\rEnd',
+      matchedValue: "'Line 1 \\\nLine 2\\\r\nLine 3\\\rEnd'",
+      parent: null,
+      attributes: {
+        name: 'StringLiteral',
+        proxyChildren: false,
+        value: 'Line 1 \nLine 2\r\nLine 3\rEnd'
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 30,
+        relative: false,
+        start: 1
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 31,
+        relative: false,
+        start: 0
+      }
     }
   }
 }

@@ -1,24 +1,30 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: "test string \\'escaped\\' test",
-    matchedValue: "'test string \\'escaped\\' test'",
-    name: 'StringLiteral',
-    parent: null,
-    value: "test string 'escaped' test",
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 29,
-      start: 1
-    },
-    children: [],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 30,
-      start: 0
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: "test string \\'escaped\\' test",
+      matchedValue: "'test string \\'escaped\\' test'",
+      parent: null,
+      attributes: {
+        name: 'StringLiteral',
+        proxyChildren: false,
+        value: "test string 'escaped' test"
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 29,
+        relative: false,
+        start: 1
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 30,
+        relative: false,
+        start: 0
+      }
     }
   }
 }

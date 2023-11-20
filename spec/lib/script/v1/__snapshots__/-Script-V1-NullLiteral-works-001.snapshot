@@ -1,24 +1,30 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: 'null',
-    matchedValue: 'null',
-    name: 'NullLiteral',
-    parent: null,
-    value: 'null',
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 4,
-      start: 0
-    },
-    children: [],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 4,
-      start: 0
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'null',
+      matchedValue: 'null',
+      parent: null,
+      attributes: {
+        name: 'NullLiteral',
+        proxyChildren: false,
+        value: 'null'
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 4,
+        relative: false,
+        start: 0
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 4,
+        relative: false,
+        start: 0
+      }
     }
   }
 }

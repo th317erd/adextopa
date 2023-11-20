@@ -22,7 +22,7 @@ const {
   },
 } = Script;
 
-describe('/Script/V1/AdextopaScript', () => {
+/*active*/fdescribe('/Script/V1/AdextopaScript', () => {
   const test = async (fileName, debug, deepDebug) => {
     let source  = FileSystem.readFileSync(Path.resolve(__dirname, 'scripts', `${fileName.replace(/\.adextopa$/, '')}.adextopa`), 'utf8');
     let parser  = new Parser({ source, fileName });

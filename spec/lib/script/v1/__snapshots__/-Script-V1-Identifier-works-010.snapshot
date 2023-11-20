@@ -1,24 +1,30 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: 'derp!',
-    matchedValue: 'derp!',
-    name: 'Identifier',
-    parent: null,
-    value: 'derp!',
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 5,
-      start: 0
-    },
-    children: [],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 5,
-      start: 0
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'derp!',
+      matchedValue: 'derp!',
+      parent: null,
+      attributes: {
+        name: 'Identifier',
+        proxyChildren: false,
+        value: 'derp!'
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 5,
+        relative: false,
+        start: 0
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 5,
+        relative: false,
+        start: 0
+      }
     }
   }
 }

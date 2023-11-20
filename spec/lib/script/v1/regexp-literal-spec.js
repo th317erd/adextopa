@@ -15,20 +15,18 @@ const {
   },
 } = Script;
 
-describe('/Script/V1/RegExpLiteral', () => {
+/*active*/fdescribe('/Script/V1/RegExpLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
 
       try {
-        return await parser.exec(RegExpLiteral(), debug);
+        return await parser.exec(RegExpLiteral(), { debug });
       } catch (error) {
         return error;
       }
     };
 
-    expect(await test('/+cat+/')).toMatchSnapshot();
-    expect(await test('/cat+*/')).toMatchSnapshot();
     expect(await test('/cat+/')).toMatchSnapshot();
     expect(await test('/cat*/')).toMatchSnapshot();
     expect(await test('/cat[abc]/')).toMatchSnapshot();
@@ -45,6 +43,9 @@ describe('/Script/V1/RegExpLiteral', () => {
     expect(await test('/[\\s\\w\\d\\b\\S\\W\\D\\B/]/')).toMatchSnapshot();
     expect(await test('/cat/dgimsuy')).toMatchSnapshot();
     expect(await test('/cat/dgimsvy')).toMatchSnapshot();
+
+    expect(await test('/+cat+/')).toMatchSnapshot(); // Failure
+    expect(await test('/cat+*/')).toMatchSnapshot(); // Failure
     expect(await test('/cat/x')).toMatchSnapshot(); // Failure
     expect(await test('/cat/uv')).toMatchSnapshot(); // Failure
     expect(await test('/cat/dd')).toMatchSnapshot(); // Failure

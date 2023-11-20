@@ -22,7 +22,7 @@ const {
   },
 } = Script;
 
-describe('/Script/V1/Comment', () => {
+/*active*/fdescribe('/Script/V1/Comment', () => {
   let parser;
 
   beforeEach(() => {

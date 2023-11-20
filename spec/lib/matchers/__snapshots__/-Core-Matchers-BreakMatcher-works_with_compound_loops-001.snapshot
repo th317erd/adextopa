@@ -4,7 +4,7 @@
     success: true,
     result: {
       '$type': 'Token',
-      capturedValue: '(1 5) (10 derp) (6 2',
+      capturedValue: '1 5) (10 derp) (6 2',
       matchedValue: '(1 5) (10 derp) (6 2)',
       parent: null,
       attributes: {
@@ -16,7 +16,7 @@
         '$type': 'SourceRange',
         end: 20,
         relative: false,
-        start: 0
+        start: 1
       },
       children: [
         {

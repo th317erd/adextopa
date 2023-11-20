@@ -1,60 +1,285 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'SyntaxError',
   value: {
-    '$type': [class Token],
-    capturedValue: 's\\w\\d\\b\\S\\W\\D\\B',
-    matchedValue: '/\\s\\w\\d\\b\\S\\W\\D\\B/',
-    name: 'RegExpLiteral',
-    parent: null,
-    value: /s\w\d\b\S\W\D\B/,
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 17,
-      start: 2
-    },
-    children: [
-      {
-        '$type': [class Token],
-        capturedValue: 's\\w\\d\\b\\S\\W\\D\\B',
-        matchedValue: '\\s\\w\\d\\b\\S\\W\\D\\B',
-        name: 'Pattern',
-        value: 's\\w\\d\\b\\S\\W\\D\\B',
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 17,
-          start: 2
-        },
-        children: [
-          {
-            '$type': [class Token],
-            capturedValue: 's',
-            matchedValue: '\\s',
-            name: 'CharacterAtom',
-            value: 's',
+    '$type': 'SyntaxError',
+    columnEnd: 13,
+    columnStart: 6,
+    lineEnd: 1,
+    lineStart: 1,
+    message: "Invalid flags supplied to RegExp constructor 'value(value) {\n    if (arguments.length === 0)\n      return this.getAttribute('value');\n\n    this.setAttribute('value', value);\n\n    return this;\n  }'",
+    parserContext: <ref *1> Map(17) {
+      '@' => [Circular *1],
+      'CharacterAtom' => {
+        '$type': 'ProgramMatcher',
+        attributes: {
+          end: 1,
+          name: 'CharacterAtom',
+          start: 0,
+          step: 1
+        }
+      },
+      'CharacterClass' => {
+        '$type': 'ProgramMatcher',
+        attributes: {
+          end: 1,
+          name: 'CharacterClass',
+          start: 0,
+          step: 1
+        }
+      },
+      'CharacterClassCharacterLiteral' => {
+        '$type': 'SwitchMatcher',
+        attributes: {
+          end: 1,
+          name: 'Switch',
+          start: 0,
+          step: 1
+        }
+      },
+      'EndOfInputAssertion' => {
+        '$type': 'MatchesMatcher',
+        attributes: {
+          name: 'EndOfInputAssertion'
+        }
+      },
+      'Equals' => {
+        '$type': 'EqualsMatcher',
+        attributes: {
+          name: 'Equals'
+        }
+      },
+      'EscapedCharacterLiteral' => {
+        '$type': 'MapMatcher',
+        attributes: {
+          name: 'MapResult'
+        }
+      },
+      'MapResult' => {
+        '$type': 'MapMatcher',
+        attributes: {
+          name: 'MapResult'
+        }
+      },
+      'Optional' => {
+        '$type': 'OptionalMatcher',
+        attributes: {
+          name: 'Optional'
+        }
+      },
+      'Quantifier' => {
+        '$type': 'SwitchMatcher',
+        attributes: {
+          end: 1,
+          name: 'Switch',
+          start: 0,
+          step: 1
+        }
+      },
+      'RegExpLiteral' => {
+        '$type': 'ProgramMatcher',
+        attributes: {
+          end: 1,
+          index: 0,
+          name: 'RegExpLiteral',
+          start: 0,
+          step: 1,
+          token: {
+            '$type': 'Token',
+            capturedValue: 'cat',
+            matchedValue: '/cat/',
+            parent: null,
+            attributes: {
+              name: 'RegExpLiteral',
+              proxyChildren: false,
+              value: null
+            },
             capturedRange: {
-              '$type': [class SourceRange],
-              end: 3,
-              start: 2
+              '$type': 'SourceRange',
+              end: 4,
+              relative: false,
+              start: 1
             },
             children: [
               {
-                '$type': [class Token],
-                capturedValue: 's',
-                inverted: false,
-                matchedValue: '\\s',
-                name: 'WhitespaceSequence',
-                value: 's',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 3,
-                  start: 2
+                '$type': 'Token',
+                capturedValue: 'cat',
+                matchedValue: 'cat',
+                attributes: {
+                  name: 'Pattern',
+                  proxyChildren: false,
+                  value: null
                 },
-                children: [],
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 4,
+                  relative: false,
+                  start: 1
+                },
+                children: [
+                  {
+                    '$type': 'Token',
+                    capturedValue: 'c',
+                    matchedValue: 'c',
+                    attributes: {
+                      name: 'CharacterAtom',
+                      proxyChildren: false,
+                      value: null
+                    },
+                    capturedRange: {
+                      '$type': 'SourceRange',
+                      end: 2,
+                      relative: false,
+                      start: 1
+                    },
+                    children: [
+                      {
+                        '$type': 'Token',
+                        capturedValue: 'c',
+                        matchedValue: 'c',
+                        attributes: {
+                          name: 'CharacterLiteral',
+                          proxyChildren: false,
+                          value: 'c'
+                        },
+                        capturedRange: {
+                          '$type': 'SourceRange',
+                          end: 2,
+                          relative: false,
+                          start: 1
+                        },
+                        children: [],
+                        matchedRange: {
+                          '$type': 'SourceRange',
+                          end: 2,
+                          relative: false,
+                          start: 1
+                        },
+                        parent: {
+                          '$ref': '0#'
+                        }
+                      }
+                    ],
+                    matchedRange: {
+                      '$type': 'SourceRange',
+                      end: 2,
+                      relative: false,
+                      start: 1
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': 'Token',
+                    capturedValue: 'a',
+                    matchedValue: 'a',
+                    attributes: {
+                      name: 'CharacterAtom',
+                      proxyChildren: false,
+                      value: null
+                    },
+                    capturedRange: {
+                      '$type': 'SourceRange',
+                      end: 3,
+                      relative: false,
+                      start: 2
+                    },
+                    children: [
+                      {
+                        '$type': 'Token',
+                        capturedValue: 'a',
+                        matchedValue: 'a',
+                        attributes: {
+                          name: 'CharacterLiteral',
+                          proxyChildren: false,
+                          value: 'a'
+                        },
+                        capturedRange: {
+                          '$type': 'SourceRange',
+                          end: 3,
+                          relative: false,
+                          start: 2
+                        },
+                        children: [],
+                        matchedRange: {
+                          '$type': 'SourceRange',
+                          end: 3,
+                          relative: false,
+                          start: 2
+                        },
+                        parent: {
+                          '$ref': '0#'
+                        }
+                      }
+                    ],
+                    matchedRange: {
+                      '$type': 'SourceRange',
+                      end: 3,
+                      relative: false,
+                      start: 2
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  },
+                  {
+                    '$type': 'Token',
+                    capturedValue: 't',
+                    matchedValue: 't',
+                    attributes: {
+                      name: 'CharacterAtom',
+                      proxyChildren: false,
+                      value: null
+                    },
+                    capturedRange: {
+                      '$type': 'SourceRange',
+                      end: 4,
+                      relative: false,
+                      start: 3
+                    },
+                    children: [
+                      {
+                        '$type': 'Token',
+                        capturedValue: 't',
+                        matchedValue: 't',
+                        attributes: {
+                          name: 'CharacterLiteral',
+                          proxyChildren: false,
+                          value: 't'
+                        },
+                        capturedRange: {
+                          '$type': 'SourceRange',
+                          end: 4,
+                          relative: false,
+                          start: 3
+                        },
+                        children: [],
+                        matchedRange: {
+                          '$type': 'SourceRange',
+                          end: 4,
+                          relative: false,
+                          start: 3
+                        },
+                        parent: {
+                          '$ref': '0#'
+                        }
+                      }
+                    ],
+                    matchedRange: {
+                      '$type': 'SourceRange',
+                      end: 4,
+                      relative: false,
+                      start: 3
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
                 matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 3,
+                  '$type': 'SourceRange',
+                  end: 4,
+                  relative: false,
                   start: 1
                 },
                 parent: {
@@ -63,42 +288,212 @@
               }
             ],
             matchedRange: {
-              '$type': [class SourceRange],
-              end: 3,
-              start: 1
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'w',
-            matchedValue: '\\w',
-            name: 'CharacterAtom',
-            value: 'w',
-            capturedRange: {
-              '$type': [class SourceRange],
+              '$type': 'SourceRange',
               end: 5,
-              start: 4
+              relative: false,
+              start: 0
+            }
+          }
+        }
+      },
+      'Skip' => {
+        '$type': 'SkipMatcher',
+        attributes: {
+          name: 'Skip'
+        }
+      },
+      'StartOfInputAssertion' => {
+        '$type': 'MatchesMatcher',
+        attributes: {
+          name: 'StartOfInputAssertion'
+        }
+      },
+      '_' => {
+        '$type': 'Token',
+        capturedValue: 'cat',
+        matchedValue: '/cat/',
+        parent: null,
+        attributes: {
+          name: 'RegExpLiteral',
+          proxyChildren: false,
+          value: null
+        },
+        capturedRange: {
+          '$type': 'SourceRange',
+          end: 4,
+          relative: false,
+          start: 1
+        },
+        children: [
+          {
+            '$type': 'Token',
+            capturedValue: 'cat',
+            matchedValue: 'cat',
+            attributes: {
+              name: 'Pattern',
+              proxyChildren: false,
+              value: null
+            },
+            capturedRange: {
+              '$type': 'SourceRange',
+              end: 4,
+              relative: false,
+              start: 1
             },
             children: [
               {
-                '$type': [class Token],
-                capturedValue: 'w',
-                inverted: false,
-                matchedValue: '\\w',
-                name: 'WordSequence',
-                value: 'w',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 5,
-                  start: 4
+                '$type': 'Token',
+                capturedValue: 'c',
+                matchedValue: 'c',
+                attributes: {
+                  name: 'CharacterAtom',
+                  proxyChildren: false,
+                  value: null
                 },
-                children: [],
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 2,
+                  relative: false,
+                  start: 1
+                },
+                children: [
+                  {
+                    '$type': 'Token',
+                    capturedValue: 'c',
+                    matchedValue: 'c',
+                    attributes: {
+                      name: 'CharacterLiteral',
+                      proxyChildren: false,
+                      value: 'c'
+                    },
+                    capturedRange: {
+                      '$type': 'SourceRange',
+                      end: 2,
+                      relative: false,
+                      start: 1
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': 'SourceRange',
+                      end: 2,
+                      relative: false,
+                      start: 1
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
                 matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 5,
+                  '$type': 'SourceRange',
+                  end: 2,
+                  relative: false,
+                  start: 1
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
+              {
+                '$type': 'Token',
+                capturedValue: 'a',
+                matchedValue: 'a',
+                attributes: {
+                  name: 'CharacterAtom',
+                  proxyChildren: false,
+                  value: null
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 3,
+                  relative: false,
+                  start: 2
+                },
+                children: [
+                  {
+                    '$type': 'Token',
+                    capturedValue: 'a',
+                    matchedValue: 'a',
+                    attributes: {
+                      name: 'CharacterLiteral',
+                      proxyChildren: false,
+                      value: 'a'
+                    },
+                    capturedRange: {
+                      '$type': 'SourceRange',
+                      end: 3,
+                      relative: false,
+                      start: 2
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': 'SourceRange',
+                      end: 3,
+                      relative: false,
+                      start: 2
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 3,
+                  relative: false,
+                  start: 2
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
+              {
+                '$type': 'Token',
+                capturedValue: 't',
+                matchedValue: 't',
+                attributes: {
+                  name: 'CharacterAtom',
+                  proxyChildren: false,
+                  value: null
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 4,
+                  relative: false,
+                  start: 3
+                },
+                children: [
+                  {
+                    '$type': 'Token',
+                    capturedValue: 't',
+                    matchedValue: 't',
+                    attributes: {
+                      name: 'CharacterLiteral',
+                      proxyChildren: false,
+                      value: 't'
+                    },
+                    capturedRange: {
+                      '$type': 'SourceRange',
+                      end: 4,
+                      relative: false,
+                      start: 3
+                    },
+                    children: [],
+                    matchedRange: {
+                      '$type': 'SourceRange',
+                      end: 4,
+                      relative: false,
+                      start: 3
+                    },
+                    parent: {
+                      '$ref': '0#'
+                    }
+                  }
+                ],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 4,
+                  relative: false,
                   start: 3
                 },
                 parent: {
@@ -107,273 +502,10 @@
               }
             ],
             matchedRange: {
-              '$type': [class SourceRange],
-              end: 5,
-              start: 3
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'd',
-            matchedValue: '\\d',
-            name: 'CharacterAtom',
-            value: 'd',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 7,
-              start: 6
-            },
-            children: [
-              {
-                '$type': [class Token],
-                capturedValue: 'd',
-                inverted: false,
-                matchedValue: '\\d',
-                name: 'NumericSequence',
-                value: 'd',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 7,
-                  start: 6
-                },
-                children: [],
-                matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 7,
-                  start: 5
-                },
-                parent: {
-                  '$ref': '0#'
-                }
-              }
-            ],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 7,
-              start: 5
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'b',
-            matchedValue: '\\b',
-            name: 'CharacterAtom',
-            value: 'b',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 9,
-              start: 8
-            },
-            children: [
-              {
-                '$type': [class Token],
-                capturedValue: 'b',
-                inverted: false,
-                matchedValue: '\\b',
-                name: 'WordBoundarySequence',
-                value: 'b',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 9,
-                  start: 8
-                },
-                children: [],
-                matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 9,
-                  start: 7
-                },
-                parent: {
-                  '$ref': '0#'
-                }
-              }
-            ],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 9,
-              start: 7
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'S',
-            matchedValue: '\\S',
-            name: 'CharacterAtom',
-            value: 'S',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 11,
-              start: 10
-            },
-            children: [
-              {
-                '$type': [class Token],
-                capturedValue: 'S',
-                inverted: true,
-                matchedValue: '\\S',
-                name: 'WhitespaceSequence',
-                value: 'S',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 11,
-                  start: 10
-                },
-                children: [],
-                matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 11,
-                  start: 9
-                },
-                parent: {
-                  '$ref': '0#'
-                }
-              }
-            ],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 11,
-              start: 9
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'W',
-            matchedValue: '\\W',
-            name: 'CharacterAtom',
-            value: 'W',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 13,
-              start: 12
-            },
-            children: [
-              {
-                '$type': [class Token],
-                capturedValue: 'W',
-                inverted: true,
-                matchedValue: '\\W',
-                name: 'WordSequence',
-                value: 'W',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 13,
-                  start: 12
-                },
-                children: [],
-                matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 13,
-                  start: 11
-                },
-                parent: {
-                  '$ref': '0#'
-                }
-              }
-            ],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 13,
-              start: 11
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'D',
-            matchedValue: '\\D',
-            name: 'CharacterAtom',
-            value: 'D',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 15,
-              start: 14
-            },
-            children: [
-              {
-                '$type': [class Token],
-                capturedValue: 'D',
-                inverted: true,
-                matchedValue: '\\D',
-                name: 'NumericSequence',
-                value: 'D',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 15,
-                  start: 14
-                },
-                children: [],
-                matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 15,
-                  start: 13
-                },
-                parent: {
-                  '$ref': '0#'
-                }
-              }
-            ],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 15,
-              start: 13
-            },
-            parent: {
-              '$ref': '0#'
-            }
-          },
-          {
-            '$type': [class Token],
-            capturedValue: 'B',
-            matchedValue: '\\B',
-            name: 'CharacterAtom',
-            value: 'B',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 17,
-              start: 16
-            },
-            children: [
-              {
-                '$type': [class Token],
-                capturedValue: 'B',
-                inverted: true,
-                matchedValue: '\\B',
-                name: 'WordBoundarySequence',
-                value: 'B',
-                capturedRange: {
-                  '$type': [class SourceRange],
-                  end: 17,
-                  start: 16
-                },
-                children: [],
-                matchedRange: {
-                  '$type': [class SourceRange],
-                  end: 17,
-                  start: 15
-                },
-                parent: {
-                  '$ref': '0#'
-                }
-              }
-            ],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 17,
-              start: 15
+              '$type': 'SourceRange',
+              end: 4,
+              relative: false,
+              start: 1
             },
             parent: {
               '$ref': '0#'
@@ -381,19 +513,15 @@
           }
         ],
         matchedRange: {
-          '$type': [class SourceRange],
-          end: 17,
-          start: 1
-        },
-        parent: {
-          '$ref': '0#'
+          '$type': 'SourceRange',
+          end: 5,
+          relative: false,
+          start: 0
         }
-      }
-    ],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 18,
-      start: 0
+      },
+      'debug' => undefined,
+      'debugColors' => true,
+      'source' => '/cat/dgimsuy'
     }
   }
 }

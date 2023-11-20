@@ -1,6 +1,82 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/fail),
-  value: null
+  '$type': 'Object',
+  value: {
+    success: false,
+    result: {
+      '$type': 'Error',
+      columnEnd: 5,
+      columnStart: 1,
+      lineEnd: 1,
+      lineStart: 1,
+      message: 'Failed to match',
+      parserContext: Map(8) {
+        'BooleanLiteral' => {
+          '$type': 'MatchesMatcher',
+          attributes: {
+            name: 'BooleanLiteral'
+          }
+        },
+        'MapResult' => {
+          '$type': 'MapMatcher',
+          attributes: {
+            name: 'MapResult'
+          }
+        },
+        'NullLiteral' => {
+          '$type': 'MatchesMatcher',
+          attributes: {
+            name: 'NullLiteral'
+          }
+        },
+        'NumberLiteral' => {
+          '$type': 'MatchesMatcher',
+          attributes: {
+            name: 'NumberLiteral'
+          }
+        },
+        'StringLiteral' => {
+          '$type': 'SequenceMatcher',
+          attributes: {
+            name: 'StringLiteral'
+          }
+        },
+        'Switch' => {
+          '$type': 'SwitchMatcher',
+          attributes: {
+            end: 1,
+            index: 1,
+            name: 'Switch',
+            start: 0,
+            step: 1,
+            token: {
+              '$type': 'Token',
+              capturedValue: '',
+              matchedValue: '',
+              parent: null,
+              attributes: {
+                name: 'Switch',
+                proxyChildren: false,
+                value: null
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 0,
+                relative: false,
+                start: 0
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 0,
+                relative: false,
+                start: 0
+              }
+            }
+          }
+        },
+        'debugColors' => true,
+        'source' => 'derp'
+      }
+    }
+  }
 }

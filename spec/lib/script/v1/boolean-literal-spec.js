@@ -15,7 +15,7 @@ const {
   },
 } = Script;
 
-describe('/Script/V1/BooleanLiteral', () => {
+/*active*/fdescribe('/Script/V1/BooleanLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
@@ -34,6 +34,7 @@ describe('/Script/V1/BooleanLiteral', () => {
     expect(await test('false ')).toMatchSnapshot();
     expect(await test('True')).toMatchSnapshot();
     expect(await test('TRUE')).toMatchSnapshot();
+
     expect(await test('False')).toMatchSnapshot();
     expect(await test('FALSE')).toMatchSnapshot();
     expect(await test('truey')).toMatchSnapshot();

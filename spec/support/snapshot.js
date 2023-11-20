@@ -61,10 +61,23 @@ const INSPECT_OPTIONS = {
     return (a < b) ? -1 : 1;
   },
   getters:          false,
-  numericSeparator: true,
+  numericSeparator: false,
 };
 
-function serialize(_value) {
+function isPlainObject(value) {
+  if (!value)
+    return false;
+
+  if (typeof value !== 'object')
+    return false;
+
+  if (value.constructor === Object || value.constructor == null)
+    return true;
+
+  return false;
+}
+
+function serialize(value) {
   const typeOf = (value) => {
     if (value === undefined)
       return 'undefined';
@@ -79,21 +92,56 @@ function serialize(_value) {
     return ((value.constructor && value.constructor.name) || 'Object');
   };
 
-  let value = _value;
+  const mutate = (value) => {
+    if (!value)
+      return value;
 
-  if (value instanceof Error) {
-    value = Object.assign({
-      $type:    (value.constructor.name || 'Error'),
-      message:  value.message,
-    }, value);
-  } else {
-    value = {
-      $type: typeOf(value),
-      value,
-    };
-  }
+    let thisType = typeof value;
+    if (thisType !== 'object')
+      return value;
 
-  return Util.inspect(value, INSPECT_OPTIONS);
+    if (typeof value.valueOf === 'function' && typeof value.valueOf() !== 'object')
+      return value;
+
+    if (Array.isArray(value))
+      return value.map(mutate);
+
+    if (value instanceof Error) {
+      let errorObj = {
+        $type:    value.constructor.name || 'Error',
+        message:  value.message,
+      };
+
+      Object.keys(Object.getOwnPropertyDescriptors(value)).forEach((key) => {
+        if (key === 'stack')
+          return;
+
+        errorObj[key] = value[key];
+      });
+
+      return errorObj;
+    }
+
+    if (!isPlainObject(value))
+      return value;
+
+    let keys    = Object.keys(value);
+    let newObj  = {};
+
+    for (let i = 0, il = keys.length; i < il; i++) {
+      let key = keys[i];
+      let thisValue = value[key];
+
+      newObj[key] = mutate(thisValue);
+    }
+
+    return newObj;
+  };
+
+  return Util.inspect({
+    $type:  typeOf(value),
+    value:  mutate(value),
+  }, INSPECT_OPTIONS);
 }
 
 const specFileCache = {};

@@ -1,89 +1,110 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: "@pragma description('line1\\\nline2\\\r\nline3\\\rline4')",
-    matchedValue: "@pragma description('line1\\\nline2\\\r\nline3\\\rline4')",
-    name: 'PragmaStatement',
-    parent: null,
-    value: "@pragma description('line1\\\nline2\\\r\nline3\\\rline4')",
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 50,
-      start: 0
-    },
-    children: [
-      {
-        '$type': [class Token],
-        capturedValue: 'description',
-        matchedValue: 'description',
-        name: 'Name',
-        value: 'description',
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 19,
-          start: 8
-        },
-        children: [],
-        matchedRange: {
-          '$type': [class SourceRange],
-          end: 19,
-          start: 8
-        },
-        parent: {
-          '$ref': '0#'
-        }
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: "@pragma description('line1\\\nline2\\\r\nline3\\\rline4')",
+      matchedValue: "@pragma description('line1\\\nline2\\\r\nline3\\\rline4')",
+      parent: null,
+      attributes: {
+        name: 'PragmaStatement',
+        proxyChildren: false,
+        value: null
       },
-      {
-        '$type': [class Token],
-        capturedValue: "line1\\\nline2\\\r\nline3\\\rline4'",
-        matchedValue: "'line1\\\nline2\\\r\nline3\\\rline4'",
-        name: 'Arguments',
-        value: "line1\\\nline2\\\r\nline3\\\rline4'",
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 49,
-          start: 21
-        },
-        children: [
-          {
-            '$type': [class Token],
-            capturedValue: 'line1\\\nline2\\\r\nline3\\\rline4',
-            matchedValue: "'line1\\\nline2\\\r\nline3\\\rline4'",
-            name: 'StringLiteral',
-            value: 'line1\nline2\r\nline3\rline4',
-            capturedRange: {
-              '$type': [class SourceRange],
-              end: 48,
-              start: 21
-            },
-            children: [],
-            matchedRange: {
-              '$type': [class SourceRange],
-              end: 49,
-              start: 20
-            },
-            parent: {
-              '$ref': '0#'
-            }
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 50,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'description',
+          matchedValue: 'description',
+          attributes: {
+            name: 'Name',
+            proxyChildren: false,
+            value: 'description'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 19,
+            relative: false,
+            start: 8
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 19,
+            relative: false,
+            start: 8
+          },
+          parent: {
+            '$ref': '0#'
           }
-        ],
-        matchedRange: {
-          '$type': [class SourceRange],
-          end: 49,
-          start: 20
         },
-        parent: {
-          '$ref': '0#'
+        {
+          '$type': 'Token',
+          capturedValue: 'line1\\\nline2\\\r\nline3\\\rline4',
+          matchedValue: "'line1\\\nline2\\\r\nline3\\\rline4'",
+          attributes: {
+            name: 'Arguments',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 48,
+            relative: false,
+            start: 21
+          },
+          children: [
+            {
+              '$type': 'Token',
+              capturedValue: 'line1\\\nline2\\\r\nline3\\\rline4',
+              matchedValue: "'line1\\\nline2\\\r\nline3\\\rline4'",
+              attributes: {
+                name: 'StringLiteral',
+                proxyChildren: false,
+                value: 'line1\nline2\r\nline3\rline4'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 48,
+                relative: false,
+                start: 21
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 49,
+                relative: false,
+                start: 20
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            }
+          ],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 49,
+            relative: false,
+            start: 20
+          },
+          parent: {
+            '$ref': '0#'
+          }
         }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 50,
+        relative: false,
+        start: 0
       }
-    ],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 50,
-      start: 0
     }
   }
 }

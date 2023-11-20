@@ -1,6 +1,30 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/fail),
-  value: null
+  '$type': 'Object',
+  value: {
+    success: false,
+    result: {
+      '$type': 'Error',
+      columnEnd: 6,
+      columnStart: 1,
+      lineEnd: 1,
+      lineStart: 1,
+      message: 'Failed to match',
+      parserContext: Map(4) {
+        'BooleanLiteral' => {
+          '$type': 'MatchesMatcher',
+          attributes: {
+            name: 'BooleanLiteral'
+          }
+        },
+        'MapResult' => {
+          '$type': 'MapMatcher',
+          attributes: {
+            name: 'MapResult'
+          }
+        },
+        'debugColors' => true,
+        'source' => 'False'
+      }
+    }
+  }
 }

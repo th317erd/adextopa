@@ -1,24 +1,32 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: "derp \\'escaped\\' here",
-    matchedValue: "'derp \\'escaped\\' here'",
-    name: 'StringLiteral',
-    parent: null,
-    value: "derp 'escaped' here",
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 22,
-      start: 1
-    },
-    children: [],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 23,
-      start: 0
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: "derp \\'escaped\\' here",
+      matchedValue: "'derp \\'escaped\\' here'",
+      attributes: {
+        name: 'StringLiteral',
+        proxyChildren: false,
+        value: "derp 'escaped' here"
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 22,
+        relative: false,
+        start: 1
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 23,
+        relative: false,
+        start: 0
+      },
+      parent: {
+        '$ref': '0#'
+      }
     }
   }
 }

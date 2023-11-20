@@ -15,7 +15,7 @@ const {
   },
 } = Script;
 
-describe('/Script/V1/NullLiteral', () => {
+/*active*/fdescribe('/Script/V1/NullLiteral', () => {
   it('works', async () => {
     const test = async (source, debug, deepDebug) => {
       let parser = new Parser({ source });

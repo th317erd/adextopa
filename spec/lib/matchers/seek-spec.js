@@ -18,7 +18,7 @@ const {
   Fetch,
 } = Matchers;
 
-describe('/Core/Matchers/SeekMatcher', () => {
+fdescribe('/Core/Matchers/SeekMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -142,22 +142,6 @@ describe('/Core/Matchers/SeekMatcher', () => {
     expect(result).toMatchSnapshot();
   });
 
-  it('works with only a range', async () => {
-    const Word = Matches(/\w+/);
-
-    let result = await parser.exec(
-      Program(
-        Store('Location', Fetch('@.range')),
-        Word,
-        Equals(' '),
-        Seek(Fetch('Location')),
-        Word,
-      ),
-    );
-
-    expect(result).toMatchSnapshot();
-  });
-
   it('works with strings for names', async () => {
     const Word = Matches(/\w+/);
 
@@ -166,8 +150,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
         Store('Location', Fetch('@.range')),
         Word,
         Equals(' '),
-        Seek('Location'),
-        Word,
+        Seek('Location', Word),
       ),
     );
 

@@ -1,0 +1,9 @@
+{
+  '$type': 'SourceRange',
+  value: {
+    '$type': 'SourceRange',
+    end: 10,
+    relative: true,
+    start: -2
+  }
+}

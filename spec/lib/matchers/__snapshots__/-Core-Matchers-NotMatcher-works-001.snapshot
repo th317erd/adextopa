@@ -1,0 +1,20 @@
+{
+  '$type': 'Object',
+  value: {
+    result: Error: Failed to match
+        at ParserContext.prepareError (file:///home/wyatt/Projects/adextopa/lib/parser-context.js:164:15)
+        at Parser.resolveResult (file:///home/wyatt/Projects/adextopa/lib/parser.js:35:48)
+        at Parser.exec (file:///home/wyatt/Projects/adextopa/lib/parser.js:61:17)
+        at async UserContext.<anonymous> (file:///home/wyatt/Projects/adextopa/spec/lib/matchers/not-spec.js:24:18) {
+      columnEnd: 10,
+      columnStart: 1,
+      lineEnd: 1,
+      lineStart: 1,
+      parserContext: Map(2) {
+        'debugColors' => true,
+        'source' => 'Test 1234'
+      }
+    },
+    success: false
+  }
+}

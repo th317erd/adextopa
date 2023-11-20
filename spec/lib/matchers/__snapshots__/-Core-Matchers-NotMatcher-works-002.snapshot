@@ -1,0 +1,57 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'Test',
+      matchedValue: 'Test',
+      parent: null,
+      value: null,
+      attributes: {
+        name: 'TestProgram',
+        proxyChildren: false
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 4,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'Test',
+          matchedValue: 'Test',
+          value: 'Test',
+          attributes: {
+            name: 'Equals',
+            proxyChildren: false
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 4,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

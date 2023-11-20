@@ -13,7 +13,7 @@ const {
   Not,
 } = Matchers;
 
-describe('/Core/Matchers/NotMatcher', () => {
+fdescribe('/Core/Matchers/NotMatcher', () => {
   let parser;
 
   beforeEach(() => {
@@ -27,14 +27,15 @@ describe('/Core/Matchers/NotMatcher', () => {
       ).name('TestProgram'),
     );
 
-    expect(result).toMatchSnapshot();
+    expect(result).toMatchSnapshot(); // Failure result
 
     result = await parser.exec(
       Program(
+        Not(Equals('Incorrect')),
         Equals('Test'),
       ).name('TestProgram'),
     );
 
-    expect(result).toMatchSnapshot();
+    expect(result).toMatchSnapshot(); // Success result
   });
 });

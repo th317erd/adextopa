@@ -1,0 +1,319 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: '1 5 10 derp 15 20',
+      matchedValue: '1 5 10 derp 15 20',
+      parent: null,
+      attributes: {
+        name: 'TestProgram',
+        proxyChildren: false,
+        value: null
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 17,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: '1 5 10 ',
+          matchedValue: '1 5 10 ',
+          attributes: {
+            name: 'Numbers',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 7,
+            relative: false,
+            start: 0
+          },
+          children: [
+            {
+              '$type': 'Token',
+              capturedValue: '1',
+              matchedValue: '1',
+              attributes: {
+                name: 'Number',
+                proxyChildren: false,
+                value: '1'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 1,
+                relative: false,
+                start: 0
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 1,
+                relative: false,
+                start: 0
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: ' ',
+              matchedValue: ' ',
+              attributes: {
+                name: 'Space',
+                proxyChildren: false,
+                value: ' '
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 2,
+                relative: false,
+                start: 1
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 2,
+                relative: false,
+                start: 1
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: '5',
+              matchedValue: '5',
+              attributes: {
+                name: 'Number',
+                proxyChildren: false,
+                value: '5'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 3,
+                relative: false,
+                start: 2
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 3,
+                relative: false,
+                start: 2
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: ' ',
+              matchedValue: ' ',
+              attributes: {
+                name: 'Space',
+                proxyChildren: false,
+                value: ' '
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 4,
+                relative: false,
+                start: 3
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 4,
+                relative: false,
+                start: 3
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: '10',
+              matchedValue: '10',
+              attributes: {
+                name: 'Number',
+                proxyChildren: false,
+                value: '10'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 6,
+                relative: false,
+                start: 4
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 6,
+                relative: false,
+                start: 4
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: ' ',
+              matchedValue: ' ',
+              attributes: {
+                name: 'Space',
+                proxyChildren: false,
+                value: ' '
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 7,
+                relative: false,
+                start: 6
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 7,
+                relative: false,
+                start: 6
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            }
+          ],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 7,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '15 20',
+          matchedValue: '15 20',
+          attributes: {
+            name: 'Numbers',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 17,
+            relative: false,
+            start: 12
+          },
+          children: [
+            {
+              '$type': 'Token',
+              capturedValue: '15',
+              matchedValue: '15',
+              attributes: {
+                name: 'Number',
+                proxyChildren: false,
+                value: '15'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 14,
+                relative: false,
+                start: 12
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 14,
+                relative: false,
+                start: 12
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: ' ',
+              matchedValue: ' ',
+              attributes: {
+                name: 'Space',
+                proxyChildren: false,
+                value: ' '
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 15,
+                relative: false,
+                start: 14
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 15,
+                relative: false,
+                start: 14
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: '20',
+              matchedValue: '20',
+              attributes: {
+                name: 'Number',
+                proxyChildren: false,
+                value: '20'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 17,
+                relative: false,
+                start: 15
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 17,
+                relative: false,
+                start: 15
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            }
+          ],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 17,
+            relative: false,
+            start: 12
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 17,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

@@ -17,9 +17,14 @@ const {
 
 describe('/Script/V1/NumberLiteral', () => {
   it('works', async () => {
-    const test = async (source, debug) => {
-      let parser = new Parser({ source });
-      return await parser.exec(NumberLiteral(), debug);
+    const test = async (source, debugLevel) => {
+      let parser  = new Parser({ source });
+      let result  = await parser.exec(NumberLiteral(), (debugLevel > 1) ? { debug: true } : undefined);
+
+      if (debugLevel > 0)
+        console.log(_TestHelpers.inspect(result));
+
+      return result;
     };
 
     expect(await test('0.0')).toMatchSnapshot();

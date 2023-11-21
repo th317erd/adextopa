@@ -4,8 +4,8 @@
     success: true,
     result: {
       '$type': 'Token',
-      capturedValue: "test\n(\n'hello'\n,\n// Comment\n,\ntrue\n,\n)",
-      matchedValue: "test\n(\n'hello'\n,\n// Comment\n,\ntrue\n,\n)",
+      capturedValue: "test('hello', null, 2.0, true)",
+      matchedValue: "test('hello', null, 2.0, true)",
       parent: null,
       attributes: {
         name: 'FunctionCall',
@@ -14,7 +14,7 @@
       },
       capturedRange: {
         '$type': 'SourceRange',
-        end: 38,
+        end: 30,
         relative: false,
         start: 0
       },
@@ -47,8 +47,8 @@
         },
         {
           '$type': 'Token',
-          capturedValue: "(\n'hello'\n,\n// Comment\n,\ntrue\n,\n)",
-          matchedValue: "(\n'hello'\n,\n// Comment\n,\ntrue\n,\n)",
+          capturedValue: "('hello', null, 2.0, true)",
+          matchedValue: "('hello', null, 2.0, true)",
           attributes: {
             name: 'Arguments',
             proxyChildren: false,
@@ -56,9 +56,9 @@
           },
           capturedRange: {
             '$type': 'SourceRange',
-            end: 38,
+            end: 30,
             relative: false,
-            start: 5
+            start: 4
           },
           children: [
             {
@@ -72,9 +72,9 @@
               },
               capturedRange: {
                 '$type': 'SourceRange',
-                end: 13,
+                end: 11,
                 relative: false,
-                start: 8
+                start: 6
               },
               expression: {
                 '$type': 'Token',
@@ -87,16 +87,16 @@
                 },
                 capturedRange: {
                   '$type': 'SourceRange',
-                  end: 13,
+                  end: 11,
                   relative: false,
-                  start: 8
+                  start: 6
                 },
                 children: [],
                 matchedRange: {
                   '$type': 'SourceRange',
-                  end: 14,
+                  end: 12,
                   relative: false,
-                  start: 7
+                  start: 5
                 },
                 parent: {
                   '$ref': '0#'
@@ -104,9 +104,9 @@
               },
               matchedRange: {
                 '$type': 'SourceRange',
-                end: 14,
+                end: 12,
                 relative: false,
-                start: 7
+                start: 5
               },
               parent: {
                 '$ref': '0#'
@@ -114,25 +114,50 @@
             },
             {
               '$type': 'Token',
-              capturedValue: ' Comment',
-              matchedValue: '// Comment\n',
+              capturedValue: 'null',
+              matchedValue: 'null',
               attributes: {
-                name: 'Comment',
+                name: 'ExpressionStatement',
                 proxyChildren: false,
-                value: 'Comment'
+                value: null
               },
               capturedRange: {
                 '$type': 'SourceRange',
-                end: 27,
+                end: 18,
                 relative: false,
-                start: 19
+                start: 14
               },
-              children: [],
+              expression: {
+                '$type': 'Token',
+                capturedValue: 'null',
+                matchedValue: 'null',
+                attributes: {
+                  name: 'NullLiteral',
+                  proxyChildren: false,
+                  value: 'null'
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 18,
+                  relative: false,
+                  start: 14
+                },
+                children: [],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 18,
+                  relative: false,
+                  start: 14
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
               matchedRange: {
                 '$type': 'SourceRange',
-                end: 28,
+                end: 18,
                 relative: false,
-                start: 17
+                start: 14
               },
               parent: {
                 '$ref': '0#'
@@ -140,25 +165,50 @@
             },
             {
               '$type': 'Token',
-              capturedValue: '',
-              matchedValue: '',
+              capturedValue: '2.0',
+              matchedValue: '2.0',
               attributes: {
-                name: 'NullLiteral',
+                name: 'ExpressionStatement',
                 proxyChildren: false,
-                value: 'null'
+                value: null
               },
               capturedRange: {
                 '$type': 'SourceRange',
-                end: 28,
+                end: 23,
                 relative: false,
-                start: 28
+                start: 20
               },
-              children: [],
+              expression: {
+                '$type': 'Token',
+                capturedValue: '2.0',
+                matchedValue: '2.0',
+                attributes: {
+                  name: 'NumberLiteral',
+                  proxyChildren: false,
+                  value: 2
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 23,
+                  relative: false,
+                  start: 20
+                },
+                children: [],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 23,
+                  relative: false,
+                  start: 20
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
               matchedRange: {
                 '$type': 'SourceRange',
-                end: 28,
+                end: 23,
                 relative: false,
-                start: 28
+                start: 20
               },
               parent: {
                 '$ref': '0#'
@@ -175,9 +225,9 @@
               },
               capturedRange: {
                 '$type': 'SourceRange',
-                end: 34,
+                end: 29,
                 relative: false,
-                start: 30
+                start: 25
               },
               expression: {
                 '$type': 'Token',
@@ -190,16 +240,16 @@
                 },
                 capturedRange: {
                   '$type': 'SourceRange',
-                  end: 34,
+                  end: 29,
                   relative: false,
-                  start: 30
+                  start: 25
                 },
                 children: [],
                 matchedRange: {
                   '$type': 'SourceRange',
-                  end: 34,
+                  end: 29,
                   relative: false,
-                  start: 30
+                  start: 25
                 },
                 parent: {
                   '$ref': '0#'
@@ -207,9 +257,9 @@
               },
               matchedRange: {
                 '$type': 'SourceRange',
-                end: 34,
+                end: 29,
                 relative: false,
-                start: 30
+                start: 25
               },
               parent: {
                 '$ref': '0#'
@@ -218,9 +268,9 @@
           ],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 38,
+            end: 30,
             relative: false,
-            start: 5
+            start: 4
           },
           parent: {
             '$ref': '0#'
@@ -229,7 +279,7 @@
       ],
       matchedRange: {
         '$type': 'SourceRange',
-        end: 38,
+        end: 30,
         relative: false,
         start: 0
       }

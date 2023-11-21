@@ -4,8 +4,8 @@
     success: true,
     result: {
       '$type': 'Token',
-      capturedValue: 'Hello world\n\n# Testing a comment\n#Another comment\n\n# Final comment\nHello line 2',
-      matchedValue: 'Hello world\n\n# Testing a comment\n#Another comment\n\n# Final comment\nHello line 2',
+      capturedValue: 'Hello world\n\n// Testing a comment\n/* Block\nComment\nhere! */ \n\n// Final comment \nHello line 2',
+      matchedValue: 'Hello world\n\n// Testing a comment\n/* Block\nComment\nhere! */ \n\n// Final comment \nHello line 2',
       parent: null,
       attributes: {
         name: 'TestComments',
@@ -14,7 +14,7 @@
       },
       capturedRange: {
         '$type': 'SourceRange',
-        end: 79,
+        end: 92,
         relative: false,
         start: 0
       },
@@ -73,23 +73,23 @@
         },
         {
           '$type': 'Token',
-          capturedValue: '# Testing a comment\n',
-          matchedValue: '# Testing a comment\n',
+          capturedValue: ' Testing a comment',
+          matchedValue: '// Testing a comment\n',
           attributes: {
             name: 'Comment',
             proxyChildren: false,
-            value: '# Testing a comment\n'
+            value: 'Testing a comment'
           },
           capturedRange: {
             '$type': 'SourceRange',
             end: 33,
             relative: false,
-            start: 13
+            start: 15
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 33,
+            end: 34,
             relative: false,
             start: 13
           },
@@ -99,25 +99,51 @@
         },
         {
           '$type': 'Token',
-          capturedValue: '#Another comment\n',
-          matchedValue: '#Another comment\n',
+          capturedValue: ' Block\nComment\nhere! ',
+          matchedValue: '/* Block\nComment\nhere! */',
           attributes: {
             name: 'Comment',
             proxyChildren: false,
-            value: '#Another comment\n'
+            value: 'Block\nComment\nhere!'
           },
           capturedRange: {
             '$type': 'SourceRange',
-            end: 50,
+            end: 57,
             relative: false,
-            start: 33
+            start: 36
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 50,
+            end: 59,
             relative: false,
-            start: 33
+            start: 34
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: ' \n',
+          matchedValue: ' \n',
+          attributes: {
+            name: 'Line',
+            proxyChildren: false,
+            value: ' \n'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 61,
+            relative: false,
+            start: 59
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 61,
+            relative: false,
+            start: 59
           },
           parent: {
             '$ref': '0#'
@@ -134,16 +160,16 @@
           },
           capturedRange: {
             '$type': 'SourceRange',
-            end: 51,
+            end: 62,
             relative: false,
-            start: 50
+            start: 61
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 51,
+            end: 62,
             relative: false,
-            start: 50
+            start: 61
           },
           parent: {
             '$ref': '0#'
@@ -151,25 +177,25 @@
         },
         {
           '$type': 'Token',
-          capturedValue: '# Final comment\n',
-          matchedValue: '# Final comment\n',
+          capturedValue: ' Final comment ',
+          matchedValue: '// Final comment \n',
           attributes: {
             name: 'Comment',
             proxyChildren: false,
-            value: '# Final comment\n'
+            value: 'Final comment'
           },
           capturedRange: {
             '$type': 'SourceRange',
-            end: 67,
+            end: 79,
             relative: false,
-            start: 51
+            start: 64
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 67,
+            end: 80,
             relative: false,
-            start: 51
+            start: 62
           },
           parent: {
             '$ref': '0#'
@@ -186,16 +212,16 @@
           },
           capturedRange: {
             '$type': 'SourceRange',
-            end: 79,
+            end: 92,
             relative: false,
-            start: 67
+            start: 80
           },
           children: [],
           matchedRange: {
             '$type': 'SourceRange',
-            end: 79,
+            end: 92,
             relative: false,
-            start: 67
+            start: 80
           },
           parent: {
             '$ref': '0#'
@@ -204,7 +230,7 @@
       ],
       matchedRange: {
         '$type': 'SourceRange',
-        end: 79,
+        end: 92,
         relative: false,
         start: 0
       }

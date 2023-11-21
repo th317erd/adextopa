@@ -1,0 +1,83 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'test()',
+      matchedValue: 'test()',
+      parent: null,
+      attributes: {
+        name: 'FunctionCall',
+        proxyChildren: false,
+        value: null
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 6,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'test',
+          matchedValue: 'test',
+          attributes: {
+            name: 'Identifier',
+            proxyChildren: false,
+            value: 'test'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: '()',
+          matchedValue: '()',
+          attributes: {
+            name: 'Arguments',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 6,
+            relative: false,
+            start: 4
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 6,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 6,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

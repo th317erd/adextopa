@@ -17,11 +17,11 @@ const {
 
 describe('/Script/V1/NullLiteral', () => {
   it('works', async () => {
-    const test = async (source, debug, deepDebug) => {
+    const test = async (source, debugLevel) => {
       let parser = new Parser({ source });
-      let result = await parser.exec(NullLiteral(), deepDebug);
+      let result = await parser.exec(NullLiteral(), (debugLevel > 1) ? { debug: true } : undefined);
 
-      if (debug)
+      if (debugLevel > 0)
         console.log(_TestHelpers.inspect(result));
 
       return result;

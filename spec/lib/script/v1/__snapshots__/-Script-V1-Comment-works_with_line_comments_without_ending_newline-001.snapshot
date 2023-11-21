@@ -1,0 +1,30 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: ' Testing a comment',
+      matchedValue: '// Testing a comment',
+      parent: null,
+      attributes: {
+        name: 'Comment',
+        proxyChildren: false,
+        value: 'Testing a comment'
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 20,
+        relative: false,
+        start: 2
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 20,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

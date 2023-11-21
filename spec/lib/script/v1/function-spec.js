@@ -33,5 +33,7 @@ describe('/Script/V1/Function', () => {
     expect(await test('test(\'hello\',, , true)')).toMatchSnapshot();
     expect(await test('test(\'hello\',true,)')).toMatchSnapshot();
     expect(await test('test\n(\n\'hello\'\n,\n# Comment\n,\ntrue\n,\n)')).toMatchSnapshot();
+    expect(await test('test(\'hello\',funcCall(),true)')).toMatchSnapshot();
+    expect(await test('test(variable)')).toMatchSnapshot();
   });
 });

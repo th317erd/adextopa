@@ -1,0 +1,215 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: "test('hello',funcCall(),true)",
+      matchedValue: "test('hello',funcCall(),true)",
+      parent: null,
+      attributes: {
+        name: 'FunctionCall',
+        proxyChildren: false,
+        value: null
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 29,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'test',
+          matchedValue: 'test',
+          attributes: {
+            name: 'Identifier',
+            proxyChildren: false,
+            value: 'test'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: "('hello',funcCall(),true)",
+          matchedValue: "('hello',funcCall(),true)",
+          attributes: {
+            name: 'Arguments',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 29,
+            relative: false,
+            start: 4
+          },
+          children: [
+            {
+              '$type': 'Token',
+              capturedValue: 'hello',
+              matchedValue: "'hello'",
+              attributes: {
+                name: 'StringLiteral',
+                proxyChildren: false,
+                value: 'hello'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 11,
+                relative: false,
+                start: 6
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 12,
+                relative: false,
+                start: 5
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: 'funcCall()',
+              matchedValue: 'funcCall()',
+              attributes: {
+                name: 'FunctionCall',
+                proxyChildren: false,
+                value: null
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 23,
+                relative: false,
+                start: 13
+              },
+              children: [
+                {
+                  '$type': 'Token',
+                  capturedValue: 'funcCall',
+                  matchedValue: 'funcCall',
+                  attributes: {
+                    name: 'Identifier',
+                    proxyChildren: false,
+                    value: 'funcCall'
+                  },
+                  capturedRange: {
+                    '$type': 'SourceRange',
+                    end: 21,
+                    relative: false,
+                    start: 13
+                  },
+                  children: [],
+                  matchedRange: {
+                    '$type': 'SourceRange',
+                    end: 21,
+                    relative: false,
+                    start: 13
+                  },
+                  parent: {
+                    '$ref': '0#'
+                  }
+                },
+                {
+                  '$type': 'Token',
+                  capturedValue: '()',
+                  matchedValue: '()',
+                  attributes: {
+                    name: 'Arguments',
+                    proxyChildren: false,
+                    value: null
+                  },
+                  capturedRange: {
+                    '$type': 'SourceRange',
+                    end: 23,
+                    relative: false,
+                    start: 21
+                  },
+                  children: [],
+                  matchedRange: {
+                    '$type': 'SourceRange',
+                    end: 23,
+                    relative: false,
+                    start: 21
+                  },
+                  parent: {
+                    '$ref': '0#'
+                  }
+                }
+              ],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 23,
+                relative: false,
+                start: 13
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            {
+              '$type': 'Token',
+              capturedValue: 'true',
+              matchedValue: 'true',
+              attributes: {
+                name: 'BooleanLiteral',
+                proxyChildren: false,
+                value: true
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 28,
+                relative: false,
+                start: 24
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 28,
+                relative: false,
+                start: 24
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            }
+          ],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 29,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 29,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

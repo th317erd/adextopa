@@ -1,5 +1,7 @@
 /* eslint-disable no-magic-numbers */
 
+import * as _TestHelpers from '../support/test-helpers.js';
+
 import {
   Matcher,
 } from '../../lib/index.js';
@@ -49,6 +51,17 @@ describe('Matcher', () => {
       expect(matcher.getAttribute('test')).toBe(true);
       expect(matcher.getAttribute('hello')).toBe('world');
       expect(matcher.getAttribute('derp')).toBe('yoot');
+    });
+  });
+
+  describe('createMatcherMethod', () => {
+    it('works', () => {
+      const test = Matcher.createMatcherMethod(() => {
+        return (new Matcher()).name('Derp');
+      }, [ 'dude', 'stuff' ]);
+
+      let result = test.name('Test').dude('What?').attribute('cow', 'jumped the moon')();
+      expect(result).toMatchSnapshot();
     });
   });
 });

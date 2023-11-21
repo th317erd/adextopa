@@ -1,0 +1,11 @@
+{
+  '$type': 'Matcher',
+  value: {
+    '$type': 'Matcher',
+    attributes: {
+      cow: 'jumped the moon',
+      dude: 'What?',
+      name: 'Test'
+    }
+  }
+}

@@ -66,9 +66,9 @@
               capturedValue: 'hello',
               matchedValue: "'hello'",
               attributes: {
-                name: 'StringLiteral',
+                name: 'ExpressionStatement',
                 proxyChildren: false,
-                value: 'hello'
+                value: null
               },
               capturedRange: {
                 '$type': 'SourceRange',
@@ -76,7 +76,32 @@
                 relative: false,
                 start: 6
               },
-              children: [],
+              expression: {
+                '$type': 'Token',
+                capturedValue: 'hello',
+                matchedValue: "'hello'",
+                attributes: {
+                  name: 'StringLiteral',
+                  proxyChildren: false,
+                  value: 'hello'
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 11,
+                  relative: false,
+                  start: 6
+                },
+                children: [],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 12,
+                  relative: false,
+                  start: 5
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
               matchedRange: {
                 '$type': 'SourceRange',
                 end: 12,

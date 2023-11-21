@@ -66,9 +66,9 @@
               capturedValue: 'hello',
               matchedValue: "'hello'",
               attributes: {
-                name: 'StringLiteral',
+                name: 'ExpressionStatement',
                 proxyChildren: false,
-                value: 'hello'
+                value: null
               },
               capturedRange: {
                 '$type': 'SourceRange',
@@ -76,7 +76,32 @@
                 relative: false,
                 start: 8
               },
-              children: [],
+              expression: {
+                '$type': 'Token',
+                capturedValue: 'hello',
+                matchedValue: "'hello'",
+                attributes: {
+                  name: 'StringLiteral',
+                  proxyChildren: false,
+                  value: 'hello'
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 13,
+                  relative: false,
+                  start: 8
+                },
+                children: [],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 14,
+                  relative: false,
+                  start: 7
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
               matchedRange: {
                 '$type': 'SourceRange',
                 end: 14,
@@ -144,9 +169,9 @@
               capturedValue: 'true',
               matchedValue: 'true',
               attributes: {
-                name: 'BooleanLiteral',
+                name: 'ExpressionStatement',
                 proxyChildren: false,
-                value: true
+                value: null
               },
               capturedRange: {
                 '$type': 'SourceRange',
@@ -154,7 +179,32 @@
                 relative: false,
                 start: 29
               },
-              children: [],
+              expression: {
+                '$type': 'Token',
+                capturedValue: 'true',
+                matchedValue: 'true',
+                attributes: {
+                  name: 'BooleanLiteral',
+                  proxyChildren: false,
+                  value: true
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 33,
+                  relative: false,
+                  start: 29
+                },
+                children: [],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 33,
+                  relative: false,
+                  start: 29
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
               matchedRange: {
                 '$type': 'SourceRange',
                 end: 33,

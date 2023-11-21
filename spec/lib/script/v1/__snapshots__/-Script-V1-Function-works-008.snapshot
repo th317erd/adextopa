@@ -66,9 +66,9 @@
               capturedValue: 'variable',
               matchedValue: 'variable',
               attributes: {
-                name: 'Identifier',
+                name: 'ExpressionStatement',
                 proxyChildren: false,
-                value: 'variable'
+                value: null
               },
               capturedRange: {
                 '$type': 'SourceRange',
@@ -76,7 +76,32 @@
                 relative: false,
                 start: 5
               },
-              children: [],
+              expression: {
+                '$type': 'Token',
+                capturedValue: 'variable',
+                matchedValue: 'variable',
+                attributes: {
+                  name: 'Identifier',
+                  proxyChildren: false,
+                  value: 'variable'
+                },
+                capturedRange: {
+                  '$type': 'SourceRange',
+                  end: 13,
+                  relative: false,
+                  start: 5
+                },
+                children: [],
+                matchedRange: {
+                  '$type': 'SourceRange',
+                  end: 13,
+                  relative: false,
+                  start: 5
+                },
+                parent: {
+                  '$ref': '0#'
+                }
+              },
               matchedRange: {
                 '$type': 'SourceRange',
                 end: 13,

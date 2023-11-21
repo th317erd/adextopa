@@ -1,67 +1,83 @@
 {
-  '$type': [class MatcherResult],
-  payload: null,
-  type: Symbol(/adextopa/results/token),
+  '$type': 'Object',
   value: {
-    '$type': [class Token],
-    capturedValue: 'test()',
-    matchedValue: 'test()',
-    name: 'FunctionCall',
-    parent: null,
-    value: 'test()',
-    capturedRange: {
-      '$type': [class SourceRange],
-      end: 6,
-      start: 0
-    },
-    children: [
-      {
-        '$type': [class Token],
-        capturedValue: 'test',
-        matchedValue: 'test',
-        name: 'Identifier',
-        value: 'test',
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 4,
-          start: 0
-        },
-        children: [],
-        matchedRange: {
-          '$type': [class SourceRange],
-          end: 4,
-          start: 0
-        },
-        parent: {
-          '$ref': '0#'
-        }
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'test()',
+      matchedValue: 'test()',
+      parent: null,
+      attributes: {
+        name: 'FunctionCall',
+        proxyChildren: false,
+        value: null
       },
-      {
-        '$type': [class Token],
-        capturedValue: '()',
-        matchedValue: '()',
-        name: 'Arguments',
-        value: '()',
-        capturedRange: {
-          '$type': [class SourceRange],
-          end: 6,
-          start: 4
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 6,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: 'test',
+          matchedValue: 'test',
+          attributes: {
+            name: 'Identifier',
+            proxyChildren: false,
+            value: 'test'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
         },
-        children: [],
-        matchedRange: {
-          '$type': [class SourceRange],
-          end: 6,
-          start: 4
-        },
-        parent: {
-          '$ref': '0#'
+        {
+          '$type': 'Token',
+          capturedValue: '()',
+          matchedValue: '()',
+          attributes: {
+            name: 'Arguments',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 6,
+            relative: false,
+            start: 4
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 6,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
         }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 6,
+        relative: false,
+        start: 0
       }
-    ],
-    matchedRange: {
-      '$type': [class SourceRange],
-      end: 6,
-      start: 0
     }
   }
 }

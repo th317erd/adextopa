@@ -12,7 +12,7 @@ const {
   Equals,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/MapMatcher', () => {
+describe('/Core/Matchers/MapMatcher', () => {
   let parser;
 
   beforeEach(() => {

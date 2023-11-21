@@ -15,7 +15,7 @@ const {
   },
 } = Script;
 
-/*active*/fdescribe('/Script/V1/BooleanLiteral', () => {
+describe('/Script/V1/BooleanLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });

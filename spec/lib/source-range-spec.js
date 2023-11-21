@@ -7,7 +7,7 @@ import {
   SourceRange,
 } from '../../lib/index.js';
 
-/*active*/fdescribe('SourceRange', () => {
+describe('SourceRange', () => {
   describe('new', () => {
     it('works', () => {
       expect((new SourceRange()).toJSON()).toEqual({ $type: 'SourceRange', start: 0, end: 0, relative: false });

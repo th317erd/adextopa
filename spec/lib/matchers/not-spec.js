@@ -13,7 +13,7 @@ const {
   Not,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/NotMatcher', () => {
+describe('/Core/Matchers/NotMatcher', () => {
   let parser;
 
   beforeEach(() => {

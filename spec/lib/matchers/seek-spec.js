@@ -18,7 +18,7 @@ const {
   Fetch,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/SeekMatcher', () => {
+describe('/Core/Matchers/SeekMatcher', () => {
   let parser;
 
   beforeEach(() => {

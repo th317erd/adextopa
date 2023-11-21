@@ -15,7 +15,7 @@ const {
   Switch,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/SwitchMatcher', () => {
+describe('/Core/Matchers/SwitchMatcher', () => {
   let parser;
 
   beforeEach(() => {

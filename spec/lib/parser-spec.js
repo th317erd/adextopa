@@ -7,7 +7,7 @@ import {
 
 import { InputStream } from '../../lib/input-stream.js';
 
-/*active*/fdescribe('Parser', () => {
+describe('Parser', () => {
   let parser;
 
   beforeEach(() => {

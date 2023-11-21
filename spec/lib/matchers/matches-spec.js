@@ -11,7 +11,7 @@ const {
   Matches,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/MatchesMatcher', () => {
+describe('/Core/Matchers/MatchesMatcher', () => {
   let parser;
 
   beforeEach(() => {

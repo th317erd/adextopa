@@ -13,7 +13,7 @@ const {
   Fetch,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/TokenMatcher', () => {
+describe('/Core/Matchers/TokenMatcher', () => {
   let parser;
 
   beforeEach(() => {

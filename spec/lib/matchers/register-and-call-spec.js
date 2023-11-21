@@ -16,7 +16,7 @@ const {
   Register,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/Register and Call', () => {
+describe('/Core/Matchers/Register and Call', () => {
   let parser;
 
   beforeEach(() => {

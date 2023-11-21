@@ -15,7 +15,7 @@ const {
   Fetch,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/SkipMatcher', () => {
+describe('/Core/Matchers/SkipMatcher', () => {
   let parser;
 
   beforeEach(() => {

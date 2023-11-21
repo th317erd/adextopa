@@ -18,7 +18,7 @@ const {
   Store,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/IfNot', () => {
+describe('/Core/Matchers/IfNot', () => {
   let parser;
 
   beforeEach(() => {

@@ -14,7 +14,7 @@ const {
   Message,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/MessageMatcher', () => {
+describe('/Core/Matchers/MessageMatcher', () => {
   let parser;
 
   beforeEach(() => {

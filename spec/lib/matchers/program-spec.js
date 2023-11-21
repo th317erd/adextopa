@@ -13,7 +13,7 @@ const {
   Program,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/ProgramMatcher', () => {
+describe('/Core/Matchers/ProgramMatcher', () => {
   let parser;
 
   beforeEach(() => {

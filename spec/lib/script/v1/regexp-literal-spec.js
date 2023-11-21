@@ -15,7 +15,7 @@ const {
   },
 } = Script;
 
-/*active*/fdescribe('/Script/V1/RegExpLiteral', () => {
+describe('/Script/V1/RegExpLiteral', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });

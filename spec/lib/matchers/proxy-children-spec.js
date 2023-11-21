@@ -16,7 +16,7 @@ const {
   ProxyChildren,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/ProxyChildrenMatcher', () => {
+describe('/Core/Matchers/ProxyChildrenMatcher', () => {
   let parser;
 
   beforeEach(() => {

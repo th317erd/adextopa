@@ -11,7 +11,7 @@ const {
   Sequence,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/SequenceMatcher', () => {
+describe('/Core/Matchers/SequenceMatcher', () => {
   let parser;
 
   beforeEach(() => {

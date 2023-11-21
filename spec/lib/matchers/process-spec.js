@@ -17,7 +17,7 @@ const {
   Optional,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/ProcessMatcher', () => {
+describe('/Core/Matchers/ProcessMatcher', () => {
   let parser;
 
   beforeEach(() => {

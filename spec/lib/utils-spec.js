@@ -8,7 +8,7 @@ import {
   Utils,
 } from '../../lib/index.js';
 
-/*active*/fdescribe('Utils', () => {
+describe('Utils', () => {
   describe('isPlainObject', () => {
     it('works', () => {
       class Test {}

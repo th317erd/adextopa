@@ -9,7 +9,7 @@ import {
 
 import { InputStream } from '../../lib/input-stream.js';
 
-/*active*/fdescribe('ParserContext', () => {
+describe('ParserContext', () => {
   let context;
   let parser;
 

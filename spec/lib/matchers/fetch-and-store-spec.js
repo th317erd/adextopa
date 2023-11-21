@@ -17,7 +17,7 @@ const {
   Call,
 } = Matchers;
 
-/*active*/fdescribe('/Core/Matchers/Fetch and Store', () => {
+describe('/Core/Matchers/Fetch and Store', () => {
   let parser;
 
   beforeEach(() => {

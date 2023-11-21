@@ -1,0 +1,31 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: 'Test 1234',
+      matchedValue: 'Test 1234',
+      parent: null,
+      attributes: {
+        name: 'TestToken',
+        proxyChildren: false,
+        value: '1234',
+        word: 'Test'
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 9,
+        relative: false,
+        start: 0
+      },
+      children: [],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 9,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

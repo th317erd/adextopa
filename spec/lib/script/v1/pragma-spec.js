@@ -19,7 +19,7 @@ describe('/Script/V1/Pragma', () => {
   it('works', async () => {
     const test = async (source, debug) => {
       let parser = new Parser({ source });
-      return await parser.exec(Pragma(), debug);
+      return await parser.exec(Pragma(), { debug });
     };
 
     expect(await test('@pragma use(1.0, true)\n')).toMatchSnapshot();

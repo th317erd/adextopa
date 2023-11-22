@@ -1,0 +1,135 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'Token',
+      capturedValue: '  \n // test\n \n/* derp \n stuff ',
+      matchedValue: '  \n // test\n \n/* derp \n stuff */',
+      parent: null,
+      attributes: {
+        name: 'Whitespace',
+        proxyChildren: true,
+        value: null
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 30,
+        relative: false,
+        start: 0
+      },
+      children: [
+        {
+          '$type': 'Token',
+          capturedValue: '  \n ',
+          matchedValue: '  \n ',
+          attributes: {
+            name: 'Whitespace',
+            proxyChildren: false,
+            value: '  \n '
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 4,
+            relative: false,
+            start: 0
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: ' test',
+          matchedValue: '// test\n',
+          attributes: {
+            name: 'Comment',
+            proxyChildren: false,
+            value: 'test'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 11,
+            relative: false,
+            start: 6
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 12,
+            relative: false,
+            start: 4
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: ' \n',
+          matchedValue: ' \n',
+          attributes: {
+            name: 'Whitespace',
+            proxyChildren: false,
+            value: ' \n'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 14,
+            relative: false,
+            start: 12
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 14,
+            relative: false,
+            start: 12
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        },
+        {
+          '$type': 'Token',
+          capturedValue: ' derp \n stuff ',
+          matchedValue: '/* derp \n stuff */',
+          attributes: {
+            name: 'Comment',
+            proxyChildren: false,
+            value: 'derp \n stuff'
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 30,
+            relative: false,
+            start: 16
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 32,
+            relative: false,
+            start: 14
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      ],
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 32,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

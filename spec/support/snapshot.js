@@ -29,9 +29,9 @@ function calcDiff(fileName, c1, c2) {
   });
 }
 
-function showDiff(fileName, c1, c2) {
-  console.log(calcDiff(fileName, c1, c2));
-}
+// function showDiff(fileName, c1, c2) {
+//   console.log(calcDiff(fileName, c1, c2));
+// }
 
 const TYPE_TEST = /^'?\$type'?:/;
 const OBJ_TEST  = /^'?[^:']+'?:\s+[[{]/;

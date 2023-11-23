@@ -41,4 +41,8 @@ describe('/Script/V1/Whitespace', () => {
   it('works with block comments', async () => {
     expect(await test('  \n // test\n \n/* derp \n stuff */', Whitespace().newlines(true).lineComments(true).blockComments(true))).toMatchSnapshot();
   });
+
+  it('will discard whitespace if asked to', async () => {
+    expect(await test('  \n // test\n \n/* derp \n stuff */', Whitespace().newlines(true).lineComments(true).blockComments(true).discardWhitespace(true))).toMatchSnapshot();
+  });
 });

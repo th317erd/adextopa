@@ -17,12 +17,12 @@ describe('Token', () => {
       fileName: './test.something',
     });
 
-    context = new ParserContext(parser, parser.getOptions());
+    context = new ParserContext({ parser, ...parser.getOptions() });
   });
 
   describe('new', () => {
     it('works', () => {
-      let token = new Token(context);
+      let token = new Token({ context });
       expect(token.toJSON()).toEqual({
         $type:          'Token',
         parent:         null,
@@ -38,10 +38,12 @@ describe('Token', () => {
         },
       });
 
-      token = (new Token(context, token, {
-        capturedRange:  new SourceRange(2, 10),
-        matchedRange:   new SourceRange(1, 11),
+      token = (new Token({
+        parent:         token,
+        capturedRange:  new SourceRange({ start: 2, end: 10 }),
+        matchedRange:   new SourceRange({ start: 1, end: 11 }),
         name:           'TestToken',
+        context,
       })).setAttribute('value', { derp: true });
 
       expect(token.toJSON()).toEqual({
@@ -63,11 +65,13 @@ describe('Token', () => {
 
   describe('getRangeBounds', () => {
     it('works', () => {
-      let token = new Token(context);
+      let token = new Token({ context });
 
-      token.addChild(new Token(context, token, {
-        capturedRange:  new SourceRange(8, 9),
-        matchedRange:   new SourceRange(7, 10),
+      token.addChild(new Token({
+        parent:         token,
+        capturedRange:  new SourceRange({ start: 8, end: 9 }),
+        matchedRange:   new SourceRange({ start: 7, end: 10 }),
+        context,
       }));
 
       expect(token.getRangeBounds('capturedRange').toJSON()).toEqual({
@@ -84,9 +88,11 @@ describe('Token', () => {
         relative: false,
       });
 
-      token.addChild(new Token(context, token, {
-        capturedRange:  new SourceRange(6, 11),
-        matchedRange:   new SourceRange(4, 12),
+      token.addChild(new Token({
+        parent:         token,
+        capturedRange:  new SourceRange({ start: 6, end: 11 }),
+        matchedRange:   new SourceRange({ start: 4, end: 12 }),
+        context,
       }));
 
       expect(token.getRangeBounds('capturedRange').toJSON()).toEqual({

@@ -56,7 +56,8 @@
                   capturedValue: 's',
                   matchedValue: '\\s',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: false,
+                    name: 'WhitespaceSequence',
                     proxyChildren: false,
                     value: 's'
                   },

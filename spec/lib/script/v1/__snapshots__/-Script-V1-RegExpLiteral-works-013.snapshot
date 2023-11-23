@@ -56,7 +56,8 @@
                   capturedValue: 's',
                   matchedValue: '\\s',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: false,
+                    name: 'WhitespaceSequence',
                     proxyChildren: false,
                     value: 's'
                   },
@@ -109,7 +110,8 @@
                   capturedValue: 'w',
                   matchedValue: '\\w',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: false,
+                    name: 'WordSequence',
                     proxyChildren: false,
                     value: 'w'
                   },
@@ -162,7 +164,8 @@
                   capturedValue: 'd',
                   matchedValue: '\\d',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: false,
+                    name: 'NumericSequence',
                     proxyChildren: false,
                     value: 'd'
                   },
@@ -215,7 +218,8 @@
                   capturedValue: 'b',
                   matchedValue: '\\b',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: false,
+                    name: 'WordBoundarySequence',
                     proxyChildren: false,
                     value: 'b'
                   },
@@ -268,7 +272,8 @@
                   capturedValue: 'S',
                   matchedValue: '\\S',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: true,
+                    name: 'WhitespaceSequence',
                     proxyChildren: false,
                     value: 'S'
                   },
@@ -321,7 +326,8 @@
                   capturedValue: 'W',
                   matchedValue: '\\W',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: true,
+                    name: 'WordSequence',
                     proxyChildren: false,
                     value: 'W'
                   },
@@ -374,7 +380,8 @@
                   capturedValue: 'D',
                   matchedValue: '\\D',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: true,
+                    name: 'NumericSequence',
                     proxyChildren: false,
                     value: 'D'
                   },
@@ -427,7 +434,8 @@
                   capturedValue: 'B',
                   matchedValue: '\\B',
                   attributes: {
-                    name: 'CharacterLiteral',
+                    inverted: true,
+                    name: 'WordBoundarySequence',
                     proxyChildren: false,
                     value: 'B'
                   },

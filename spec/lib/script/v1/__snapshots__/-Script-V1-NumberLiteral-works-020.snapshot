@@ -8,23 +8,7 @@
       columnStart: 1,
       lineEnd: 1,
       lineStart: 1,
-      message: 'Failed to match',
-      parserContext: Map(4) {
-        'MapResult' => {
-          '$type': 'MapMatcher',
-          attributes: {
-            name: 'MapResult'
-          }
-        },
-        'NumberLiteral' => {
-          '$type': 'MatchesMatcher',
-          attributes: {
-            name: 'NumberLiteral'
-          }
-        },
-        'debugColors' => true,
-        'source' => '0.0e'
-      }
+      message: 'Failed to match'
     }
   }
 }

@@ -9,33 +9,35 @@ describe('Scope', () => {
   describe('new', () => {
     it('works', () => {
       let FAKE_PARENT = {};
-      let scope = new Scope(FAKE_PARENT);
+      let scope = new Scope({ parent: FAKE_PARENT });
 
       expect(scope.parent).toBe(FAKE_PARENT);
 
-      scope = new Scope(FAKE_PARENT, { properties: { test: true, hello: 'world' } });
+      scope = new Scope({ parent: FAKE_PARENT, properties: { test: true, hello: 'world' } });
       expect(scope.parent).toBe(FAKE_PARENT);
       expect(scope.toJSON()).toEqual({
-        $type:  'Scope',
-        test:   true,
-        hello:  'world',
+        $type:      'Scope',
+        properties: {
+          test:   true,
+          hello:  'world',
+        },
       });
     });
   });
 
   describe('toJSON', () => {
     it('works', () => {
-      let scope1 = new Scope(null, {
+      let scope1 = new Scope({
         properties: {
           func:   () => {}, // won't serialize
           hello:  'world',
-          parent: true,
           see:    1,
           test:   true,
         },
       });
 
-      let scope2 = new Scope(scope1, {
+      let scope2 = new Scope({
+        parent:     scope1,
         properties: {
           hello:  'dude!',
           see:    10,
@@ -45,12 +47,13 @@ describe('Scope', () => {
       });
 
       expect(scope2.toJSON()).toEqual({
-        $type:  'Scope',
-        hello:  'dude!',
-        parent: true,
-        see:    10,
-        test:   false,
-        there:  'it is',
+        $type:      'Scope',
+        properties: {
+          hello:  'dude!',
+          see:    10,
+          test:   false,
+          there:  'it is',
+        },
       });
     });
   });
@@ -59,7 +62,7 @@ describe('Scope', () => {
     it('works', () => {
       let FAKE_PARENT = {};
 
-      let scope = new Scope(FAKE_PARENT);
+      let scope = new Scope({ parent: FAKE_PARENT });
       expect(scope.get('test')).toBe(undefined);
       expect(scope.set('test', 123)).toBe(scope);
       expect(scope.get('test')).toBe(123);
@@ -68,7 +71,7 @@ describe('Scope', () => {
 
     it('works when stacked', () => {
       let scope1 = new Scope();
-      let scope2 = new Scope(scope1);
+      let scope2 = new Scope({ parent: scope1 });
 
       expect(scope1.get('test')).toBe(undefined);
       expect(scope2.get('test')).toBe(undefined);

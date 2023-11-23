@@ -62,7 +62,7 @@
           },
           children: [
             {
-              '$type': 'Token',
+              '$type': 'ExpressionStatementToken',
               capturedValue: 'variable',
               matchedValue: 'variable',
               attributes: {

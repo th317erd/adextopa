@@ -10,15 +10,15 @@ import {
 const {
   V1: {
     Matchers: {
-      MemberExpression,
+      ExpressionStatement,
     },
   },
 } = Script;
 
-describe('/Script/V1/MemberExpression', () => {
+describe('/Script/V1/ExpressionStatement', () => {
   const test = async (source, debugLevel) => {
     let parser = new Parser({ source });
-    let result = await parser.exec(MemberExpression(), (debugLevel > 1) ? { debug: true } : undefined);
+    let result = await parser.exec(ExpressionStatement(), (debugLevel > 1) ? { debug: true } : undefined);
 
     if (debugLevel > 0)
       _TestHelpers.inspectLog(result);
@@ -27,6 +27,6 @@ describe('/Script/V1/MemberExpression', () => {
   };
 
   it('works', async () => {
-    await test('.$0', 0);
+    await test('test.derp.stuff[\'hello\']', 0);
   });
 });

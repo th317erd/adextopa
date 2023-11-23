@@ -8,17 +8,7 @@
       columnStart: 1,
       lineEnd: 1,
       lineStart: 1,
-      message: 'Failed to match',
-      parserContext: Map(3) {
-        'Identifier' => {
-          '$type': 'MatchesMatcher',
-          attributes: {
-            name: 'Identifier'
-          }
-        },
-        'debugColors' => true,
-        'source' => '2derp'
-      }
+      message: 'Failed to match'
     }
   }
 }

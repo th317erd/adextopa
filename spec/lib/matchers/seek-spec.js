@@ -27,7 +27,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
 
   describe('parseRange', () => {
     it('works', () => {
-      let context = new ParserContext(parser);
+      let context = new ParserContext({ parser });
       let seek    = Seek();
 
       const p = (value) => seek.parseRange(context, value);
@@ -37,7 +37,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
       expect(p(null)).toMatchSnapshot();
       expect(p(':')).toMatchSnapshot();
       expect(p('')).toMatchSnapshot();
-      expect(p(new SourceRange(1, 4))).toMatchSnapshot();
+      expect(p(new SourceRange({ start: 1, end: 4 }))).toMatchSnapshot();
       expect(p(2)).toMatchSnapshot();
       expect(p(-2)).toMatchSnapshot();
       expect(p([ 1, 4 ])).toMatchSnapshot();
@@ -61,7 +61,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
 
   describe('getAbsoluteRange', () => {
     it('works', () => {
-      let context = new ParserContext(parser);
+      let context = new ParserContext({ parser });
       let seek    = Seek();
 
       const p = (value) => seek.getAbsoluteRange(context, value);
@@ -71,7 +71,7 @@ describe('/Core/Matchers/SeekMatcher', () => {
       expect(p(null)).toMatchSnapshot();
       expect(p(':')).toMatchSnapshot();
       expect(p('')).toMatchSnapshot();
-      expect(p(new SourceRange(1, 4))).toMatchSnapshot();
+      expect(p(new SourceRange({ start: 1, end: 4 }))).toMatchSnapshot();
       expect(p(2)).toMatchSnapshot();
 
       expect(p(-2)).toMatchSnapshot();

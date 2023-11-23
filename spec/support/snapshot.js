@@ -113,7 +113,7 @@ function serialize(value) {
       };
 
       Object.keys(Object.getOwnPropertyDescriptors(value)).forEach((key) => {
-        if (key === 'stack')
+        if (key === 'stack' || key === 'parserContext')
           return;
 
         errorObj[key] = value[key];
@@ -375,11 +375,17 @@ export function matchesSnapshot(value) {
       throw error;
   }
 
+  let updateSnapshots = (process.argv.indexOf('--update-snapshots') >= 0);
+
   let serializedValue = serialize(value);
   if (!FileSystem.existsSync(fullPath))
     FileSystem.writeFileSync(fullPath, serializedValue, 'utf8');
 
   let storedValue = FileSystem.readFileSync(fullPath, 'utf8');
-  if (storedValue !== serializedValue)
-    return calcDiff(fullPath, storedValue, serializedValue);
+  if (storedValue !== serializedValue) {
+    if (updateSnapshots)
+      FileSystem.writeFileSync(fullPath, serializedValue, 'utf8');
+    else
+      return calcDiff(fullPath, storedValue, serializedValue);
+  }
 }

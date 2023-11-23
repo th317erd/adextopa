@@ -62,7 +62,7 @@
           },
           children: [
             {
-              '$type': 'Token',
+              '$type': 'ExpressionStatementToken',
               capturedValue: 'hello',
               matchedValue: "'hello'",
               attributes: {
@@ -113,7 +113,7 @@
               }
             },
             {
-              '$type': 'Token',
+              '$type': 'ExpressionStatementToken',
               capturedValue: 'null',
               matchedValue: 'null',
               attributes: {
@@ -164,7 +164,7 @@
               }
             },
             {
-              '$type': 'Token',
+              '$type': 'ExpressionStatementToken',
               capturedValue: '2.0',
               matchedValue: '2.0',
               attributes: {
@@ -215,7 +215,7 @@
               }
             },
             {
-              '$type': 'Token',
+              '$type': 'ExpressionStatementToken',
               capturedValue: 'true',
               matchedValue: 'true',
               attributes: {

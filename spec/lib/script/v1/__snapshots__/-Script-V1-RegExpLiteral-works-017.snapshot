@@ -6,17 +6,6 @@
     columnStart: 1,
     lineEnd: 1,
     lineStart: 1,
-    message: 'Invalid regular expression: /+cat+/: Nothing to repeat',
-    parserContext: Map(4) {
-      'MapResult' => {
-        '$type': 'MapMatcher',
-        attributes: {
-          name: 'MapResult'
-        }
-      },
-      'debug' => undefined,
-      'debugColors' => true,
-      'source' => '/+cat+/'
-    }
+    message: 'Invalid regular expression: /+cat+/: Nothing to repeat'
   }
 }

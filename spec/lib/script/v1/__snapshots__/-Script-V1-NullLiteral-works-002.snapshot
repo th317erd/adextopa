@@ -8,17 +8,7 @@
       columnStart: 1,
       lineEnd: 1,
       lineStart: 1,
-      message: 'Failed to match',
-      parserContext: Map(3) {
-        'NullLiteral' => {
-          '$type': 'MatchesMatcher',
-          attributes: {
-            name: 'NullLiteral'
-          }
-        },
-        'debugColors' => true,
-        'source' => 'nnull'
-      }
+      message: 'Failed to match'
     }
   }
 }

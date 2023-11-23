@@ -19,7 +19,7 @@ describe('ParserContext', () => {
       fileName: './test.something',
     });
 
-    context = new ParserContext(parser, parser.getOptions());
+    context = new ParserContext({ parser, ...parser.getOptions() });
   });
 
   describe('getParser', () => {
@@ -83,7 +83,7 @@ describe('ParserContext', () => {
     });
 
     it('can convert to primitive', () => {
-      const token = new Token(context, null, { value: 'hello' });
+      const token = new Token({ context, attributes: { value: 'hello' } });
 
       const FAKE = {
         toString: () => 'yoot',

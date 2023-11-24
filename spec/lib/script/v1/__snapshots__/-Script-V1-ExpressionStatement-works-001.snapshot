@@ -1,0 +1,208 @@
+{
+  '$type': 'Object',
+  value: {
+    success: true,
+    result: {
+      '$type': 'ExpressionStatementToken',
+      capturedValue: 'test.derp.stuff[0]',
+      matchedValue: 'test.derp.stuff[0]',
+      parent: null,
+      attributes: {
+        name: 'ExpressionStatement',
+        proxyChildren: false,
+        value: null
+      },
+      capturedRange: {
+        '$type': 'SourceRange',
+        end: 18,
+        relative: false,
+        start: 0
+      },
+      expression: {
+        '$type': 'MemberExpressionToken',
+        capturedValue: 'test.derp.stuff[0]',
+        matchedValue: 'test.derp.stuff[0]',
+        attributes: {
+          name: 'MemberExpression',
+          proxyChildren: false,
+          value: null
+        },
+        capturedRange: {
+          '$type': 'SourceRange',
+          end: 18,
+          relative: false,
+          start: 0
+        },
+        matchedRange: {
+          '$type': 'SourceRange',
+          end: 18,
+          relative: false,
+          start: 0
+        },
+        object: {
+          '$type': 'MemberExpressionToken',
+          capturedValue: 'test.derp.stuff',
+          matchedValue: 'test.derp.stuff',
+          attributes: {
+            name: 'MemberExpression',
+            proxyChildren: false,
+            value: null
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 15,
+            relative: false,
+            start: 0
+          },
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 15,
+            relative: false,
+            start: 0
+          },
+          object: {
+            '$type': 'MemberExpressionToken',
+            capturedValue: 'test.derp',
+            matchedValue: 'test.derp',
+            attributes: {
+              name: 'MemberExpression',
+              proxyChildren: false,
+              value: null
+            },
+            capturedRange: {
+              '$type': 'SourceRange',
+              end: 9,
+              relative: false,
+              start: 0
+            },
+            matchedRange: {
+              '$type': 'SourceRange',
+              end: 9,
+              relative: false,
+              start: 0
+            },
+            object: {
+              '$type': 'Token',
+              capturedValue: 'test',
+              matchedValue: 'test',
+              attributes: {
+                name: 'Identifier',
+                proxyChildren: false,
+                value: 'test'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 4,
+                relative: false,
+                start: 0
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 4,
+                relative: false,
+                start: 0
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            },
+            parent: {
+              '$ref': '0#'
+            },
+            property: {
+              '$type': 'Token',
+              capturedValue: 'derp',
+              matchedValue: 'derp',
+              attributes: {
+                name: 'Identifier',
+                proxyChildren: false,
+                value: 'derp'
+              },
+              capturedRange: {
+                '$type': 'SourceRange',
+                end: 9,
+                relative: false,
+                start: 5
+              },
+              children: [],
+              matchedRange: {
+                '$type': 'SourceRange',
+                end: 9,
+                relative: false,
+                start: 5
+              },
+              parent: {
+                '$ref': '0#'
+              }
+            }
+          },
+          parent: {
+            '$ref': '0#'
+          },
+          property: {
+            '$type': 'Token',
+            capturedValue: 'stuff',
+            matchedValue: 'stuff',
+            attributes: {
+              name: 'Identifier',
+              proxyChildren: false,
+              value: 'stuff'
+            },
+            capturedRange: {
+              '$type': 'SourceRange',
+              end: 15,
+              relative: false,
+              start: 10
+            },
+            children: [],
+            matchedRange: {
+              '$type': 'SourceRange',
+              end: 15,
+              relative: false,
+              start: 10
+            },
+            parent: {
+              '$ref': '0#'
+            }
+          }
+        },
+        parent: {
+          '$ref': '0#'
+        },
+        property: {
+          '$type': 'Token',
+          capturedValue: '0',
+          matchedValue: '0',
+          attributes: {
+            name: 'NumberLiteral',
+            proxyChildren: false,
+            value: 0
+          },
+          capturedRange: {
+            '$type': 'SourceRange',
+            end: 17,
+            relative: false,
+            start: 16
+          },
+          children: [],
+          matchedRange: {
+            '$type': 'SourceRange',
+            end: 17,
+            relative: false,
+            start: 16
+          },
+          parent: {
+            '$ref': '0#'
+          }
+        }
+      },
+      matchedRange: {
+        '$type': 'SourceRange',
+        end: 18,
+        relative: false,
+        start: 0
+      }
+    }
+  }
+}

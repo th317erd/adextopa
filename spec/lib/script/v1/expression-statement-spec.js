@@ -26,7 +26,7 @@ describe('/Script/V1/ExpressionStatement', () => {
     return result;
   };
 
-  it('works', async () => {
-    await test('test.derp.stuff[\'hello\']', 0);
+  fit('works', async () => {
+    expect(await test('test.derp.stuff[0]')).toMatchSnapshot();
   });
 });

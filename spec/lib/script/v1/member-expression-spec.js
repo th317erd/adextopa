@@ -5,6 +5,8 @@ import * as _TestHelpers from '../../../support/test-helpers.js';
 import {
   Parser,
   Script,
+  Token,
+  Utils,
 } from '../../../../lib/index.js';
 
 const {

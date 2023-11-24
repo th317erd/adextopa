@@ -3,8 +3,10 @@
 import * as _TestHelpers from '../../support/test-helpers.js';
 
 import {
+  Utils,
   Parser,
   Matchers,
+  Token,
 } from '../../../lib/index.js';
 
 const {
@@ -71,6 +73,10 @@ describe('/Core/Matchers/Fetch and Store', () => {
 
       parser = new Parser({ source: 'Testing Derp' });
 
+      let testToken = new Token({ attributes: { name: 'Test', value: 'Cast' } });
+
+      class ExpandedTokenClass extends Token {}
+
       await parser.exec(
         Program(
           Store('String1', Cast('String', 1234)),
@@ -78,6 +84,7 @@ describe('/Core/Matchers/Fetch and Store', () => {
           Store('Number2', Cast('Number', '12.34')),
           Store('Boolean1', Cast('Boolean', '1')),
           Store('Boolean2', Cast('Boolean', 0)),
+          Store('Token1', Cast(ExpandedTokenClass, testToken)),
           Call(({ context }) => {
             expect(context.fetch('String1')).toBe('1234');
             tested.String1 = true;
@@ -94,6 +101,15 @@ describe('/Core/Matchers/Fetch and Store', () => {
             expect(context.fetch('Boolean2')).toBe(false);
             tested.Boolean2 = true;
 
+            let token = context.fetch('Token1');
+            expect(token).toBeInstanceOf(ExpandedTokenClass);
+            expect(token).toBeInstanceOf(Token);
+            expect(token.name()).toBe('Test');
+            expect(token.value()).toBe('Cast');
+            expect(Utils.typeOf(token)).toBe('ExpandedTokenClass');
+            expect(Utils.isType(token, ExpandedTokenClass)).toBe(true);
+            tested.Token1 = true;
+
             return context.nullResult();
           }),
         ).name('Program'),
@@ -104,6 +120,7 @@ describe('/Core/Matchers/Fetch and Store', () => {
       expect(tested.Number2).toBe(true);
       expect(tested.Boolean1).toBe(true);
       expect(tested.Boolean2).toBe(true);
+      expect(tested.Token1).toBe(true);
     });
   });
 });

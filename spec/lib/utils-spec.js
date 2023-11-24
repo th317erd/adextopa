@@ -117,11 +117,7 @@ describe('Utils', () => {
     it('works', () => {
       class Test {}
 
-      let TEST_OBJ = {
-        [Utils.TYPE_SYMBOL]: 'Derp',
-      };
-
-      expect(Utils.typeOf(TEST_OBJ)).toBe('Derp');
+      expect(Utils.typeOf({})).toBe('Object');
       expect(Utils.typeOf(undefined)).toBe('undefined');
       expect(Utils.typeOf(null)).toBe('undefined');
       expect(Utils.typeOf(NaN)).toBe('undefined');

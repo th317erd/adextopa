@@ -28,7 +28,7 @@ const INSPECT_OPTIONS = Object.assign(Object.create(null), {
   compact:          false,
   sorted:           false,
   getters:          false,
-  numericSeparator: true,
+  numericSeparator: false,
 });
 
 export function inspect(...args) {

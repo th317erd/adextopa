@@ -343,12 +343,12 @@ describe('Utils', () => {
       expect(Utils.noe('')).toBe(true);
       expect(Utils.noe('   ')).toBe(true);
       expect(Utils.noe('   \n\r\n')).toBe(true);
+      expect(Utils.noe([])).toBe(true);
+      expect(Utils.noe({})).toBe(true);
 
       expect(Utils.noe(0)).toBe(false);
       expect(Utils.noe(true)).toBe(false);
       expect(Utils.noe(false)).toBe(false);
-      expect(Utils.noe([])).toBe(false);
-      expect(Utils.noe({})).toBe(false);
     });
   });
 });

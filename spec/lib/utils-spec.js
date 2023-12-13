@@ -88,6 +88,8 @@ describe('Utils', () => {
       };
 
       expect(Utils.fetch.call(data, 'test')).toBe(true);
+      expect(Utils.fetch.call(data, 'array.length')).toBe(3);
+      expect(Utils.fetch.call(data, 'array.size')).toBe(3);
       expect(Utils.fetch.call(data, 'array.0')).toBe(data.array[0]);
       expect(Utils.fetch.call(data, 'array.0.value')).toBe(data.array[0].value);
       expect(Utils.fetch.call(data, 'array.1')).toBe(data.array[1]);
@@ -110,6 +112,7 @@ describe('Utils', () => {
       expect(Utils.fetch.call(data, 'dynamic.derp')).toBe('derp{waz.here}'); // getter
       expect(Utils.fetch.call(data, 'dynamic.anything')).toBe('anything{waz.here}'); // getter
       expect(Utils.fetch.call(data, 'dynamic.anything.length')).toBe(18); // string length
+      expect(Utils.fetch.call(data, 'dynamic.anything.size')).toBe(18); // string length
     });
   });
 
